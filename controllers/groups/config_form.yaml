@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Text Group
+
+# Model Form Field configuration
+form: $/xitara/dynamiccontent/models/group/fields.yaml
+
+# Model Class name
+modelClass: Xitara\DynamicContent\Models\Group
+
+# Default redirect location
+defaultRedirect: xitara/dynamiccontent/groups
+
+# Create page
+create:
+    title: Create Text Group
+    redirect: xitara/dynamiccontent/groups/update/:id
+    redirectClose: xitara/dynamiccontent/groups
+
+# Update page
+update:
+    title: Edit Text Group
+    redirect: xitara/dynamiccontent/groups
+    redirectClose: xitara/dynamiccontent/groups
+
+# Preview page
+preview:
+    title: Preview Text Group

@@ -1,0 +1,4 @@
+1.0.1:
+    - First version of DynamicContent
+    - create_texts_table.php
+    - create_groups_table.php

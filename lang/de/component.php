@@ -1,0 +1,36 @@
+<?php
+
+return [
+    'buyedarticle' => [
+        'options' => [
+            'none' => 'keins',
+            'day' => 'Jeden Tag',
+            'week' => 'Jede Woche',
+            'month' => 'Jeden Monat',
+            'year' => 'Jedes Jahr',
+        ],
+        'name' => 'Dynamischer Inhalt - Gekaufte Artikel',
+        'description' => 'Wertet gekaufte Artikel aus und erzeugt konfigurierte Texte',
+        'article' => 'Artikel',
+        'article_id' => 'Artikel ID',
+        'article_name' => 'Artikel Name',
+        'buyed_dates' => 'Array mit dem Datum aller Käufe des Users',
+        'placement' => 'Platzierung',
+        'points' => 'Punkte (berechnet aus Summe und den eingestellten Coins pro Punkt)',
+        'next_sum' => 'Summe die für den nächsten Platz nötig ist.',
+        'prices' => 'Array mit Preisen aller Käufe des Users',
+        'sum' => 'Summe die der User bisher gezahlt hat',
+        'user_id' => 'User ID',
+        'user_name' => 'Username',
+        'no_place' => 'Text ohne Plazierung',
+        'no_place_description' => 'Text, wenn es bisher keine Platzierung / Punkte gibt.',
+        'with_place' => 'Text mit Plazierung',
+        'with_place_description' => 'Text, wenn es bereits eine Platzierung gibt.',
+        'credits_per_point' => 'Coins pro Punkt',
+        'credits_per_point_description' => 'Gib an, wieviele Coins benötigt werden um einen Punkt zu bekommen.',
+        'start_at' => 'Start Datum - Format: YYYY-MM-DD HH:MM:SS',
+        'start_at_description' => 'Gibt an ab welchem Datum die Artikel ausgewertet werden sollen. Uhrzeit ist Optional. Wenn nicht angegen wird 00:00:00 als Defaultwert genommen',
+        'interval' => 'Interval',
+        'interval_description' => 'Gibt an in welchem Interval eine neue Auswertung starten soll. Z.B. Woche gibt an, dass das Startdatum jede Woche neu gesetzt wird.',
+    ],
+];

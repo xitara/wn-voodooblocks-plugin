@@ -1,0 +1,21 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: xitara.core::core.group
+        type: text
+        span: left
+    description:
+        label: xitara.core::core.description
+        type: richeditor
+        toolbarButtons: bold,italic,underline,strikeThrough
+        span: right
+    slug:
+        label: xitara.core::core.slug
+        type: text
+        span: left
+        preset:
+            field: group
+            type: slug

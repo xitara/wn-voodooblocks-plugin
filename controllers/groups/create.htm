@@ -1,0 +1,63 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li>
+            <a href="<?= Backend::url('xitara/dynamiccontent/groups') ?>">
+                <?= e(trans('xitara.dynamiccontent::lang.submenu.label')); ?>
+            </a>
+        </li>
+        <li>
+            <?= e(trans('xitara.core::core.create_m', [
+                'model' => e(trans('xitara.dynamiccontent::lang.controller.group'))
+            ])); ?>
+        </li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+            <?= $this->formRender() ?>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Creating TextGroup..."
+                    class="btn btn-primary">
+                    <?= trans('xitara.core::core.create'); ?>
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Creating TextGroup..."
+                    class="btn btn-default">
+                    <?= trans('xitara.core::core.create_close'); ?>
+                </button>
+                <span class="btn-text">
+                    <?= e(trans('xitara.core::core.or')); ?>
+                    <a href="<?= Backend::url('xitara/dynamiccontent/textgroups') ?>">
+                        <?= e(trans('xitara.core::core.cancel')); ?>
+                    </a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p>
+        <a href="<?= Backend::url('xitara/dynamiccontent/texts') ?>" class="btn btn-default">
+            <?= e(trans('xitara.core::core.return_to_list')); ?>
+        </a>
+    </p>
+
+<?php endif ?>

@@ -1,0 +1,15 @@
+<h2><?= e(trans('xitara.dynamiccontent::lang.manual.heading')) ?></h2>
+<p>
+    Folgende Liste zeigt die vorhandenen Komponenten/Snippets und die zugehörigen Platzhalter.
+</p>
+
+<?php foreach ($manuals as $name => $manual): ?>
+    <h3><?= e(trans('xitara.dynamiccontent::component.' . $name . '.name')); ?></h3>
+    <ul>
+        <?php foreach ($manual as $key => $line): ?>
+            <li>
+                {<?= $key; ?>} => <?= $line; ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endforeach; ?>

@@ -1,0 +1,28 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: xitara.core::core.name
+        type: text
+        searchable: true
+        sortable: true
+    group_names:
+        label: xitara.core::core.groups
+        relation: groups
+        select: name
+    created_at:
+        label: xitara.core::core.created_at
+        type: datetime
+        align: center
+        width: 10%
+        searchable: true
+        sortable: true
+    updated_at:
+        label: xitara.core::core.updated_at
+        type: datetime
+        align: center
+        width: 10%
+        searchable: true
+        sortable: true

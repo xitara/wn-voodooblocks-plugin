@@ -1,0 +1,75 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li>
+            <a href="<?= Backend::url('xitara/dynamiccontent/texts') ?>">
+                <?= e(trans('xitara.dynamiccontent::lang.submenu.label')); ?>
+            </a>
+        </li>
+        <li>
+            <?= e(trans('xitara.core::core.create_m', [
+                'model' => e(trans('xitara.dynamiccontent::lang.submenu.text'))
+            ])); ?>
+        </li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+            <?= $this->formRender() ?>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="<?= e(trans('xitara.core::core.saving')); ?>..."
+                    class="btn btn-primary">
+                    <?= trans('xitara.core::core.save'); ?>
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="<?= e(trans('xitara.core::core.saving')); ?>..."
+                    class="btn btn-default">
+                    <?= trans('xitara.core::core.save_close'); ?>
+                </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="<?= e(trans('xitara.core::core.deleting')); ?>..."
+                    data-request-confirm="<?= e(trans('xitara.core::core.return_to_list', [
+                        'model' => e(trans('xitara.dynamiccontent::lang.submenu.text'))
+                    ])); ?>?">
+                </button>
+                <span class="btn-text">
+                    <?= e(trans('xitara.core::core.or')); ?>
+                    <a href="<?= Backend::url('xitara/dynamiccontent/textpool') ?>">
+                        <?= e(trans('xitara.core::core.cancel')); ?>
+                    </a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p>
+        <a href="<?= Backend::url('xitara/dynamiccontent/texts') ?>" class="btn btn-default">
+            <?= e(trans('xitara.core::core.return_to_list', [
+                'model' => e(trans('xitara.dynamiccontent::lang.submenu.text'))
+            ])); ?>
+        </a>
+    </p>
+
+<?php endif ?>

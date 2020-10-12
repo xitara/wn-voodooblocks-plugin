@@ -1,0 +1,33 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li>
+            <a href="<?= Backend::url('xitara/dynamiccontent/texts') ?>">
+                <?= e(trans('xitara.dynamiccontent::lang.submenu.label')); ?>
+            </a>
+        </li>
+        <li>
+            <?= e(trans('xitara.core::core.create_m', [
+                'model' => e(trans('xitara.dynamiccontent::lang.submenu.text'))
+            ])); ?>
+        </li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <div class="form-preview">
+        <?= $this->formRenderPreview() ?>
+    </div>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p>
+        <a href="<?= Backend::url('xitara/dynamiccontent/texts') ?>" class="btn btn-default">
+            <?= e(trans('xitara.core::core.return_to_m', [
+                'model' => e(trans('xitara.dynamiccontent::lang.submenu.text'))
+            ])); ?>
+        </a>
+    </p>
+
+<?php endif ?>
