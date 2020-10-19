@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Block List
+
+# Model Form Field configuration
+form: $/xitara/dynamiccontent/models/blocklist/fields.yaml
+
+# Model Class name
+modelClass: Xitara\DynamicContent\Models\BlockList
+
+# Default redirect location
+defaultRedirect: xitara/dynamiccontent/blocklists
+
+# Create page
+create:
+    title: Create Block List
+    redirect: xitara/dynamiccontent/blocklists/update/:id
+    redirectClose: xitara/dynamiccontent/blocklists
+
+# Update page
+update:
+    title: Edit Block List
+    redirect: xitara/dynamiccontent/blocklists
+    redirectClose: xitara/dynamiccontent/blocklists
+
+# Preview page
+preview:
+    title: Preview Block List

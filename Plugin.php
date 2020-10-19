@@ -47,7 +47,7 @@ class Plugin extends PluginBase
         /**
          * get sidemenu if core-plugin is loaded
          */
-        if (PluginManager::instance()->exists('Xitara\Core') === true) {
+        if (PluginManager::instance()->exists('Xitara.Core') === true) {
             Event::listen('backend.page.beforeDisplay', function ($controller, $action, $params) {
                 $namespace = (new \ReflectionObject($controller))->getNamespaceName();
 
@@ -65,7 +65,7 @@ class Plugin extends PluginBase
      */
     public function register()
     {
-        if (PluginManager::instance()->exists('Xitara\Core') === true) {
+        if (PluginManager::instance()->exists('Xitara.Core') === true) {
             BackendMenu::registerContextSidenavPartial(
                 'Xitara.DynamicContent',
                 'dynamiccontent',
@@ -83,6 +83,7 @@ class Plugin extends PluginBase
     {
         return [
             'Xitara\DynamicContent\Components\BuyedArticle' => 'buyedArticle',
+            'Xitara\DynamicContent\Components\BlockList' => 'blockList',
         ];
     }
 
@@ -90,6 +91,7 @@ class Plugin extends PluginBase
     {
         return [
             'Xitara\DynamicContent\Components\BuyedArticle' => 'buyedArticle',
+            'Xitara\DynamicContent\Components\BlockList' => 'blockList',
         ];
     }
 
@@ -119,14 +121,14 @@ class Plugin extends PluginBase
     {
         $label = 'xitara.dynamiccontent::lang.plugin.name';
 
-        if (PluginManager::instance()->exists('Xitara\Core') === true) {
+        if (PluginManager::instance()->exists('Xitara.Core') === true) {
             $label .= '::hidden';
         }
 
         return [
             'dynamiccontent' => [
                 'label' => $label,
-                'url' => Backend::url('xitara/dynamiccontent/text'),
+                'url' => Backend::url('xitara/dynamiccontent/texts'),
                 'icon' => 'icon-leaf',
                 'iconSvg' => '/plugins/xitara/dynamiccontent/assets/images/dynamiccontent-icon.svg',
                 'permissions' => ['xitara.dynamiccontent.*'],
@@ -154,6 +156,37 @@ class Plugin extends PluginBase
             'dynamiccontent.group' => [
                 'label' => 'xitara.dynamiccontent::lang.submenu.group',
                 'url' => Backend::url('Xitara/dynamiccontent/groups'),
+                'icon' => 'icon-archive',
+                'permissions' => ['xitara.dynamiccontent.*'],
+                'attributes' => [
+                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
+                ],
+                'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+            ],
+            'dynamiccontent.placeholder' => [
+                'label' => 'xitara.dynamiccontent::lang.submenu.blocklist',
+                'url' => Backend::url('Xitara/dynamiccontent/blocklists'),
+                'icon' => 'icon-archive',
+                'permissions' => ['xitara.dynamiccontent.*'],
+                'attributes' => [
+                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
+                    'placeholder' => true,
+                ],
+                'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+            ],
+            'dynamiccontent.blocklist' => [
+                'label' => 'xitara.dynamiccontent::lang.submenu.blocklist',
+                'url' => Backend::url('Xitara/dynamiccontent/blocklists'),
+                'icon' => 'icon-archive',
+                'permissions' => ['xitara.dynamiccontent.*'],
+                'attributes' => [
+                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
+                ],
+                'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+            ],
+            'dynamiccontent.blockgroup' => [
+                'label' => 'xitara.dynamiccontent::lang.submenu.blockgroup',
+                'url' => Backend::url('Xitara/dynamiccontent/blockgroups'),
                 'icon' => 'icon-archive',
                 'permissions' => ['xitara.dynamiccontent.*'],
                 'attributes' => [

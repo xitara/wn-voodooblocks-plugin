@@ -8,8 +8,18 @@
         top: 45%;
     }
 
+    .gcontainer {
+        // position: relative;
+        height: 96%;
+    }
+
+    .gslide-media {
+        // display: block;
+    }
+
     .gslide-description {
         background: rgba(0, 0, 0, 0.75);
+        flex: none;
 
         .gslide-title {
             color: #fff;

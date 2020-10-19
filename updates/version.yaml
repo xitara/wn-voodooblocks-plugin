@@ -2,3 +2,7 @@
     - First version of DynamicContent
     - create_texts_table.php
     - create_groups_table.php
+1.0.2:
+    - Add blocklists and groups
+    - create_block_lists_table.php
+    - create_block_groups_table.php

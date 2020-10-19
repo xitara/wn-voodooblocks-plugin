@@ -1,0 +1,22 @@
+{% set blocklist = __SELF__.blocklist %}
+<h1>{{ blocklist.name }}</h1>
+<section id="{{ __SELF__.alias|slug }}" class="flex flex-wrap blocklist">
+    {% for block in blocklist.blocks %}
+        {% set block = block.block %}
+        <aside class="flex-{{ block.width }} w-{{ block.width }}">
+            <article class="h-full">
+                <h2>{{ block.heading }}</h2>
+                <div class="h-{{ block.height }}{% if block.is_scrolling == 1 %} scrollbar{% endif %}">
+                    {% if block.excerpt|trim != '' %}
+                        {{ block.excerpt|raw }}
+                    {% elseif block.content|trim != '' and block.images|length == 0 %}
+                        {{ block.content|raw }}
+                    {% endif %}
+                    {% if block['images'] is defined %}
+                        {% partial __SELF__ ~ "::images" block=block %}
+                    {% endif %}
+                </div>
+            </article>
+        </aside>
+    {% endfor %}
+</section>

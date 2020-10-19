@@ -9,13 +9,24 @@
     ],
     'submenu' => [
         'label' => 'Dynamischer Content',
-        // 'name' => 'Dynamischer Content',
         'text' => 'Texte',
         'group' => 'Gruppen',
+        'blocklist' => 'Block Listen',
+        'blockgroup' => 'Block Gruppen',
+    ],
+    'tab' => [
+        'data' => 'Inhalt',
+        'images' => 'Bilder',
+        'slider' => 'Slider',
+        'lightbox' => 'Lightbox',
+    ],
+    'prompt' => [
+        'images' => 'Neues Bild',
     ],
     'controller' => [
         'text' => 'Text',
         'group' => 'Gruppe',
+        'new_block' => 'Neuen Block anlegen',
     ],
     'manual' => [
         'heading' => 'Anleitung für Platzhalter im Text',

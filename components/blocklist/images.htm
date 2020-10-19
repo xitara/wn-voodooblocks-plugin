@@ -1,0 +1,83 @@
+{% set uid = uid() %}
+<div class="slider-container">
+    <ul{% if block.is_slider == 1 %} id="slide-{{ uid }}"{% endif %}>
+        {% for image in block.images %}
+            <li class="slider-item">
+                {% set no_resize = false %}
+                {% if (image.image|mediadata).mime_type == 'image/svg' %}
+                    {% set no_resize = true %}
+                {% endif %}
+
+                {{ _self.image_output(image.image|media, image.title, image.description, block, uid) }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% if block.is_slider == 1 %}
+        {# left and right controls #}
+        {% if block.slider.is_controls == 1 %}
+            <ul class="slider-controls" tabindex="0">
+                <li class="prev" data-controls="prev" tabindex="-1">
+                    &lsaquo;
+                </li>
+                <li class="next" data-controls="next" tabindex="-1">
+                    &rsaquo;
+                </li>
+            </ul>
+        {% endif %}
+    {% endif %}
+</div>
+
+{% if block.is_slider == 1 and block.slider is defined %}
+    {% partial __SELF__ ~ "::config_slider" uid=uid config=block.slider %}
+{% endif %}
+
+{% if block.is_lightbox == 1 and block.lightbox is defined %}
+    {% partial __SELF__ ~ "::config_lightbox" uid=uid config=block.lightbox %}
+{% endif %}
+
+{% macro image_output(image, title, description, block, uid, no_resize) %}
+    {% if block.is_lightbox == 1 %}
+        <a
+            href="{{ image }}"
+            data-title="{{ title|escape('html') }}"
+            data-description="{{ description|escape('html') }}"
+            class="lightbox-{{ uid }}"
+        >
+    {% endif %}
+    <figure>
+        {% set image_height = block.slider.image_height  %}
+        {% if no_resize is defined and no_resize == true %}
+            <img src="{{ image }}" style="max-height: {{ image_height }}px;"
+        {% else %}
+            <img src="{{ image|resize(false, image_height, { mode: 'crop', quality: '80', extension: 'webp' }) }}"
+        {% endif %}
+        alt="{{ description|strip_html }}">
+
+        {% if (title|trim != '' or description|trim != '') and block.is_image_text == 1 %}
+            <figcaption>
+                {% if title != '' %}
+                    <h2>{{ title }}</h2>
+                {% endif %}
+                {% if description != '' %}
+                    <p>{{ description|raw }}</p>
+                {% endif %}
+            </figcaption>
+        {% endif %}
+    </figure>
+    {% if block.is_lightbox == 1 %}
+        </a>
+    {% endif %}
+{% endmacro %}
+
+{% if block.slider.is_nav_overlay == 1 %}
+    <style>
+        .tns-nav {
+            position: relative;
+            {{ block.slider.nav_position }}: 1.5rem;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+    </style>
+{% endif %}

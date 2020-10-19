@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Block Group
+
+# Model Form Field configuration
+form: $/xitara/dynamiccontent/models/blockgroup/fields.yaml
+
+# Model Class name
+modelClass: Xitara\DynamicContent\Models\BlockGroup
+
+# Default redirect location
+defaultRedirect: xitara/dynamiccontent/blockgroups
+
+# Create page
+create:
+    title: Create Block Group
+    redirect: xitara/dynamiccontent/blockgroups/update/:id
+    redirectClose: xitara/dynamiccontent/blockgroups
+
+# Update page
+update:
+    title: Edit Block Group
+    redirect: xitara/dynamiccontent/blockgroups
+    redirectClose: xitara/dynamiccontent/blockgroups
+
+# Preview page
+preview:
+    title: Preview Block Group

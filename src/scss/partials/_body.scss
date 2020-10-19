@@ -1,0 +1,32 @@
+section.blocklist {
+    aside {
+        @apply mt-1 mb-2 p-0;
+
+        & > article {
+            // @apply text-ash-500 bg-gray-100;
+            // @apply border border-gray-300;
+            @apply ml-1 mr-2 mb-1;
+
+            & > h2 {
+                // @apply font-oswald text-hillary-500 text-lg bg-gray-200;
+                @apply px-3 py-1;
+            }
+
+            & > div {
+                @apply overflow-hidden;
+
+                &.scrollbar {
+                    @apply overflow-x-visible overflow-y-auto w-full;
+                }
+
+                p {
+                    @apply p-2;
+                }
+            }
+        }
+    }
+
+    .simplebar-content {
+        @apply relative;
+    }
+}
