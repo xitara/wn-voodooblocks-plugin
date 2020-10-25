@@ -93,6 +93,7 @@ fields:
                                 is_scrolling:
                                     tab: xitara.dynamiccontent::lang.tab.data
                                     label: xitara.dynamiccontent::component.blocklist.is_scrolling
+                                    comment: xitara.dynamiccontent::component.blocklist.is_scrolling_comment
                                     type: switch
                                     span: storm
                                     cssClass: col-md-10
@@ -134,6 +135,7 @@ fields:
                                 is_image_text:
                                     tab: xitara.dynamiccontent::lang.tab.images
                                     label: xitara.dynamiccontent::component.blocklist.is_image_text
+                                    comment: xitara.dynamiccontent::component.blocklist.is_image_text_comment
                                     type: switch
                                     span: storm
                                     cssClass: col-md-2 center-switch

@@ -1,32 +1,31 @@
-// Tiny-SLider
-// @import 'tiny-slider/dist/tiny-slider.css';
-@import 'tiny-slider/src/tiny-slider';
-@import 'partials/slider';
-
-// Lightbox SCSS (https://github.com/biati-digital/glightbox)
-@import 'glightbox/src/postcss/glightbox.css';
-@import 'partials/glightbox'; // Custom Lightbox SCSS
-
 // Tailwindcss
 // see tailwind.config.js for configurations
 /* purgecss start ignore */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 /* purgecss end ignore */
-
 // @import 'tailwindcss/utilities';
 
+// Tiny-SLider
+@import 'tiny-slider/src/tiny-slider';
+// @import 'partials/slider'; // pure scss
+@import 'partials/tw_slider'; // tailwind
+
+// Lightbox SCSS (https://github.com/biati-digital/glightbox)
+@import 'glightbox/src/postcss/glightbox.css';
+@import 'partials/glightbox'; // Custom Lightbox SCSS
+
 // Variables
-// @import 'base/variables';
+@import 'base/variables';
 
 // Breakpoints
-// @import 'base/breakpoints';
+@import 'base/breakpoints';
 
 // Mixins
-// @import 'base/mixins';
+@import 'base/mixins';
 
 // Fonts
-// @import 'base/fonts';
+@import 'base/fonts';
 
 /* Body */
 @import 'partials/body';
@@ -38,4 +37,4 @@
 @import 'partials/footer';
 
 /* froala and fixes */
-// @import 'partials/froala';
+@import 'partials/froala';

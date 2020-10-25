@@ -60,7 +60,7 @@
                     <h2>{{ title }}</h2>
                 {% endif %}
                 {% if description != '' %}
-                    <p>{{ description|raw }}</p>
+                    <article>{{ description|raw }}</article>
                 {% endif %}
             </figcaption>
         {% endif %}
@@ -74,6 +74,7 @@
     <style>
         .tns-nav {
             position: relative;
+            /* stylelint-disable-next-line */
             {{ block.slider.nav_position }}: 1.5rem;
             left: 0;
             right: 0;

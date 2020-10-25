@@ -64,6 +64,10 @@ class Texts extends Controller
                 // var_dump($name);
                 // var_dump($component);
 
+                if (!isset($component::$placeholder)) {
+                    continue;
+                }
+
                 $manuals[$name] = [];
                 foreach ($component::$placeholder as $placeholder) {
                     $description = 'xitara.dynamiccontent::component.' . $name;

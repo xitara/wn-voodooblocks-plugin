@@ -4,7 +4,6 @@ use App;
 use Backend;
 use BackendMenu;
 use Event;
-use Log;
 use System\Classes\PluginBase;
 use System\Classes\PluginManager;
 
@@ -139,7 +138,7 @@ class Plugin extends PluginBase
 
     public static function injectSideMenu()
     {
-        Log::debug(__METHOD__);
+        // Log::debug(__METHOD__);
 
         $i = 0;
         return [

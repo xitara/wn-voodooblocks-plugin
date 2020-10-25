@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
+// const LiveReloadPlugin = require('webpack-livereload-plugin');
 const TailwindCSS = require('tailwindcss');
 const paths = require('./paths');
 
@@ -106,5 +107,10 @@ module.exports = {
             threshold: 10240,
             minRatio: 0.8
         }),
+        // new LiveReloadPlugin({
+        //     hostname: 'localhost',
+        //     port: 0,
+        //     delay: 10000,
+        // }),
     ],
 };
