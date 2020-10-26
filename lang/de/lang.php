@@ -27,6 +27,7 @@
         'text' => 'Text',
         'group' => 'Gruppe',
         'new_block' => 'Neuen Block anlegen',
+        'is_heading' => 'Überschrift (Name) anzeigen',
     ],
     'manual' => [
         'heading' => 'Anleitung für Platzhalter im Text',

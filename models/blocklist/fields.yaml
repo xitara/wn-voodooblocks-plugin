@@ -26,10 +26,17 @@ fields:
         span: storm
         cssClass: col-md-3
         disabled: true
+    is_heading:
+        label: xitara.dynamiccontent::lang.controller.is_heading
+        type: switch
+        span: storm
+        cssClass: col-md-3
+        default: 1
     is_active:
         label: xitara.core::core.is_active
         type: switch
-        span: right
+        span: storm
+        cssClass: col-md-3
         default: 1
 
     blocks:

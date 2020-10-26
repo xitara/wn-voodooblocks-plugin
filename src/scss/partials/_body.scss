@@ -1,14 +1,13 @@
 section.blocklist {
+    // @apply space-x-2;
+
     aside {
         @apply mt-1 mb-2 p-0;
 
         & > article {
-            // @apply text-ash-500 bg-gray-100;
-            // @apply border border-gray-300;
-            @apply ml-1 mr-2 mb-1;
+            @apply mx-1 mb-1;
 
             & > h2 {
-                // @apply font-oswald text-hillary-500 text-lg bg-gray-200;
                 @apply px-3 py-1;
             }
 

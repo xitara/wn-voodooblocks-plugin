@@ -89,9 +89,7 @@ module.exports = {
             full: '100%',
             screen: '100vh',
         },
-        maxWidth: (theme) => ({
-            ...theme('maxHeight'),
-        }),
+        maxWidth: (theme) => theme('maxHeight'),
         inset: (theme) => ({
             0: '0',
             ...theme('width'),
@@ -117,6 +115,7 @@ module.exports = {
             56: '14rem',
             64: '16rem',
         },
+        space: (theme) => theme('spacing'),
         translate: {
             '-full': '-100%',
             '-1/2': '-50%',
@@ -152,9 +151,7 @@ module.exports = {
             ...theme('spacing'),
             ...negative(theme('spacing')),
         }),
-        padding: (theme) => ({
-            ...theme('margin'),
-        }),
+        padding: (theme) => theme('margin'),
         lineHeight: {
             none: '1',
             tight: '1.25',

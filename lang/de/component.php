@@ -73,6 +73,5 @@ return [
         'is_image_text' => 'Text unter den Bilder anzeigen',
         'is_image_text_comment' => 'Wenn aktiviert, werden Titel und Beschreibung unter dem Bild angezeigt, falls diese vorhanden sind.',
         '' => '',
-        '' => '',
     ],
 ];

@@ -1,6 +1,8 @@
 {% set blocklist = __SELF__.blocklist %}
-<h1>{{ blocklist.name }}</h1>
-<section id="{{ __SELF__.alias|slug }}" class="flex flex-wrap blocklist">
+{% if blocklist.is_heading == 1 %}
+    <h1>{{ blocklist.name }}</h1>
+{% endif %}
+<section id="blocklist-{{ __SELF__.alias|slug }}" class="flex flex-wrap blocklist">
     {% for block in blocklist.blocks %}
         {% set block = block.block %}
         <aside class="flex-{{ block.width }} w-{{ block.width }}">

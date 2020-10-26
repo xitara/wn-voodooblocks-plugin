@@ -15,6 +15,7 @@ class CreateBlockListsTable extends Migration
             $table->string('slug', 191)->nullable();
             // $table->text('excerpt')->nullable();
             // $table->mediumtext('text')->nullable();
+            $table->boolean('is_heading')->nullable();
             $table->boolean('is_active')->nullable();
             $table->mediumtext('blocks')->nullable();
             $table->timestamps();
