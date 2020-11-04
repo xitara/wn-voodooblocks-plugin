@@ -6,3 +6,4 @@
     - Add blocklists and groups
     - create_block_lists_table.php
     - create_block_groups_table.php
+1.0.3: Add dynamic content to blocklist
