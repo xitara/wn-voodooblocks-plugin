@@ -6,14 +6,22 @@ fields:
     name:
         label: xitara.core::core.name
         type: text
-        span: left
+        span: storm
+        cssClass: col-md-4
     slug:
         label: xitara.core::core.slug
         type: text
-        span: right
+        span: storm
+        cssClass: col-md-4
         preset:
             field: name
             type: slug
+    groups:
+        label: xitara.core::core.groups
+        type: taglist
+        mode: relation
+        span: storm
+        cssClass: col-md-4
     created_at@update:
         label: xitara.core::core.created_at
         type: text
@@ -344,3 +352,12 @@ fields:
                                     type: textarea
                                     span: left
                                     commentHtml: true
+
+                                dynamic_modules:
+                                    tab: xitara.dynamiccontent::lang.tab.dynamic_content
+                                    # label: xitara.dynamiccontent::repeater.blocklist.dynamic_content
+                                    # commentAbove: xitara.dynamiccontent::repeater.blocklist.dynamic_content_comment
+                                    prompt: xitara.dynamiccontent::repeater.blocklist.dynamic_content_prompt
+                                    type: repeater
+                                    span: full
+                                    groups: repeater_fields.yaml

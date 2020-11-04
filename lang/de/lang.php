@@ -15,10 +15,11 @@
         'blockgroup' => 'Block Gruppen',
     ],
     'tab' => [
-        'data' => 'Inhalt',
+        'data' => 'Statischer Inhalt',
         'images' => 'Bilder',
         'slider' => 'Slider',
         'lightbox' => 'Lightbox',
+        'dynamic_content' => 'Dynamischer Inhalt',
     ],
     'prompt' => [
         'images' => 'Neues Bild',

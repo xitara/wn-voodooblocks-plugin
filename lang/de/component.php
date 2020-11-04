@@ -26,6 +26,8 @@ return [
         'no_place_description' => 'Text, wenn es bisher keine Platzierung / Punkte gibt.',
         'with_place' => 'Text mit Plazierung',
         'with_place_description' => 'Text, wenn es bereits eine Platzierung gibt.',
+        'first_place' => 'Text für ersten Platz',
+        'first_place_description' => 'Text, der angezeigt wird, wenn der User den ersten Platz hat.',
         'credits_per_point' => 'Coins pro Punkt',
         'credits_per_point_description' => 'Gib an, wieviele Coins benötigt werden um einen Punkt zu bekommen.',
         'start_at' => 'Start Datum - Format: YYYY-MM-DD HH:MM:SS',
@@ -72,6 +74,8 @@ return [
         'is_scrolling_comment' => 'Blendet einen Scrollbalken ein, wenn der Inhalt länger ist als der Platz im Block. Hat keinen Einfluss wenn die Höhe auf "Automatisch" steht.',
         'is_image_text' => 'Text unter den Bilder anzeigen',
         'is_image_text_comment' => 'Wenn aktiviert, werden Titel und Beschreibung unter dem Bild angezeigt, falls diese vorhanden sind.',
-        '' => '',
+        'dynamic_content' => 'Dynamischer Inhalt',
+        'dynamic_content_comment' => 'Wenn dynamischer Inhalt aktiviert wird, wird der statische Inhalt, Bilder und Slider ignoriert und nur die dynamischen Inhalte aus den ausgewählten Modulen angezeigt.',
+        'dynamic_content_prompt' => 'Neus Modul',
     ],
 ];

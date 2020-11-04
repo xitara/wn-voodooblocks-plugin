@@ -1,6 +1,8 @@
 <?php namespace Xitara\DynamicContent\Models;
 
 use Model;
+use Xitara\DynamicContent\Models\Text;
+use Xitara\EroBridge\Classes\Api;
 
 /**
  * BlockList Model
@@ -66,7 +68,12 @@ class BlockList extends Model
     public $hasManyThrough = [];
     public $belongsTo = [];
     public $belongsToMany = [
-        'groups' => 'Xitara\DynamicContent\Models\BlockGroup',
+        'groups' => [
+            'Xitara\DynamicContent\Models\BlockGroup',
+            'table' => 'xitara_dynamiccontent_block_block_groups',
+            'key' => 'block_id',
+            'otherKey' => 'group_id',
+        ],
     ];
     public $morphTo = [];
     public $morphOne = [];
@@ -87,4 +94,29 @@ class BlockList extends Model
 
     //     $this->blocks = $blocks_;
     // }
+
+    public function getTextNoPlaceOptions()
+    {
+        return Text::orderBy('name', 'asc')->lists('name', 'id');
+    }
+
+    public function getTextPlaceOptions()
+    {
+        return Text::orderBy('name', 'asc')->lists('name', 'id');
+    }
+
+    public function getTextFirstPlaceOptions()
+    {
+        return Text::orderBy('name', 'asc')->lists('name', 'id');
+    }
+
+    public function getArticleOptions()
+    {
+        $result = Api::call('article/search', [
+            'search' => '',
+            'list' => true,
+        ]);
+
+        return $result->body->data;
+    }
 }

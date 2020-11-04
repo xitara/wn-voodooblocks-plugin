@@ -16,16 +16,16 @@
 @import 'partials/glightbox'; // Custom Lightbox SCSS
 
 // Variables
-@import 'base/variables';
+// @import 'base/variables';
 
 // Breakpoints
-@import 'base/breakpoints';
+// @import 'base/breakpoints';
 
 // Mixins
-@import 'base/mixins';
+// @import 'base/mixins';
 
 // Fonts
-@import 'base/fonts';
+// @import 'base/fonts';
 
 /* Body */
 @import 'partials/body';
@@ -38,3 +38,8 @@
 
 /* froala and fixes */
 @import 'partials/froala';
+
+/* eroCMS fixes */
+img {
+    @apply inline;
+}

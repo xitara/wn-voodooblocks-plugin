@@ -4,7 +4,7 @@
 {% endif %}
 <section id="blocklist-{{ __SELF__.alias|slug }}" class="flex flex-wrap blocklist">
     {% for block in blocklist.blocks %}
-        {% set block = block.block %}
+        {# {% set block = block.block %} #}
         <aside class="flex-{{ block.width }} w-{{ block.width }}">
             <article class="h-full">
                 <h2>{{ block.heading }}</h2>
@@ -13,6 +13,9 @@
                         {{ block.excerpt|raw }}
                     {% elseif block.content|trim != '' and block.images|length == 0 %}
                         {{ block.content|raw }}
+                    {% endif %}
+                    {% if block['dynamic_content'] is defined %}
+                        {{ block.dynamic_content|raw }}
                     {% endif %}
                     {% if block['images'] is defined %}
                         {% partial __SELF__ ~ "::images" block=block %}

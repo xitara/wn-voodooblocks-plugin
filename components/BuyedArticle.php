@@ -76,6 +76,11 @@ class BuyedArticle extends ComponentBase
                 'description' => 'xitara.dynamiccontent::component.buyedarticle.with_place_description',
                 'type' => 'dropdown',
             ],
+            'textFirstPlace' => [
+                'title' => 'xitara.dynamiccontent::component.buyedarticle.first_place',
+                'description' => 'xitara.dynamiccontent::component.buyedarticle.first_place_description',
+                'type' => 'dropdown',
+            ],
         ];
     }
 
@@ -85,6 +90,11 @@ class BuyedArticle extends ComponentBase
     }
 
     public function getTextPlaceOptions()
+    {
+        return Text::orderBy('name', 'asc')->lists('name', 'id');
+    }
+
+    public function getTextFirstPlaceOptions()
     {
         return Text::orderBy('name', 'asc')->lists('name', 'id');
     }
@@ -110,23 +120,8 @@ class BuyedArticle extends ComponentBase
             'userlist' => [$userId],
         ]);
 
-        // var_dump($result);
-
-        // var_dump($session, $userId);
-
-        // var_dump($this->property('article'));
-        // var_dump($this->property('startAt'));
-        // var_dump($this->property('interval'));
-        // var_dump($this->property('creditsPerPoint'));
-        // var_dump($this->property('textNoPlace'));
-        // var_dump($this->property('textPlace'));
-
-        // var_dump($result->status);
-        // var_dump($result->body);
-
         if ($result->status == 200) {
             $place = $this->getToplist($userId);
-            // var_dump($result->body->data);
 
             $sum = 0;
             foreach ($result->body->data as $order) {
@@ -136,27 +131,12 @@ class BuyedArticle extends ComponentBase
                 $sum += ($order->preis > 0) ? $order->preis : $order->gesamtpreis;
             }
 
-            // var_dump($sum);
-            // }
+            if ($place['next'] == -1) {
+                $text = ((Text::find($this->property('textFirstPlace')))->text);
+            } else {
+                $text = ((Text::find($this->property('textPlace')))->text);
+            }
 
-            // $user = Api::call('user/data', [
-            //     'value' => 15547,
-            //     'column' => 'id',
-            //     'columns' => ['username'],
-            // ]);
-
-            // var_dump($user);
-
-            // $username = 'John Doe';
-            // if ($user->status == 200) {
-            //     $username = $user->body->data->username;
-            // }
-
-            // var_dump($place);
-
-            // if ()
-
-            $text = ((Text::find($this->property('textPlace')))->text);
             $text = Bracket::parse($text, [
                 'article_id' => $this->property('article'),
                 'article_name' => $articleName,
@@ -177,35 +157,16 @@ class BuyedArticle extends ComponentBase
             $text = Bracket::parse($text, [
                 'article_id' => $this->property('article'),
                 'article_name' => $article->artikelname,
-                // 'buyed_dates' => $buyedDates,
-                // 'placement' => $place['placement'],
-                // 'next_sum' => $place['next'],
-                // 'points' => ceil($sum / $this->property('creditsPerPoint', 25)),
-                // 'prices' => $prices,
-                // 'sum' => $sum,
                 'user_id' => $userId,
                 'user_name' => EroCmsData::getUsernameFromId($userId),
             ]);
-
-            // $this->page['no_place'] = $noPlace;
-
         }
 
-        // $this->page['with_place'] = $withPlace;
         $this->page['text'] = $text;
     }
 
-    // public function onRender()
-    // {
-
-    // }
-
     private function getToplist($userId)
     {
-        // var_dump($this->property('article'));
-        // var_dump($this->property('startAt'));
-        // var_dump($this->property('interval'));
-
         $result = Api::call('article/buyed', [
             'column' => 'artikel_id',
             'value' => $this->property('article'),
@@ -225,7 +186,6 @@ class BuyedArticle extends ComponentBase
         }
 
         arsort($list);
-        // var_dump($list);
 
         foreach ($list as $user => $sum) {
             $data = [
@@ -242,16 +202,6 @@ class BuyedArticle extends ComponentBase
         }
 
         $toplist = array_values($toplist);
-
-        // var_dump($toplist);
-        // sort($toplist);
-
-        // uasort($toplist, function ($a, $b) {
-        // return $a['sum'] <=> $b['sum'];
-        // });
-
-        // var_dump($toplist);
-        // var_dump($userId);
 
         foreach ($toplist as $place => $item) {
             foreach ($item as $user) {
@@ -270,6 +220,6 @@ class BuyedArticle extends ComponentBase
             }
         }
 
-        return ['placement' => $placement, 'next' => $nextPlacement];
+        return ['placement' => $placement, 'next' => $nextPlacement ?? -1];
     }
 }

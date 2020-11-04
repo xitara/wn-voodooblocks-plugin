@@ -1,6 +1,7 @@
 <?php namespace Xitara\DynamicContent\Components;
 
 use Cms\Classes\ComponentBase;
+use Twig;
 use Xitara\DynamicContent\Models\BlockList as BlockListModel;
 
 class BlockList extends ComponentBase
@@ -33,10 +34,47 @@ class BlockList extends ComponentBase
         $this->addJs('/plugins/xitara/dynamiccontent/assets/js/app.js');
 
         $blocklist = BlockListModel::find($this->property('blocklist'));
+        // var_dump($blocklist);
 
         if ($blocklist === null) {
             return;
         }
+
+        $blocklist_ = [];
+        foreach ($blocklist->blocks as $block) {
+            // var_dump($block['block']);
+            if (isset($block['block']['dynamic_modules'])) {
+                // $blocklist_[] = $block;
+                // continue;
+
+                // var_dump($block['block']['dynamic_modules']);
+
+                foreach ($block['block']['dynamic_modules'] as $module) {
+                    $class = '\\Xitara\\DynamicContent\\Classes\\';
+                    $class .= ucfirst(camel_case($module['_group']));
+                    $object = new $class;
+
+                    // var_dump($class);
+                    // var_dump($module);
+
+                    $template = 'xitara/dynamiccontent/views/';
+                    $template .= strtolower(class_basename($class)) . '.htm';
+                    $template = file_get_contents(plugins_path($template));
+
+                    $block['block']['dynamic_content'][] = Twig::parse($template, [
+                        'text' => $object->getData($module),
+                    ]);
+
+                }
+                $block['block']['dynamic_content'] = join($block['block']['dynamic_content']);
+            }
+            $blocklist_[] = $block['block'];
+        }
+
+        $blocklist->blocks = $blocklist_;
+        // var_dump($blocklist_);
+        // var_dump($blocklist->blocks);
+        // exit;
 
         $this->blocklist = $this->page['blocklist'] = $blocklist;
     }

@@ -3,6 +3,35 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
+    name:
+        label: xitara.core::core.name
+        type: text
         searchable: true
+        sortable: true
+    group_names:
+        label: xitara.core::core.groups
+        type: text
+        relation: groups
+        select: name
+        searchable: true
+        sortable: true
+    is_active:
+        label: xitara.core::core.is_active
+        type: switch
+        align: center
+        searchable: true
+        sortable: true
+    created_at:
+        label: xitara.core::core.created_at
+        type: datetime
+        align: center
+        width: 12%
+        searchable: true
+        sortable: true
+    updated_at:
+        label: xitara.core::core.updated_at
+        type: datetime
+        align: center
+        width: 12%
+        searchable: true
+        sortable: true

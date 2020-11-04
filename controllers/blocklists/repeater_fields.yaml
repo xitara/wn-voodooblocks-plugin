@@ -1,0 +1,56 @@
+buyed_article:
+    name: xitara.dynamiccontent::repeater.buyedarticle.name
+    description: xitara.dynamiccontent::repeater.buyedarticle.description
+    icon: icon-money
+    fields:
+        article:
+            label: xitara.dynamiccontent::repeater.buyedarticle.article
+            comment: xitara.dynamiccontent::repeater.buyedarticle.article_description
+            type: dropdown
+            span: left
+        start_at:
+            label: xitara.dynamiccontent::repeater.buyedarticle.start_at
+            comment: xitara.dynamiccontent::repeater.buyedarticle.start_at_description
+            type: datepicker
+            default: '1970-01-01 00:00:00'
+            span: right
+            # validationPattern: \d{4}(-)\d{2}(-)\d{2}( \d{2}(:)\d{2}(:)\d{2})?
+            # validationMessage: xitara.core::core.validation.date
+        interval:
+            label: xitara.dynamiccontent::repeater.buyedarticle.interval
+            comment: xitara.dynamiccontent::repeater.buyedarticle.interval_description
+            type: dropdown
+            options:
+                none: xitara.dynamiccontent::repeater.buyedarticle.options.none
+                day: xitara.dynamiccontent::repeater.buyedarticle.options.day
+                week: xitara.dynamiccontent::repeater.buyedarticle.options.week
+                month: xitara.dynamiccontent::repeater.buyedarticle.options.month
+                year: xitara.dynamiccontent::repeater.buyedarticle.options.year
+            default: none
+            span: left
+        credits_per_point:
+            label: xitara.dynamiccontent::repeater.buyedarticle.credits_per_point
+            comment: xitara.dynamiccontent::repeater.buyedarticle.credits_per_point_description
+            type: number
+            default: 25
+            span: right
+            # validationPattern: ^[0-9]+$
+            # validationMessage: xitara.core::core.valiidation.only_numbers
+        text_no_place:
+            label: xitara.dynamiccontent::repeater.buyedarticle.no_place
+            comment: xitara.dynamiccontent::repeater.buyedarticle.no_place_description
+            type: dropdown
+            span: storm
+            cssClass: col-md-3
+        text_place:
+            label: xitara.dynamiccontent::repeater.buyedarticle.with_place
+            comment: xitara.dynamiccontent::repeater.buyedarticle.with_place_description
+            type: dropdown
+            span: storm
+            cssClass: col-md-3
+        text_first_place:
+            label: xitara.dynamiccontent::repeater.buyedarticle.first_place
+            comment: xitara.dynamiccontent::repeater.buyedarticle.first_place_description
+            type: dropdown
+            span: storm
+            cssClass: col-md-3
