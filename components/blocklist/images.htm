@@ -8,7 +8,7 @@
                     {% set no_resize = true %}
                 {% endif %}
 
-                {{ _self.image_output(image.image|media, image.title, image.description, block, uid) }}
+                {{ _self.image_output(image, block, uid) }}
             </li>
         {% endfor %}
     </ul>
@@ -36,36 +36,42 @@
     {% partial __SELF__ ~ "::config_lightbox" uid=uid config=block.lightbox %}
 {% endif %}
 
-{% macro image_output(image, title, description, block, uid, no_resize) %}
+{% macro image_output(image, block, uid, no_resize) %}
     {% if block.is_lightbox == 1 %}
         <a
-            href="{{ image }}"
-            data-title="{{ title|escape('html') }}"
-            data-description="{{ description|escape('html') }}"
+            href="{{ image.image|media }}"
+            data-title="{{ image.title|escape('html') }}"
+            data-description="{{ image.description|escape('html') }}"
             class="lightbox-{{ uid }}"
         >
+    {% elseif image['link'] is defined and image.link != '' %}
+        <a href="{{ image.link }}"{{ (image.is_blank == 1) ? ' target="_blank"' }}>
     {% endif %}
     <figure>
         {% set image_height = block.slider.image_height  %}
-        {% if no_resize is defined and no_resize == true %}
-            <img src="{{ image }}" style="max-height: {{ image_height }}px;"
+        {% if image['url'] is defined and image.url != '' %}
+            <img src="{{ image.url }}" style="max-height: {{ image_height }}px; max-width: 100%"
         {% else %}
-            <img src="{{ image|resize(false, image_height, { mode: 'crop', quality: '80', extension: 'webp' }) }}"
+            {% if no_resize is defined and no_resize == true %}
+                <img src="{{ image.image|media }}" style="max-height: {{ image_height }}px; max-width: 100%"
+            {% else %}
+                <img src="{{ image.image|media|resize(false, image_height, { mode: 'crop', quality: '80', extension: 'webp' }) }}" style="max-width: 100%"
+            {% endif %}
         {% endif %}
-        alt="{{ description|strip_html }}">
+        alt="{{ image.description|strip_html }}">
 
-        {% if (title|trim != '' or description|trim != '') and block.is_image_text == 1 %}
+        {% if (image.title|trim != '' or image.description|trim != '') and block.is_image_text == 1 %}
             <figcaption>
-                {% if title != '' %}
-                    <h2>{{ title }}</h2>
+                {% if image.title != '' %}
+                    <h2>{{ image.title }}</h2>
                 {% endif %}
-                {% if description != '' %}
-                    <article>{{ description|raw }}</article>
+                {% if image.description != '' %}
+                    <article>{{ image.description|raw }}</article>
                 {% endif %}
             </figcaption>
         {% endif %}
     </figure>
-    {% if block.is_lightbox == 1 %}
+    {% if block.is_lightbox == 1 or image['link'] is defined and image.link != '' %}
         </a>
     {% endif %}
 {% endmacro %}

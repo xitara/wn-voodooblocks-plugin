@@ -13,7 +13,7 @@ class BlockGroups extends Controller
      */
     public $implement = [
         'Backend.Behaviors.FormController',
-        'Backend.Behaviors.ListController'
+        'Backend.Behaviors.ListController',
     ];
 
     /**
@@ -30,6 +30,6 @@ class BlockGroups extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'blockgroups');
+        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'dynamiccontent.blockgroups');
     }
 }

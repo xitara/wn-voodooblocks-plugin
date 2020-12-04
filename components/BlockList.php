@@ -1,7 +1,6 @@
 <?php namespace Xitara\DynamicContent\Components;
 
 use Cms\Classes\ComponentBase;
-use Twig;
 use Xitara\DynamicContent\Models\BlockList as BlockListModel;
 
 class BlockList extends ComponentBase
@@ -30,6 +29,7 @@ class BlockList extends ComponentBase
 
     public function onRun()
     {
+        $this->addCss('/themes/la-theme-src/assets/css/app.css');
         $this->addCss('/plugins/xitara/dynamiccontent/assets/css/app.css');
         $this->addJs('/plugins/xitara/dynamiccontent/assets/js/app.js');
 
@@ -50,23 +50,40 @@ class BlockList extends ComponentBase
                 // var_dump($block['block']['dynamic_modules']);
 
                 foreach ($block['block']['dynamic_modules'] as $module) {
-                    $class = '\\Xitara\\DynamicContent\\Classes\\';
+                    $class = '\\Xitara\\DynamicContentModules\\Classes\\';
                     $class .= ucfirst(camel_case($module['_group']));
-                    $object = new $class;
 
                     // var_dump($class);
+                    // var_dump(class_exists($class));
+
+                    if (!class_exists($class)) {
+                        continue;
+                    }
+
+                    $object = new $class;
+
                     // var_dump($module);
 
-                    $template = 'xitara/dynamiccontent/views/';
-                    $template .= strtolower(class_basename($class)) . '.htm';
-                    $template = file_get_contents(plugins_path($template));
+                    $template = 'xitara/dynamiccontentmodules/views/';
+                    $template .= $module['_group'] . '.htm';
+                    // var_dump($template);
 
-                    $block['block']['dynamic_content'][] = Twig::parse($template, [
-                        'text' => $object->getData($module),
-                    ]);
+                    if (!file_exists(plugins_path($template))) {
 
+                        // $template = file_get_contents(plugins_path($template));
+                        // var_dump($template);
+                        // var_dump($module);
+                        // } else {
+                        $template = null;
+                    }
+
+                    // if ($template === false) {
+                    //     continue;
+                    // }
+
+                    $block['block']['dynamic_content'][] = $object->getText($template, $module);
                 }
-                $block['block']['dynamic_content'] = join($block['block']['dynamic_content']);
+                $block['block']['dynamic_content'] = join($block['block']['dynamic_content'] ?? []);
             }
             $blocklist_[] = $block['block'];
         }

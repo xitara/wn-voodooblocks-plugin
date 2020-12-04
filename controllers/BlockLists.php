@@ -2,6 +2,7 @@
 
 use BackendMenu;
 use Backend\Classes\Controller;
+use System\Classes\PluginManager;
 
 /**
  * Block Lists Back-end Controller
@@ -13,7 +14,7 @@ class BlockLists extends Controller
      */
     public $implement = [
         'Backend.Behaviors.FormController',
-        'Backend.Behaviors.ListController'
+        'Backend.Behaviors.ListController',
     ];
 
     /**
@@ -30,6 +31,23 @@ class BlockLists extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'blocklists');
+        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'dynamiccontent.blocklists');
+    }
+
+    public function formExtendFieldsBefore($form)
+    {
+        if (PluginManager::instance()->exists('Xitara\DynamicContentModules') === true) {
+            $configs = \Xitara\DynamicContentModules\Plugin::loadModules();
+
+            if ($form->isNested === false) {
+                $form->fields['blocks']['form']['fields']['block']['form']['tabs']['fields']['dynamic_modules'] = [
+                    'tab' => 'xitara.dynamiccontent::lang.tab.dynamic_content',
+                    'prompt' => 'xitara.dynamiccontent::lang.tab.dynamic_content_prompt',
+                    'type' => 'repeater',
+                    'span' => 'full',
+                    'groups' => $configs,
+                ];
+            }
+        }
     }
 }

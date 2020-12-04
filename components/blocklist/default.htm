@@ -1,27 +1,33 @@
 {% set blocklist = __SELF__.blocklist %}
-{% if blocklist.is_heading == 1 %}
-    <h1>{{ blocklist.name }}</h1>
-{% endif %}
-<section id="blocklist-{{ __SELF__.alias|slug }}" class="flex flex-wrap blocklist">
+<section id="blocklist-{{ __SELF__.alias|slug }}" class="blocklist">
+    {% if blocklist.is_heading == 1 %}
+        <h1>{{ blocklist.name }}</h1>
+    {% endif %}
     {% for block in blocklist.blocks %}
-        {# {% set block = block.block %} #}
-        <aside class="flex-{{ block.width }} w-{{ block.width }}">
-            <article class="h-full">
-                <h2>{{ block.heading }}</h2>
-                <div class="h-{{ block.height }}{% if block.is_scrolling == 1 %} scrollbar{% endif %}">
-                    {% if block.excerpt|trim != '' %}
-                        {{ block.excerpt|raw }}
-                    {% elseif block.content|trim != '' and block.images|length == 0 %}
-                        {{ block.content|raw }}
-                    {% endif %}
-                    {% if block['dynamic_content'] is defined %}
-                        {{ block.dynamic_content|raw }}
-                    {% endif %}
-                    {% if block['images'] is defined %}
-                        {% partial __SELF__ ~ "::images" block=block %}
-                    {% endif %}
-                </div>
+        {% if block.is_active == 1 %}
+            <article class="flex-{{ block.width }} w-{{ block.width }}">
+                <aside>
+                    <h2>{{ block.heading }}</h2>
+                    <div class="h-{{ block.height }}{% if block.is_scrolling == 1 %} scrollbar{% endif %}">
+                        {% if block.excerpt|trim != '' %}
+                            {{ block.excerpt|raw }}
+                        {% endif %}
+                        {% if block['images'] is defined %}
+                            {% partial __SELF__ ~ "::images" block=block %}
+                        {% endif %}
+                        {% if block.content|trim != '' %}
+                            {{ block.content|raw }}
+                        {% endif %}
+                        {% if block['dynamic_content'] is defined %}
+                            {{ block.dynamic_content|raw }}
+                        {% endif %}
+                    </div>
+                </aside>
             </article>
-        </aside>
+        {% endif %}
     {% endfor %}
 </section>
+
+{# <i class="flex-1/4 flex-1/3 flex-1/2 flex-2/3 flex-3/4 flex-4/4"></i> #}
+{# <i class="w-1/4 w-1/3 w-1/2 w-2/3 w-3/4 w-4/4"></i> #}
+{# <i class="h-1/2 h-1/1 h-3/2 h-1/2 h-auto"></i> #}

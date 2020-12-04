@@ -20,6 +20,7 @@
         'slider' => 'Slider',
         'lightbox' => 'Lightbox',
         'dynamic_content' => 'Dynamischer Inhalt',
+        'dynamic_content_prompt' => 'Neuer Inhalt',
     ],
     'prompt' => [
         'images' => 'Neues Bild',
@@ -32,5 +33,6 @@
     ],
     'manual' => [
         'heading' => 'Anleitung für Platzhalter im Text',
+        'description' => 'Folgende Liste zeigt die vorhandenen Komponenten/Snippets und die zugehörigen Platzhalter.',
     ],
 ];

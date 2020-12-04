@@ -83,6 +83,7 @@ class Plugin extends PluginBase
         return [
             'Xitara\DynamicContent\Components\BuyedArticle' => 'buyedArticle',
             'Xitara\DynamicContent\Components\BlockList' => 'blockList',
+            'Xitara\DynamicContent\Components\LastBuyed' => 'lastBuyed',
         ];
     }
 
@@ -91,6 +92,7 @@ class Plugin extends PluginBase
         return [
             'Xitara\DynamicContent\Components\BuyedArticle' => 'buyedArticle',
             'Xitara\DynamicContent\Components\BlockList' => 'blockList',
+            'Xitara\DynamicContent\Components\LastBuyed' => 'lastBuyed',
         ];
     }
 
@@ -142,27 +144,7 @@ class Plugin extends PluginBase
 
         $i = 0;
         return [
-            'dynamiccontent.text' => [
-                'label' => 'xitara.dynamiccontent::lang.submenu.text',
-                'url' => Backend::url('Xitara/dynamiccontent/texts'),
-                'icon' => 'icon-archive',
-                'permissions' => ['xitara.dynamiccontent.*'],
-                'attributes' => [
-                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
-                ],
-                'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-            ],
-            'dynamiccontent.group' => [
-                'label' => 'xitara.dynamiccontent::lang.submenu.group',
-                'url' => Backend::url('Xitara/dynamiccontent/groups'),
-                'icon' => 'icon-archive',
-                'permissions' => ['xitara.dynamiccontent.*'],
-                'attributes' => [
-                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
-                ],
-                'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-            ],
-            'dynamiccontent.placeholder' => [
+            'dynamiccontent.blocklists' => [
                 'label' => 'xitara.dynamiccontent::lang.submenu.blocklist',
                 'url' => Backend::url('Xitara/dynamiccontent/blocklists'),
                 'icon' => 'icon-archive',
@@ -173,9 +155,19 @@ class Plugin extends PluginBase
                 ],
                 'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
             ],
-            'dynamiccontent.blocklist' => [
-                'label' => 'xitara.dynamiccontent::lang.submenu.blocklist',
-                'url' => Backend::url('Xitara/dynamiccontent/blocklists'),
+            // 'dynamiccontent.blockgroups' => [
+            //     'label' => 'xitara.dynamiccontent::lang.submenu.blockgroup',
+            //     'url' => Backend::url('Xitara/dynamiccontent/blockgroups'),
+            //     'icon' => 'icon-archive',
+            //     'permissions' => ['xitara.dynamiccontent.*'],
+            //     'attributes' => [
+            //         'group' => 'xitara.dynamiccontent::lang.submenu.label',
+            //     ],
+            //     'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+            // ],
+            'dynamiccontent.texts' => [
+                'label' => 'xitara.dynamiccontent::lang.submenu.text',
+                'url' => Backend::url('Xitara/dynamiccontent/texts'),
                 'icon' => 'icon-archive',
                 'permissions' => ['xitara.dynamiccontent.*'],
                 'attributes' => [
@@ -183,13 +175,14 @@ class Plugin extends PluginBase
                 ],
                 'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
             ],
-            'dynamiccontent.blockgroup' => [
-                'label' => 'xitara.dynamiccontent::lang.submenu.blockgroup',
-                'url' => Backend::url('Xitara/dynamiccontent/blockgroups'),
+            'dynamiccontent.textgroups' => [
+                'label' => 'xitara.dynamiccontent::lang.submenu.group',
+                'url' => Backend::url('Xitara/dynamiccontent/groups'),
                 'icon' => 'icon-archive',
                 'permissions' => ['xitara.dynamiccontent.*'],
                 'attributes' => [
                     'group' => 'xitara.dynamiccontent::lang.submenu.label',
+                    'placeholder' => true,
                 ],
                 'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
             ],

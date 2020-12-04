@@ -1,25 +1,26 @@
 section.blocklist {
-    // @apply space-x-2;
+    @apply flex flex-wrap;
 
-    aside {
-        @apply mt-1 mb-2 p-0;
+    article {
+        // push next line down
+        @apply mb-3;
 
-        & > article {
-            @apply mx-1 mb-1;
+        & > aside {
+            @apply border-solid border-gray-500 border-1;
+            @apply h-full m-1 overflow-hidden;
 
             & > h2 {
-                @apply px-3 py-1;
+                @apply m-0 px-2 py-1;
+                @apply border-solid border-gray-500 border-0 border-b-1;
             }
 
             & > div {
-                @apply overflow-hidden;
-
                 &.scrollbar {
-                    @apply overflow-x-visible overflow-y-auto w-full;
+                    @apply overflow-x-visible overflow-y-auto;
                 }
 
                 p {
-                    @apply p-2;
+                    @apply p-2 m-0;
                 }
             }
         }

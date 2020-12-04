@@ -21,7 +21,7 @@ fields:
     text:
         label: xitara.core::core.text
         type: richeditor
-        toolbarButtons: paragraphFormat,inlineStyle,bold,italic,underline,strikeThrough,insertLink,insertImage,insertVideo,insertAudio,insertFile,insertTable
+        toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertLink,insertImage,insertVideo,insertAudio,insertFile,insertTable,insertHR,html
         span: left
     groups:
         label: xitara.core::core.group

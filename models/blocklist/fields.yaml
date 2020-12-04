@@ -97,13 +97,13 @@ fields:
                                     tab: xitara.dynamiccontent::lang.tab.data
                                     label: xitara.core::core.excerpt
                                     type: richeditor
-                                    toolbarButtons: paragraphFormat,inlineStyle,bold,italic,underline,strikeThrough,insertLink,insertImage,insertVideo,insertAudio
+                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,insertLink,insertImage,insertVideo,insertAudio
                                     span: left
                                 content:
                                     tab: xitara.dynamiccontent::lang.tab.data
                                     label: xitara.core::core.content
                                     type: richeditor
-                                    toolbarButtons: paragraphFormat,inlineStyle,bold,italic,underline,strikeThrough,formatOL,formatUL,insertTable,outdent,indent,insertLink,insertImage,insertVideo,insertAudio,insertFile
+                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,formatOL,formatUL,insertTable,outdent,indent,insertLink,insertImage,insertVideo,insertAudio,insertFile
                                     span: right
                                 is_scrolling:
                                     tab: xitara.dynamiccontent::lang.tab.data
@@ -121,12 +121,31 @@ fields:
                                     cssClass: col-md-2
                                     default: 1
 
+                                is_time_control:
+                                    tab: xitara.dynamiccontent::lang.tab.time_control
+                                    comment: xitara.dynamiccontent::lang.tab.time_control_comment
+                                    label: xitara.core::core.is_active
+                                    type: switch
+                                    span: full
+                                start_at:
+                                    tab: xitara.dynamiccontent::lang.tab.time_control
+                                    label: xitara.core::core.start_at
+                                    type: datepicker
+                                    span: left
+                                end_at:
+                                    tab: xitara.dynamiccontent::lang.tab.time_control
+                                    label: xitara.core::core.end_at
+                                    type: datepicker
+                                    span: right
+
                                 images:
                                     tab: xitara.dynamiccontent::lang.tab.images
                                     label: xitara.core::core.images
                                     prompt: xitara.dynamiccontent::lang.prompt.images
                                     type: repeater
-                                    span: left
+                                    span: storm
+                                    cssClass: col-md-10
+                                    stretch: true
                                     form:
                                         fields:
                                             image:
@@ -146,6 +165,18 @@ fields:
                                                 size: small
                                                 toolbarButtons: bold|italic|underline|strikeThrough|html|fullscreen
                                                 span: right
+                                            url:
+                                                label: xitara.dynamiccontent::component.blocklist.url
+                                                type: text
+                                                span: left
+                                            link:
+                                                label: xitara.core::core.link
+                                                type: text
+                                                span: left
+                                            is_blank:
+                                                label: xitara.core::core.is_blank
+                                                type: switch
+                                                span: left
 
                                 is_image_text:
                                     tab: xitara.dynamiccontent::lang.tab.images
@@ -353,11 +384,11 @@ fields:
                                     span: left
                                     commentHtml: true
 
-                                dynamic_modules:
-                                    tab: xitara.dynamiccontent::lang.tab.dynamic_content
-                                    # label: xitara.dynamiccontent::repeater.blocklist.dynamic_content
-                                    # commentAbove: xitara.dynamiccontent::repeater.blocklist.dynamic_content_comment
-                                    prompt: xitara.dynamiccontent::repeater.blocklist.dynamic_content_prompt
-                                    type: repeater
-                                    span: full
-                                    groups: repeater_fields.yaml
+                                # dynamic_modules:
+                                #     tab: xitara.dynamiccontent::lang.tab.dynamic_content
+                                #     # label: xitara.dynamiccontent::repeater.blocklist.dynamic_content
+                                #     # commentAbove: xitara.dynamiccontent::repeater.blocklist.dynamic_content_comment
+                                #     prompt: xitara.dynamiccontent::repeater.blocklist.dynamic_content_prompt
+                                #     type: repeater
+                                #     span: full
+                                #     groups: repeater_fields.yaml
