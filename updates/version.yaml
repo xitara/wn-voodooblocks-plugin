@@ -8,3 +8,4 @@
     - create_block_groups_table.php
 1.0.3: Add dynamic content to blocklist
 1.0.4: Move dynamic output to own plugin
+1.0.5: Add event to patch block content with external plugin
