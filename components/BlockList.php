@@ -1,6 +1,7 @@
 <?php namespace Xitara\DynamicContent\Components;
 
 use Cms\Classes\ComponentBase;
+use Event;
 use Xitara\DynamicContent\Models\BlockList as BlockListModel;
 
 class BlockList extends ComponentBase
@@ -41,20 +42,21 @@ class BlockList extends ComponentBase
         }
 
         $blocklist_ = [];
-        foreach ($blocklist->blocks as $block) {
-            // var_dump($block['block']);
-            if (isset($block['block']['dynamic_modules'])) {
-                // $blocklist_[] = $block;
-                // continue;
 
-                // var_dump($block['block']['dynamic_modules']);
+        foreach ($blocklist->blocks as $block) {
+            /**
+             * event to patch block data like parsing placeholder aso
+             */
+            $block_ = Event::fire('xitara.dynamiccontent.patchBlock', [$block]);
+            if (isset($block_[0])) {
+                $block = $block_[0];
+            }
+
+            if (isset($block['block']['dynamic_modules'])) {
 
                 foreach ($block['block']['dynamic_modules'] as $module) {
                     $class = '\\Xitara\\DynamicContentModules\\Classes\\';
                     $class .= ucfirst(camel_case($module['_group']));
-
-                    // var_dump($class);
-                    // var_dump(class_exists($class));
 
                     if (!class_exists($class)) {
                         continue;
@@ -62,24 +64,12 @@ class BlockList extends ComponentBase
 
                     $object = new $class;
 
-                    // var_dump($module);
-
                     $template = 'xitara/dynamiccontentmodules/views/';
                     $template .= $module['_group'] . '.htm';
-                    // var_dump($template);
 
                     if (!file_exists(plugins_path($template))) {
-
-                        // $template = file_get_contents(plugins_path($template));
-                        // var_dump($template);
-                        // var_dump($module);
-                        // } else {
                         $template = null;
                     }
-
-                    // if ($template === false) {
-                    //     continue;
-                    // }
 
                     $block['block']['dynamic_content'][] = $object->getText($template, $module);
                 }
@@ -89,10 +79,6 @@ class BlockList extends ComponentBase
         }
 
         $blocklist->blocks = $blocklist_;
-        // var_dump($blocklist_);
-        // var_dump($blocklist->blocks);
-        // exit;
-
         $this->blocklist = $this->page['blocklist'] = $blocklist;
     }
 

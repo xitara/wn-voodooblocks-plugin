@@ -45,6 +45,7 @@ class BlockLists extends Controller
                     'prompt' => 'xitara.dynamiccontent::lang.tab.dynamic_content_prompt',
                     'type' => 'repeater',
                     'span' => 'full',
+                    'style' => 'accordion',
                     'groups' => $configs,
                 ];
             }

@@ -146,7 +146,7 @@ class Plugin extends PluginBase
         return [
             'dynamiccontent.blocklists' => [
                 'label' => 'xitara.dynamiccontent::lang.submenu.blocklist',
-                'url' => Backend::url('Xitara/dynamiccontent/blocklists'),
+                'url' => Backend::url('xitara/dynamiccontent/blocklists'),
                 'icon' => 'icon-archive',
                 'permissions' => ['xitara.dynamiccontent.*'],
                 'attributes' => [
@@ -167,7 +167,7 @@ class Plugin extends PluginBase
             // ],
             'dynamiccontent.texts' => [
                 'label' => 'xitara.dynamiccontent::lang.submenu.text',
-                'url' => Backend::url('Xitara/dynamiccontent/texts'),
+                'url' => Backend::url('xitara/dynamiccontent/texts'),
                 'icon' => 'icon-archive',
                 'permissions' => ['xitara.dynamiccontent.*'],
                 'attributes' => [
@@ -177,7 +177,7 @@ class Plugin extends PluginBase
             ],
             'dynamiccontent.textgroups' => [
                 'label' => 'xitara.dynamiccontent::lang.submenu.group',
-                'url' => Backend::url('Xitara/dynamiccontent/groups'),
+                'url' => Backend::url('xitara/dynamiccontent/groups'),
                 'icon' => 'icon-archive',
                 'permissions' => ['xitara.dynamiccontent.*'],
                 'attributes' => [

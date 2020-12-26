@@ -20,3 +20,5 @@ lftp $FTP_HOST << EOF
         /$TARGET/$FILE $FTP_PATH
     bye
 EOF
+
+rm $TARGET/$FILE -Rfv

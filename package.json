@@ -1,12 +1,12 @@
 {
     "name": "dynamiccontent",
-    "version": "0.7.3",
-    "description": "Webpack based boilerplate including ES6, Babel, Sass and much more",
+    "version": "1.0.5",
+    "description": "Add Blocklist incl. component to CMS ans pages",
     "author": "Manuel Burghammer",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/xitara/webpack-boilerplate.git"
+        "url": "https://git.xitara.net/mb/oc-plugin-dynamiccontent"
     },
     "scripts": {
         "install": "chmod 0755 ./bash/* && yarn build && bash ./bash/composer.sh",

@@ -1,7 +1,7 @@
 <?php namespace Xitara\DynamicContent\Models;
 
+use Log;
 use Model;
-use Xitara\DynamicContent\Models\Text;
 use Xitara\EroBridge\Classes\Api;
 
 /**
@@ -95,28 +95,59 @@ class BlockList extends Model
     //     $this->blocks = $blocks_;
     // }
 
-    public function getTextNoPlaceOptions()
+    public function getDropdownOptions($fieldName, $value, $formData)
     {
-        return Text::orderBy('name', 'asc')->lists('name', 'id');
+        if (input('_repeater_group', null) != null) {
+            $group = input('_repeater_group');
+        }
+
+        if (isset($formData->_group)) {
+            $group = $formData->_group;
+        }
+
+        Log::debug($group);
+
+        $class = '\\Xitara\\DynamicContentModules\\Classes\\';
+        // $class .= ucfirst(camel_case($formData->_group));
+        $class .= ucfirst(camel_case($group));
+        $method = 'get' . ucfirst(camel_case($fieldName)) . 'Options';
+
+        // return ['all' => 'All'];
+        // return $class::$method($value, $formData->_group);
+        return $class::$method($value, $group);
     }
 
-    public function getTextPlaceOptions()
+    public static function getGroupedTextOptions($value, $group)
     {
-        return Text::orderBy('name', 'asc')->lists('name', 'id');
-    }
+        if ($group === null) {
+            return Text::orderBy('name', 'asc')->lists('name', 'id');
+        }
 
-    public function getTextFirstPlaceOptions()
-    {
-        return Text::orderBy('name', 'asc')->lists('name', 'id');
-    }
+        $texts = Text::orderBy('name', 'asc')->get();
 
-    public function getArticleOptions()
-    {
-        $result = Api::call('article/search', [
-            'search' => '',
-            'list' => true,
-        ]);
+        if ($texts === null) {
+            return [];
+        }
 
-        return $result->body->data;
+        $group = Group::where('slug', str_slug($group))->first();
+
+        if ($group === null) {
+            return Text::orderBy('name', 'asc')->lists('name', 'id');
+        }
+
+        $textList = [];
+        foreach ($texts as $text) {
+            foreach ($text->groups as $group_) {
+                if ($group->id == $group_->id) {
+                    $textList[$text->id] = $text->name;
+                }
+            }
+        }
+
+        if (empty($textList)) {
+            return Text::orderBy('name', 'asc')->lists('name', 'id');
+        }
+
+        return $textList;
     }
 }

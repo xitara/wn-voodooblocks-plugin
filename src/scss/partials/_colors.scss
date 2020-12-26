@@ -1,0 +1,25 @@
+section.blocklist {
+    article {
+        // @apply mt-1 mb-2 p-0;
+
+        & > aside {
+            @apply text-ash-500 bg-gray-100;
+            @apply border border-gray-300;
+            // @apply ml-1 mr-2 mb-1;
+
+            & > h2 {
+                @apply font-oswald text-hillary-500 text-lg bg-gray-200;
+                @apply border-solid border-gray-300 border-0 border-b-1;
+                // @apply px-3 py-1;
+            }
+
+            & > div {
+                @apply p-2;
+
+                p {
+                    // @apply p-2;
+                }
+            }
+        }
+    }
+}

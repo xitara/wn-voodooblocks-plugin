@@ -4,7 +4,7 @@
         <h1>{{ blocklist.name }}</h1>
     {% endif %}
     {% for block in blocklist.blocks %}
-        {% if block.is_active == 1 %}
+        {% if block['is_active'] is defined and block.is_active == 1 %}
             <article class="flex-{{ block.width }} w-{{ block.width }}">
                 <aside>
                     <h2>{{ block.heading }}</h2>
