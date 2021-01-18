@@ -21,6 +21,7 @@
         'lightbox' => 'Lightbox',
         'dynamic_content' => 'Dynamischer Inhalt',
         'dynamic_content_prompt' => 'Neuer Inhalt',
+        'time_control' => 'Zeiteinstellung',
     ],
     'prompt' => [
         'images' => 'Neues Bild',

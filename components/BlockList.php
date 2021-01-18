@@ -35,7 +35,6 @@ class BlockList extends ComponentBase
         $this->addJs('/plugins/xitara/dynamiccontent/assets/js/app.js');
 
         $blocklist = BlockListModel::find($this->property('blocklist'));
-        // var_dump($blocklist);
 
         if ($blocklist === null) {
             return;
@@ -47,7 +46,7 @@ class BlockList extends ComponentBase
             /**
              * event to patch block data like parsing placeholder aso
              */
-            $block_ = Event::fire('xitara.dynamiccontent.patchBlock', [$block]);
+            $block_ = Event::fire('xitara.dynamiccontent.beforeProcessBlock', [$block]);
             if (isset($block_[0])) {
                 $block = $block_[0];
             }
@@ -76,6 +75,11 @@ class BlockList extends ComponentBase
                 $block['block']['dynamic_content'] = join($block['block']['dynamic_content'] ?? []);
             }
             $blocklist_[] = $block['block'];
+
+            $block_ = Event::fire('xitara.dynamiccontent.afterProcessBlock', [$block]);
+            if (isset($block_[0])) {
+                $block = $block_[0];
+            }
         }
 
         $blocklist->blocks = $blocklist_;
