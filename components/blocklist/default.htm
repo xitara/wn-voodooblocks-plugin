@@ -8,7 +8,14 @@
             <article class="flex-{{ block.width }} w-{{ block.width }}">
                 <aside>
                     <h2>{{ block.heading }}</h2>
-                    <div class="h-{{ block.height }}{% if block.is_scrolling == 1 %} scrollbar{% endif %}">
+                    <div class="h-{{ block.height }}{% if block.is_scrolling == 1 and block.height != 'auto' %} scrollbar{% endif %}">
+                        {% if block.buttons_above %}
+                            {% for button in block.buttons_above %}
+                                <a class="button" href="{{ button.link }}"{{ (button.target == 1) ? 'target="_blank"' }}>
+                                    {{ button.label }}
+                                </a>
+                            {% endfor %}
+                        {% endif %}
                         {% if block.excerpt|trim != '' %}
                             {{ block.excerpt|raw }}
                         {% endif %}
@@ -20,6 +27,13 @@
                         {% endif %}
                         {% if block['dynamic_content'] is defined %}
                             {{ block.dynamic_content|raw }}
+                        {% endif %}
+                        {% if block.buttons %}
+                            {% for button in block.buttons %}
+                                <a class="button" href="{{ button.link }}"{{ (button.target == 1) ? 'target="_blank"' }}>
+                                    {{ button.label }}
+                                </a>
+                            {% endfor %}
                         {% endif %}
                     </div>
                 </aside>
