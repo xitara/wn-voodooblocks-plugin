@@ -4,23 +4,23 @@
 
 columns:
     name:
-        label: xitara.core::core.name
+        label: xitara.nexus::core.name
         type: text
         searchable: true
         sortable: true
     group_names:
-        label: xitara.core::core.groups
+        label: xitara.nexus::core.groups
         relation: groups
         select: name
     created_at:
-        label: xitara.core::core.created_at
+        label: xitara.nexus::core.created_at
         type: datetime
         align: center
         width: 10%
         searchable: true
         sortable: true
     updated_at:
-        label: xitara.core::core.updated_at
+        label: xitara.nexus::core.updated_at
         type: datetime
         align: center
         width: 10%

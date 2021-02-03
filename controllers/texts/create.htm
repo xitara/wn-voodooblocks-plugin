@@ -6,7 +6,7 @@
             </a>
         </li>
         <li>
-            <?= e(trans('xitara.core::core.create_m', [
+            <?= e(trans('xitara.nexus::core.create_m', [
                 'model' => e(trans('xitara.dynamiccontent::lang.controller.text'))
             ])); ?>
         </li>
@@ -27,23 +27,23 @@
                     type="submit"
                     data-request="onSave"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="<?= trans('xitara.core::core.create'); ?>..."
+                    data-load-indicator="<?= trans('xitara.nexus::core.create'); ?>..."
                     class="btn btn-primary">
-                    <?= trans('xitara.core::core.create'); ?>
+                    <?= trans('xitara.nexus::core.create'); ?>
                 </button>
                 <button
                     type="button"
                     data-request="onSave"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="<?= trans('xitara.core::core.create'); ?>..."
+                    data-load-indicator="<?= trans('xitara.nexus::core.create'); ?>..."
                     class="btn btn-default">
-                    <?= trans('xitara.core::core.create_close'); ?>
+                    <?= trans('xitara.nexus::core.create_close'); ?>
                 </button>
                 <span class="btn-text">
-                    <?= e(trans('xitara.core::core.or')); ?>
+                    <?= e(trans('xitara.nexus::core.or')); ?>
                     <a href="<?= Backend::url('xitara/dynamiccontent/texts') ?>">
-                        <?= e(trans('xitara.core::core.cancel')); ?>
+                        <?= e(trans('xitara.nexus::core.cancel')); ?>
                     </a>
                 </span>
             </div>
@@ -56,7 +56,7 @@
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
     <p>
         <a href="<?= Backend::url('xitara/dynamiccontent/texts') ?>" class="btn btn-default">
-            <?= e(trans('xitara.core::core.return_to_list')); ?>
+            <?= e(trans('xitara.nexus::core.return_to_list')); ?>
         </a>
     </p>
 

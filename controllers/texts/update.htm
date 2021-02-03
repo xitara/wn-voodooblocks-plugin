@@ -6,7 +6,7 @@
             </a>
         </li>
         <li>
-            <?= e(trans('xitara.core::core.create_m', [
+            <?= e(trans('xitara.nexus::core.create_m', [
                 'model' => e(trans('xitara.dynamiccontent::lang.submenu.text'))
             ])); ?>
         </li>
@@ -28,32 +28,32 @@
                     data-request="onSave"
                     data-request-data="redirect:0"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="<?= e(trans('xitara.core::core.saving')); ?>..."
+                    data-load-indicator="<?= e(trans('xitara.nexus::core.saving')); ?>..."
                     class="btn btn-primary">
-                    <?= trans('xitara.core::core.save'); ?>
+                    <?= trans('xitara.nexus::core.save'); ?>
                 </button>
                 <button
                     type="button"
                     data-request="onSave"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="<?= e(trans('xitara.core::core.saving')); ?>..."
+                    data-load-indicator="<?= e(trans('xitara.nexus::core.saving')); ?>..."
                     class="btn btn-default">
-                    <?= trans('xitara.core::core.save_close'); ?>
+                    <?= trans('xitara.nexus::core.save_close'); ?>
                 </button>
                 <button
                     type="button"
                     class="oc-icon-trash-o btn-icon danger pull-right"
                     data-request="onDelete"
-                    data-load-indicator="<?= e(trans('xitara.core::core.deleting')); ?>..."
-                    data-request-confirm="<?= e(trans('xitara.core::core.return_to_list', [
+                    data-load-indicator="<?= e(trans('xitara.nexus::core.deleting')); ?>..."
+                    data-request-confirm="<?= e(trans('xitara.nexus::core.return_to_list', [
                         'model' => e(trans('xitara.dynamiccontent::lang.submenu.text'))
                     ])); ?>?">
                 </button>
                 <span class="btn-text">
-                    <?= e(trans('xitara.core::core.or')); ?>
+                    <?= e(trans('xitara.nexus::core.or')); ?>
                     <a href="<?= Backend::url('xitara/dynamiccontent/textpool') ?>">
-                        <?= e(trans('xitara.core::core.cancel')); ?>
+                        <?= e(trans('xitara.nexus::core.cancel')); ?>
                     </a>
                 </span>
             </div>
@@ -66,7 +66,7 @@
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
     <p>
         <a href="<?= Backend::url('xitara/dynamiccontent/texts') ?>" class="btn btn-default">
-            <?= e(trans('xitara.core::core.return_to_list', [
+            <?= e(trans('xitara.nexus::core.return_to_list', [
                 'model' => e(trans('xitara.dynamiccontent::lang.submenu.text'))
             ])); ?>
         </a>

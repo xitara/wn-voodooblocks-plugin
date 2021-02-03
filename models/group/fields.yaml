@@ -4,16 +4,16 @@
 
 fields:
     name:
-        label: xitara.core::core.group
+        label: xitara.nexus::core.group
         type: text
         span: left
     description:
-        label: xitara.core::core.description
+        label: xitara.nexus::core.description
         type: richeditor
         toolbarButtons: bold,italic,underline,strikeThrough
         span: right
     slug:
-        label: xitara.core::core.slug
+        label: xitara.nexus::core.slug
         type: text
         span: left
         preset:
