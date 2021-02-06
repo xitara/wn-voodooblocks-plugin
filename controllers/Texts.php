@@ -52,13 +52,16 @@ class Texts extends Controller
                 if (!$file->isDot()) {
                     $className = $file->getBasename('.php');
                     $object = $namespace . $className;
-                    $manuals[$className] = [];
 
-                    foreach ($object::$placeholder as $placeholder) {
-                        $description = 'xitara.dynamiccontentmodules::';
-                        $description .= strtolower($className) . '.placeholder';
-                        $description .= '.' . $placeholder;
-                        $manuals[$className][$placeholder] = trans($description);
+                    if (!empty($object::$placeholder)) {
+                        $manuals[$className] = [];
+
+                        foreach ($object::$placeholder as $placeholder) {
+                            $description = 'xitara.dynamiccontentmodules::';
+                            $description .= strtolower($className) . '.placeholder';
+                            $description .= '.' . $placeholder;
+                            $manuals[$className][$placeholder] = trans($description);
+                        }
                     }
                 }
             }
