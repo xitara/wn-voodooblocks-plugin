@@ -29,8 +29,8 @@ class Groups extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'dynamiccontent.textgroups');
-        $this->pageTitle = e(trans('xitara.core::core.update_m', [
+        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'nexus.textgroups');
+        $this->pageTitle = e(trans('xitara.nexus::core.update_m', [
             'model' => e(trans('xitara.dynamiccontent::lang.submenu.group')),
         ]));
     }

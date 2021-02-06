@@ -6,6 +6,7 @@ use BackendMenu;
 use Event;
 use System\Classes\PluginBase;
 use System\Classes\PluginManager;
+use Xitara\DynamicContent\Models\BlockList;
 
 /**
  * DynamicContent Plugin Information File
@@ -46,12 +47,12 @@ class Plugin extends PluginBase
         /**
          * get sidemenu if core-plugin is loaded
          */
-        if (PluginManager::instance()->exists('Xitara.Core') === true) {
+        if (PluginManager::instance()->exists('Xitara.Nexus') === true) {
             Event::listen('backend.page.beforeDisplay', function ($controller, $action, $params) {
                 $namespace = (new \ReflectionObject($controller))->getNamespaceName();
 
                 if ($namespace == 'Xitara\DynamicContent\Controllers') {
-                    \Xitara\Core\Plugin::getSideMenu('Xitara.DynamicContent', 'dynamiccontent');
+                    \Xitara\Nexus\Plugin::getSideMenu('Xitara.DynamicContent', 'dynamiccontent');
                 }
             });
         }
@@ -64,11 +65,11 @@ class Plugin extends PluginBase
      */
     public function register()
     {
-        if (PluginManager::instance()->exists('Xitara.Core') === true) {
+        if (PluginManager::instance()->exists('Xitara.Nexus') === true) {
             BackendMenu::registerContextSidenavPartial(
                 'Xitara.DynamicContent',
                 'dynamiccontent',
-                '$/xitara/core/partials/_sidebar.htm'
+                '$/xitara/nexus/partials/_sidebar.htm'
             );
         }
     }
@@ -122,7 +123,7 @@ class Plugin extends PluginBase
     {
         $label = 'xitara.dynamiccontent::lang.plugin.name';
 
-        if (PluginManager::instance()->exists('Xitara.Core') === true) {
+        if (PluginManager::instance()->exists('Xitara.Nexus') === true) {
             $label .= '::hidden';
         }
 
@@ -143,49 +144,63 @@ class Plugin extends PluginBase
         // Log::debug(__METHOD__);
 
         $i = 0;
-        return [
-            'dynamiccontent.blocklists' => [
-                'label' => 'xitara.dynamiccontent::lang.submenu.blocklist',
-                'url' => Backend::url('xitara/dynamiccontent/blocklists'),
-                'icon' => 'icon-archive',
-                'permissions' => ['xitara.dynamiccontent.*'],
-                'attributes' => [
-                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
-                    'placeholder' => true,
-                ],
-                'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+        $inject['dynamiccontent.blocklists'] = [
+            'label' => 'xitara.dynamiccontent::lang.submenu.blocklist',
+            'url' => Backend::url('xitara/dynamiccontent/blocklists'),
+            'icon' => 'icon-archive',
+            'permissions' => ['xitara.dynamiccontent.*'],
+            'attributes' => [
+                'group' => 'xitara.dynamiccontent::lang.submenu.label',
             ],
-            // 'dynamiccontent.blockgroups' => [
-            //     'label' => 'xitara.dynamiccontent::lang.submenu.blockgroup',
-            //     'url' => Backend::url('Xitara/dynamiccontent/blockgroups'),
-            //     'icon' => 'icon-archive',
-            //     'permissions' => ['xitara.dynamiccontent.*'],
-            //     'attributes' => [
-            //         'group' => 'xitara.dynamiccontent::lang.submenu.label',
-            //     ],
-            //     'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-            // ],
-            'dynamiccontent.texts' => [
-                'label' => 'xitara.dynamiccontent::lang.submenu.text',
-                'url' => Backend::url('xitara/dynamiccontent/texts'),
-                'icon' => 'icon-archive',
-                'permissions' => ['xitara.dynamiccontent.*'],
-                'attributes' => [
-                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
-                ],
-                'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-            ],
-            'dynamiccontent.textgroups' => [
-                'label' => 'xitara.dynamiccontent::lang.submenu.group',
-                'url' => Backend::url('xitara/dynamiccontent/groups'),
-                'icon' => 'icon-archive',
-                'permissions' => ['xitara.dynamiccontent.*'],
-                'attributes' => [
-                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
-                    'placeholder' => true,
-                ],
-                'order' => \Xitara\Core\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-            ],
+            'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
         ];
+
+        foreach (BlockList::orderBy('name', 'asc')->get() as $index => $blocklist) {
+            $inject['dynamiccontent.blocklist.' . $blocklist->id] = [
+                'label' => $blocklist->name,
+                'url' => Backend::url('xitara/dynamiccontent/blocklists/update/' . $blocklist->id),
+                'icon' => 'icon-archive',
+                'permissions' => ['xitara.dynamiccontent.*'],
+                'attributes' => [
+                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
+                    'level' => 2,
+                ],
+                'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+            ];
+        }
+
+        // $inject['dynamiccontent.blockgroups'] = [
+        //     'label' => 'xitara.dynamiccontent::lang.submenu.blockgroup',
+        //     'url' => Backend::url('Xitara/dynamiccontent/blockgroups'),
+        //     'icon' => 'icon-archive',
+        //     'permissions' => ['xitara.dynamiccontent.*'],
+        //     'attributes' => [
+        //         'group' => 'xitara.dynamiccontent::lang.submenu.label',
+        //     ],
+        //     'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+        // ];
+        $inject['dynamiccontent.texts'] = [
+            'label' => 'xitara.dynamiccontent::lang.submenu.text',
+            'url' => Backend::url('xitara/dynamiccontent/texts'),
+            'icon' => 'icon-archive',
+            'permissions' => ['xitara.dynamiccontent.*'],
+            'attributes' => [
+                'group' => 'xitara.dynamiccontent::lang.submenu.label',
+                'line' => 'top',
+            ],
+            'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+        ];
+        $inject['dynamiccontent.textgroups'] = [
+            'label' => 'xitara.dynamiccontent::lang.submenu.group',
+            'url' => Backend::url('xitara/dynamiccontent/groups'),
+            'icon' => 'icon-archive',
+            'permissions' => ['xitara.dynamiccontent.*'],
+            'attributes' => [
+                'group' => 'xitara.dynamiccontent::lang.submenu.label',
+            ],
+            'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+        ];
+
+        return $inject;
     }
 }
