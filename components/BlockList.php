@@ -70,9 +70,9 @@ class BlockList extends ComponentBase
                         $template = null;
                     }
 
-                    $block['block']['dynamic_content'][] = $object->getText($template, $module);
+                    $block['block']['dynamic_content'][] = '<li>' . $object->getText($template, $module) . '</li>';
                 }
-                $block['block']['dynamic_content'] = join($block['block']['dynamic_content'] ?? []);
+                $block['block']['dynamic_content'] = '<ul class="dynamic-content">' . join($block['block']['dynamic_content'] ?? []) . '</ul>';
             }
             $blocklist_[] = $block['block'];
 
