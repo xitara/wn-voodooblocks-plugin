@@ -30,7 +30,6 @@ class BlockList extends ComponentBase
 
     public function onRun()
     {
-        $this->addCss('/themes/la-theme-src/assets/css/app.css');
         $this->addCss('/plugins/xitara/dynamiccontent/assets/css/app.css');
         $this->addJs('/plugins/xitara/dynamiccontent/assets/js/app.js');
 
