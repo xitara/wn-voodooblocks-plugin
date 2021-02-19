@@ -1,5 +1,5 @@
 {% set blocklist = __SELF__.blocklist %}
-<section id="blocklist-{{ __SELF__.alias|slug }}" class="blocklist">
+<section id="blocklist-{{ blocklist.name|slug }}" class="blocklist">
     {% if blocklist.is_heading == 1 %}
         <h1>{{ blocklist.name }}</h1>
     {% endif %}
@@ -9,7 +9,7 @@
                 <aside>
                     <h2>{{ block.heading }}</h2>
                     <div class="h-{{ block.height }}{% if block.is_scrolling == 1 and block.height != 'auto' %} scrollbar{% endif %}">
-                        {% if block.buttons_above %}
+                        {% if block['buttons_above'] is defined %}
                             {% for button in block.buttons_above %}
                                 <a class="button" href="{{ button.link }}"{{ (button.target == 1) ? 'target="_blank"' }}>
                                     {{ button.label }}

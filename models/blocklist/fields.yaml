@@ -100,13 +100,13 @@ fields:
                                     label: xitara.nexus::core.excerpt
                                     comment: xitara.dynamiccontent::lang.comments.excerpt
                                     type: richeditor
-                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,insertLink,insertImage,insertVideo,insertAudio
+                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,insertLink,insertImage,insertVideo,html,fullscreen
                                     span: left
                                 content:
                                     tab: xitara.dynamiccontent::lang.tab.data
                                     label: xitara.nexus::core.content
                                     type: richeditor
-                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,formatOL,formatUL,insertTable,outdent,indent,insertLink,insertImage,insertVideo,insertAudio,insertFile
+                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,formatOL,formatUL,outdent,indent,insertLink,insertImage,insertVideo,insertAudio,html,fullscreen
                                     span: right
                                 is_scrolling:
                                     tab: xitara.dynamiccontent::lang.tab.data
@@ -115,7 +115,7 @@ fields:
                                     type: switch
                                     span: storm
                                     cssClass: col-md-10
-                                    default: 1
+                                    default: 0
                                 is_active:
                                     tab: xitara.dynamiccontent::lang.tab.data
                                     label: xitara.nexus::core.is_active
@@ -140,9 +140,27 @@ fields:
                                                 label: xitara.nexus::core.link
                                                 type: text
                                                 span: right
+                                            icon_left:
+                                                label: kuse.storelist::lang.globalcontent.button_icon_left
+                                                type: mediafinder
+                                                mode: image
+                                                span: auto
+                                            icon_right:
+                                                label: kuse.storelist::lang.globalcontent.button_icon_right
+                                                type: mediafinder
+                                                mode: image
+                                                span: auto
                                             target:
                                                 label: xitara.nexus::core.link_target
-                                                type: switch
+                                                type: dropdown
+                                                options:
+                                                    _self: kuse.core::core._self
+                                                    _blank: kuse.core::core._blank
+                                                default: _self
+                                                span: left
+                                            classes:
+                                                label: kuse.storelist::lang.globalcontent.classes
+                                                type: text
                                                 span: right
                                 buttons:
                                     tab: xitara.dynamiccontent::lang.tab.buttons
@@ -155,14 +173,32 @@ fields:
                                             label:
                                                 label: xitara.nexus::core.label
                                                 type: text
-                                                span: left
+                                                span: auto
                                             link:
                                                 label: xitara.nexus::core.link
                                                 type: text
-                                                span: right
+                                                span: auto
+                                            icon_left:
+                                                label: kuse.storelist::lang.globalcontent.button_icon_left
+                                                type: mediafinder
+                                                mode: image
+                                                span: auto
+                                            icon_right:
+                                                label: kuse.storelist::lang.globalcontent.button_icon_right
+                                                type: mediafinder
+                                                mode: image
+                                                span: auto
                                             target:
                                                 label: xitara.nexus::core.link_target
-                                                type: switch
+                                                type: dropdown
+                                                options:
+                                                    _self: kuse.core::core._self
+                                                    _blank: kuse.core::core._blank
+                                                default: _self
+                                                span: left
+                                            classes:
+                                                label: kuse.storelist::lang.globalcontent.classes
+                                                type: text
                                                 span: right
 
                                 is_time_control:
