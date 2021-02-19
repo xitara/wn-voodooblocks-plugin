@@ -55,12 +55,14 @@
     <figure>
         {% set image_height = block.slider.image_height  %}
         {% if image['url'] is defined and image.url != '' %}
-            <img src="{{ image.url }}" style="max-height: {{ image_height }}px; max-width: 100%"
+            <img src="{{ image.url }}" style="{% if block.is_slider == 1 %}max-height: {{ image_height }}px;{% endif %} max-width: 100%"
         {% else %}
             {% if no_resize is defined and no_resize == true %}
                 <img src="{{ image.image|media }}" style="max-height: {{ image_height }}px; max-width: 100%"
+            {% elseif block.is_slider == 1 %}
+                <img src="{{ image.image|media|resize(false, image_height, { mode: 'crop', quality: '80', extension: 'png' }) }}" style="max-width: 100%"
             {% else %}
-                <img src="{{ image.image|media|resize(false, image_height, { mode: 'crop', quality: '80', extension: 'webp' }) }}" style="max-width: 100%"
+                <img src="{{ image.image|media }}" style="max-width: 100%"
             {% endif %}
         {% endif %}
         alt="{{ image.description|strip_html }}">
