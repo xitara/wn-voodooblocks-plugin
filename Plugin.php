@@ -222,7 +222,6 @@ class Plugin extends PluginBase
                 ],
                 'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
             ],
-            'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
         ];
 
         return $inject;
