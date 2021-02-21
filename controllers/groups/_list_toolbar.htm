@@ -2,7 +2,7 @@
     <a
         href="<?= Backend::url('xitara/dynamiccontent/groups/create') ?>"
         class="btn btn-primary oc-icon-plus">
-        <?= e(trans('xitara.core::core.add_m', [
+        <?= e(trans('xitara.nexus::core.add_m', [
             'model' => e(trans('xitara.dynamiccontent::lang.controller.group'))
         ])); ?>
     </a>
@@ -18,6 +18,6 @@
         data-trigger-condition="checked"
         data-request-success="$(this).prop('disabled', 'disabled')"
         data-stripe-load-indicator>
-        <?= e(trans('xitara.core::core.delete_selected')); ?>
+        <?= e(trans('xitara.nexus::core.delete_selected')); ?>
     </button>
 </div>

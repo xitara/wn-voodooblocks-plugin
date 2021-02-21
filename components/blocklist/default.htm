@@ -1,5 +1,5 @@
 {% set blocklist = __SELF__.blocklist %}
-<section id="blocklist-{{ __SELF__.alias|slug }}" class="blocklist">
+<section id="blocklist-{{ blocklist.name|slug }}" class="blocklist">
     {% if blocklist.is_heading == 1 %}
         <h1>{{ blocklist.name }}</h1>
     {% endif %}
@@ -8,19 +8,43 @@
             <article class="flex-{{ block.width }} w-{{ block.width }}">
                 <aside>
                     <h2>{{ block.heading }}</h2>
-                    <div class="h-{{ block.height }}{% if block.is_scrolling == 1 %} scrollbar{% endif %}">
-                        {% if block.excerpt|trim != '' %}
-                            {{ block.excerpt|raw }}
-                        {% endif %}
+                    <div class="h-{{ block.height }}{% if block.is_scrolling == 1 and block.height != 'auto' %} scrollbar{% endif %}">
+                        <div class="excerpt">
+                            {% if block.buttons_above %}
+                                <div class="buttons-above">
+                                    {% for button in block.buttons_above %}
+                                        <a href="{{ button.link }}"{{ (button.target == 1) ? 'target="_blank"' }}>
+                                            {{ button.label }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% if block.excerpt|trim != '' %}
+                                {{ block.excerpt|raw }}
+                            {% endif %}
+                        </div>
+
                         {% if block['images'] is defined %}
                             {% partial __SELF__ ~ "::images" block=block %}
                         {% endif %}
-                        {% if block.content|trim != '' %}
-                            {{ block.content|raw }}
-                        {% endif %}
-                        {% if block['dynamic_content'] is defined %}
-                            {{ block.dynamic_content|raw }}
-                        {% endif %}
+
+                        <div class="content">
+                            {% if block.content|trim != '' %}
+                                {{ block.content|raw }}
+                            {% endif %}
+                            {% if block['dynamic_content'] is defined %}
+                                {{ block.dynamic_content|raw }}
+                            {% endif %}
+                            {% if block.buttons %}
+                                {% for button in block.buttons %}
+                                    <div class="buttons">
+                                        <a href="{{ button.link }}"{{ (button.target == 1) ? 'target="_blank"' }}>
+                                            {{ button.label }}
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
                     </div>
                 </aside>
             </article>

@@ -1,32 +1,37 @@
 {% set uid = uid() %}
-<div class="slider-container">
-    <ul{% if block.is_slider == 1 %} id="slide-{{ uid }}"{% endif %}>
-        {% for image in block.images %}
-            <li class="slider-item">
-                {% set no_resize = false %}
-                {% if (image.image|mediadata).mime_type == 'image/svg' %}
-                    {% set no_resize = true %}
-                {% endif %}
 
-                {{ _self.image_output(image, block, uid) }}
-            </li>
-        {% endfor %}
-    </ul>
+{% if block.images|length > 1 %}
+    <div class="slider-container">
+        <ul{% if block.is_slider == 1 %} id="slide-{{ uid }}"{% endif %}>
+            {% for image in block.images %}
+                <li class="slider-item">
+                    {% set no_resize = false %}
+                    {% if (image.image|mediadata).mime_type == 'image/svg' %}
+                        {% set no_resize = true %}
+                    {% endif %}
 
-    {% if block.is_slider == 1 %}
-        {# left and right controls #}
-        {% if block.slider.is_controls == 1 %}
-            <ul class="slider-controls" tabindex="0">
-                <li class="prev" data-controls="prev" tabindex="-1">
-                    &lsaquo;
+                    {{ _self.image_output(image, block, uid) }}
                 </li>
-                <li class="next" data-controls="next" tabindex="-1">
-                    &rsaquo;
-                </li>
-            </ul>
+            {% endfor %}
+        </ul>
+
+        {% if block.is_slider == 1 %}
+            {# left and right controls #}
+            {% if block.slider.is_controls == 1 %}
+                <ul class="slider-controls" tabindex="0">
+                    <li class="prev" data-controls="prev" tabindex="-1">
+                        &lsaquo;
+                    </li>
+                    <li class="next" data-controls="next" tabindex="-1">
+                        &rsaquo;
+                    </li>
+                </ul>
+            {% endif %}
         {% endif %}
-    {% endif %}
-</div>
+    </div>
+{% elseif block.images.0.image != false %}
+    {{ _self.image_output(block.images[0], block, uid) }}
+{% endif %}
 
 {% if block.is_slider == 1 and block.slider is defined %}
     {% partial __SELF__ ~ "::config_slider" uid=uid config=block.slider %}
@@ -50,12 +55,14 @@
     <figure>
         {% set image_height = block.slider.image_height  %}
         {% if image['url'] is defined and image.url != '' %}
-            <img src="{{ image.url }}" style="max-height: {{ image_height }}px; max-width: 100%"
+            <img src="{{ image.url }}" style="{% if block.is_slider == 1 %}max-height: {{ image_height }}px;{% endif %} max-width: 100%"
         {% else %}
             {% if no_resize is defined and no_resize == true %}
                 <img src="{{ image.image|media }}" style="max-height: {{ image_height }}px; max-width: 100%"
+            {% elseif block.is_slider == 1 %}
+                <img src="{{ image.image|media|resize(false, image_height, { mode: 'crop', quality: '80', extension: 'png' }) }}" style="max-width: 100%"
             {% else %}
-                <img src="{{ image.image|media|resize(false, image_height, { mode: 'crop', quality: '80', extension: 'webp' }) }}" style="max-width: 100%"
+                <img src="{{ image.image|media }}" style="max-width: 100%"
             {% endif %}
         {% endif %}
         alt="{{ image.description|strip_html }}">

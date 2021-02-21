@@ -82,18 +82,14 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Xitara\DynamicContent\Components\BuyedArticle' => 'buyedArticle',
             'Xitara\DynamicContent\Components\BlockList' => 'blockList',
-            'Xitara\DynamicContent\Components\LastBuyed' => 'lastBuyed',
         ];
     }
 
     public function registerPageSnippets()
     {
         return [
-            'Xitara\DynamicContent\Components\BuyedArticle' => 'buyedArticle',
             'Xitara\DynamicContent\Components\BlockList' => 'blockList',
-            'Xitara\DynamicContent\Components\LastBuyed' => 'lastBuyed',
         ];
     }
 
@@ -104,12 +100,38 @@ class Plugin extends PluginBase
      */
     public function registerPermissions()
     {
-        return []; // Remove this line to activate
-
         return [
-            'xitara.dynamiccontent.some_permission' => [
+            'xitara.dynamiccontent.create' => [
                 'tab' => 'DynamicContent',
-                'label' => 'Some permission',
+                'label' => 'Create Blockslists',
+            ],
+            'xitara.dynamiccontent.edit' => [
+                'tab' => 'DynamicContent',
+                'label' => 'Edit Blockslists',
+            ],
+            'xitara.dynamiccontent.create_groups' => [
+                'tab' => 'DynamicContent',
+                'label' => 'Create Groups',
+            ],
+            'xitara.dynamiccontent.edit_groups' => [
+                'tab' => 'DynamicContent',
+                'label' => 'Edit Groups',
+            ],
+            'xitara.dynamiccontent.create_texts' => [
+                'tab' => 'DynamicContent',
+                'label' => 'Create Texts',
+            ],
+            'xitara.dynamiccontent.edit_texts' => [
+                'tab' => 'DynamicContent',
+                'label' => 'Edit Texts',
+            ],
+            'xitara.dynamiccontent.create_textgroups' => [
+                'tab' => 'DynamicContent',
+                'label' => 'Create Textgroups',
+            ],
+            'xitara.dynamiccontent.edit_textgroups' => [
+                'tab' => 'DynamicContent',
+                'label' => 'Edit Textgroups',
             ],
         ];
     }
@@ -144,63 +166,75 @@ class Plugin extends PluginBase
         // Log::debug(__METHOD__);
 
         $i = 0;
-        $inject['dynamiccontent.blocklists'] = [
-            'label' => 'xitara.dynamiccontent::lang.submenu.blocklist',
-            'url' => Backend::url('xitara/dynamiccontent/blocklists'),
-            'icon' => 'icon-archive',
-            'permissions' => ['xitara.dynamiccontent.*'],
-            'attributes' => [
-                'group' => 'xitara.dynamiccontent::lang.submenu.label',
-            ],
-            'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-        ];
-
-        foreach (BlockList::orderBy('name', 'asc')->get() as $index => $blocklist) {
-            $inject['dynamiccontent.blocklist.' . $blocklist->id] = [
-                'label' => $blocklist->name,
-                'url' => Backend::url('xitara/dynamiccontent/blocklists/update/' . $blocklist->id),
+        return [
+            'dynamiccontent.blocklists' => [
+                'label' => 'xitara.dynamiccontent::lang.submenu.blocklist',
+                'url' => Backend::url('xitara/dynamiccontent/blocklists'),
                 'icon' => 'icon-archive',
-                'permissions' => ['xitara.dynamiccontent.*'],
+                'permissions' => [
+                    'xitara.dynamiccontent.create',
+                    'xitara.dynamiccontent.edit',
+                ],
+                'attributes' => [
+                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
+                    'placeholder' => true,
+                ],
+                'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+            ],
+            'dynamiccontent.blockgroups' => [
+                'label' => 'xitara.dynamiccontent::lang.submenu.blockgroup',
+                'url' => Backend::url('Xitara/dynamiccontent/blockgroups'),
+                'icon' => 'icon-archive',
+                'permissions' => [
+                    'xitara.dynamiccontent.create_groups',
+                    'xitara.dynamiccontent.edit_groups',
+                ],
+                'attributes' => [
+                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
+                ],
+                'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+            ],
+            'dynamiccontent.texts' => [
+                'label' => 'xitara.dynamiccontent::lang.submenu.text',
+                'url' => Backend::url('xitara/dynamiccontent/texts'),
+                'icon' => 'icon-archive',
+                'permissions' => [
+                    'xitara.dynamiccontent.create_texts',
+                    'xitara.dynamiccontent.edit_texts',
+                ],
                 'attributes' => [
                     'group' => 'xitara.dynamiccontent::lang.submenu.label',
                     'level' => 2,
                 ],
                 'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-            ];
-        }
-
-        // $inject['dynamiccontent.blockgroups'] = [
-        //     'label' => 'xitara.dynamiccontent::lang.submenu.blockgroup',
-        //     'url' => Backend::url('Xitara/dynamiccontent/blockgroups'),
-        //     'icon' => 'icon-archive',
-        //     'permissions' => ['xitara.dynamiccontent.*'],
-        //     'attributes' => [
-        //         'group' => 'xitara.dynamiccontent::lang.submenu.label',
-        //     ],
-        //     'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-        // ];
-        $inject['dynamiccontent.texts'] = [
-            'label' => 'xitara.dynamiccontent::lang.submenu.text',
-            'url' => Backend::url('xitara/dynamiccontent/texts'),
-            'icon' => 'icon-archive',
-            'permissions' => ['xitara.dynamiccontent.*'],
-            'attributes' => [
-                'group' => 'xitara.dynamiccontent::lang.submenu.label',
-                'line' => 'top',
             ],
-            'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-        ];
-        $inject['dynamiccontent.textgroups'] = [
-            'label' => 'xitara.dynamiccontent::lang.submenu.group',
-            'url' => Backend::url('xitara/dynamiccontent/groups'),
-            'icon' => 'icon-archive',
-            'permissions' => ['xitara.dynamiccontent.*'],
-            'attributes' => [
-                'group' => 'xitara.dynamiccontent::lang.submenu.label',
+            'dynamiccontent.textgroups' => [
+                'label' => 'xitara.dynamiccontent::lang.submenu.group',
+                'url' => Backend::url('xitara/dynamiccontent/groups'),
+                'icon' => 'icon-archive',
+                'permissions' => [
+                    'xitara.dynamiccontent.create_textgroups',
+                    'xitara.dynamiccontent.edit_textgroups',
+                ],
+                'attributes' => [
+                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
+                    'placeholder' => true,
+                ],
+                'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
             ],
             'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
         ];
 
         return $inject;
+    }
+
+    public static function getBlocklistOptions()
+    {
+        $gallery = Blocklist::orderBy('name', 'asc')->lists('name', 'slug');
+        $gallery = array_merge([
+            'none' => e(trans('xitara.dynamiccontent::lang.no_blocklist')),
+        ], $gallery);
+
+        return $gallery;
     }
 }

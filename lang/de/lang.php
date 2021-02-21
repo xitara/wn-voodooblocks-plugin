@@ -22,6 +22,7 @@
         'dynamic_content' => 'Dynamischer Inhalt',
         'dynamic_content_prompt' => 'Neuer Inhalt',
         'time_control' => 'Zeiteinstellung',
+        'buttons' => 'Buttons',
     ],
     'prompt' => [
         'images' => 'Neues Bild',
@@ -36,4 +37,8 @@
         'heading' => 'Anleitung für Platzhalter im Text',
         'description' => 'Folgende Liste zeigt die vorhandenen Komponenten/Snippets und die zugehörigen Platzhalter.',
     ],
+    'comments' => [
+        'excerpt' => 'Optional. Falls nicht angegeben, wird ggf. direkt das Feld "Inhalt" ausgespielt.',
+    ],
+    'no_blocklist' => '--- keine Blockliste ---',
 ];

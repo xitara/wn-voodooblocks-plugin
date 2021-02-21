@@ -45,4 +45,12 @@ return [
         'dynamic_content_comment' => 'Wenn dynamischer Inhalt aktiviert wird, wird der statische Inhalt, Bilder und Slider ignoriert und nur die dynamischen Inhalte aus den ausgewählten Modulen angezeigt.',
         'dynamic_content_prompt' => 'Neus Modul',
     ],
+    'buttons_above' => [
+        'label' => 'Button(s) über dem restlichen Inhalt',
+        'prompt' => 'Neuen Button hinzufügen',
+    ],
+    'buttons' => [
+        'label' => 'Button(s) unter dem restlichen Inhalt',
+        'prompt' => 'Neuen Button hinzufügen',
+    ],
 ];
