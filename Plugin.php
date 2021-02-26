@@ -204,6 +204,7 @@ class Plugin extends PluginBase
                 ],
                 'attributes' => [
                     'group' => 'xitara.dynamiccontent::lang.submenu.label',
+                    'level' => 2,
                 ],
                 'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
             ],
@@ -222,6 +223,8 @@ class Plugin extends PluginBase
                 'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
             ],
         ];
+
+        return $inject;
     }
 
     public static function getBlocklistOptions()

@@ -1,7 +1,7 @@
 {
     "name": "dynamiccontent",
-    "version": "1.0.5",
-    "description": "Add Blocklist incl. component to CMS ans pages",
+    "version": "1.0.6",
+    "description": "Add Blocklist incl. component to CMS and pages",
     "author": "Manuel Burghammer",
     "license": "MIT",
     "repository": {

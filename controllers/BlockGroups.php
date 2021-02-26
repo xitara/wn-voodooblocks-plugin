@@ -30,6 +30,6 @@ class BlockGroups extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'dynamiccontent.blockgroups');
+        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'nexus.blockgroups');
     }
 }

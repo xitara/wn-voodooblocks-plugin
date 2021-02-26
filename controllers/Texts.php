@@ -32,7 +32,7 @@ class Texts extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'dynamiccontent.texts');
+        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'nexus.texts');
         $this->pageTitle = e(trans('xitara.nexus::core.update_m', [
             'model' => e(trans('xitara.dynamiccontent::lang.submenu.text')),
         ]));
@@ -52,13 +52,16 @@ class Texts extends Controller
                 if (!$file->isDot()) {
                     $className = $file->getBasename('.php');
                     $object = $namespace . $className;
-                    $manuals[$className] = [];
 
-                    foreach ($object::$placeholder as $placeholder) {
-                        $description = 'xitara.dynamiccontentmodules::';
-                        $description .= strtolower($className) . '.placeholder';
-                        $description .= '.' . $placeholder;
-                        $manuals[$className][$placeholder] = trans($description);
+                    if (!empty($object::$placeholder)) {
+                        $manuals[$className] = [];
+
+                        foreach ($object::$placeholder as $placeholder) {
+                            $description = 'xitara.dynamiccontentmodules::';
+                            $description .= strtolower($className) . '.placeholder';
+                            $description .= '.' . $placeholder;
+                            $manuals[$className][$placeholder] = trans($description);
+                        }
                     }
                 }
             }

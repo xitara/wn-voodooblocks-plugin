@@ -20,9 +20,30 @@ section.blocklist {
                 }
 
                 p {
-                    @apply p-2 m-0;
+                    @apply p-0 m-0;
                 }
             }
+        }
+    }
+
+    // dynamic content
+    ul.dynamic-content {
+        @apply list-disc ml-6;
+
+        ul {
+            @apply list-disc ml-6;
+        }
+
+        li {
+            // &::marker {
+            //     color: red;
+            //     font-size: 1.5em;
+            // }
+
+            // p {
+            // margin: 0;
+            // padding: 0;
+            // }
         }
     }
 

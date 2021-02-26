@@ -30,8 +30,17 @@ class BlockLists extends Controller
     public function __construct()
     {
         parent::__construct();
+        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'nexus.blocklists');
+    }
 
-        BackendMenu::setContext('Xitara.DynamicContent', 'dynamiccontent', 'dynamiccontent.blocklists');
+    public function update($id = null)
+    {
+        if ($id != null) {
+            BackendMenu::setContext('Xitara.DynamicContent',
+                'dynamiccontent', 'nexus.blocklist.' . $id);
+        }
+
+        $this->asExtension('FormController')->update($id);
     }
 
     public function formExtendFieldsBefore($form)

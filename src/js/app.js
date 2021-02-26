@@ -39,7 +39,6 @@ $on(document, 'DOMContentLoaded', () => {
                 // eslint-disable-next-line no-undef, no-unused-vars
                 lightbox[key] = GLightbox(lightboxConfig[key]);
             }
-            // eslint-disable-next-line no-undef
         });
     }
 
