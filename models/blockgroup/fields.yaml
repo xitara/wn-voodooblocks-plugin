@@ -4,18 +4,65 @@
 
 fields:
     name:
-        label: xitara.nexus::core.group
+        label: xitara.nexus::core.heading
         type: text
         span: left
-    description:
-        label: xitara.nexus::core.description
-        type: richeditor
-        toolbarButtons: bold,italic,underline,strikeThrough
-        span: right
     slug:
         label: xitara.nexus::core.slug
         type: text
-        span: left
+        span: right
         preset:
             field: name
             type: slug
+    content:
+        label: xitara.nexus::core.content
+        type: richeditor
+        toolbarButtons: bold,italic,underline,strikeThrough
+        span: right
+    subheading:
+        label: xitara.nexus::core.subheading
+        type: text
+        span: left
+    created_at@update:
+        label: xitara.nexus::core.created_at
+        type: text
+        span: storm
+        cssClass: col-md-3
+        disabled: true
+    updated_at@update:
+        label: xitara.nexus::core.updated_at
+        type: text
+        span: storm
+        cssClass: col-md-3
+        disabled: true
+    is_heading:
+        label: xitara.dynamiccontent::lang.controller.is_heading
+        type: switch
+        span: storm
+        cssClass: col-md-3
+        default: 1
+    is_active:
+        label: xitara.nexus::core.is_active
+        type: switch
+        span: storm
+        cssClass: col-md-3
+        default: 1
+
+    section_blockgroup:
+        label: xitara.dynamiccontent::lang.controller.section_blockgroup
+        comment: xitara.dynamiccontent::lang.controller.section_blockgroup_comment
+        type: section
+        commentHtml: true
+
+    blockgroup:
+        type: repeater
+        span: full
+        prompt: xitara.dynamiccontent::lang.controller.new_blocklist
+        minItems: 1
+        maxItems: 24
+        form:
+            fields:
+                blocklist:
+                    label: xitara.dynamiccontent::lang.controller.blocklist
+                    type: dropdown
+                    span: full

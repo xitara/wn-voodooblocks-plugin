@@ -1,6 +1,7 @@
 <?php namespace Xitara\DynamicContent\Models;
 
 use Model;
+use Xitara\DynamicContent\Models\BlockList;
 
 /**
  * BlockGroup Model
@@ -37,7 +38,7 @@ class BlockGroup extends Model
     /**
      * @var array Attributes to be cast to JSON
      */
-    protected $jsonable = [];
+    protected $jsonable = ['blockgroup'];
 
     /**
      * @var array Attributes to be appended to the API representation of the model (ex. toArray())
@@ -54,7 +55,7 @@ class BlockGroup extends Model
      */
     protected $dates = [
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     /**
@@ -71,4 +72,9 @@ class BlockGroup extends Model
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
+
+    public function getBlocklistOptions()
+    {
+        return BlockList::orderBy('name', 'asc')->lists('name', 'id');
+    }
 }

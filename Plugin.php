@@ -83,14 +83,13 @@ class Plugin extends PluginBase
     {
         return [
             'Xitara\DynamicContent\Components\BlockList' => 'blockList',
+            'Xitara\DynamicContent\Components\BlockGroup' => 'blockGroup',
         ];
     }
 
     public function registerPageSnippets()
     {
-        return [
-            'Xitara\DynamicContent\Components\BlockList' => 'blockList',
-        ];
+        return $this->registerComponents();
     }
 
     /**
