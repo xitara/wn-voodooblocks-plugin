@@ -203,7 +203,6 @@ class Plugin extends PluginBase
                 ],
                 'attributes' => [
                     'group' => 'xitara.dynamiccontent::lang.submenu.label',
-                    'level' => 2,
                 ],
                 'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
             ],
