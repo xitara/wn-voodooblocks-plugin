@@ -33,7 +33,7 @@
         'new_block' => 'Neuen Block anlegen',
         'is_heading' => 'Überschrift und Unterüberschrift anzeigen',
         'section_blocks' => 'Blockliste',
-        'section_blocks_comment' => 'Maximale Anzahl der Blöcke ist auf 24 begrenzt. Das resultiert aus der Standardeinstellung "max_input_vars = 1000" auf Webservern.<br>Alle Blöcke gleichzeitig auf- und zuklappen: Strg + Mausklick auf <i class="icon-chevron-up"></i>',
+        'section_blocks_comment' => 'Maximale Anzahl der Blöcke ist auf 24 begrenzt. Das resultiert aus der Standardeinstellung "max_input_vars = 1000" auf Webservern. Werden mehr Blöcke benötigt, können mehrere Blocklisten über "Block Gruppen" zusammengefasst werden<br>Alle Blöcke gleichzeitig auf- und zuklappen: Strg + Mausklick auf <i class="icon-chevron-up"></i>',
     ],
     'manual' => [
         'heading' => 'Anleitung für Platzhalter im Text',
