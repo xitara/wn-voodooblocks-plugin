@@ -48,5 +48,9 @@
 
 /* eroCMS fixes */
 img {
-    @apply inline;
+    @apply inline max-w-full;
+}
+
+.img-fluid {
+    @apply max-w-full;
 }
