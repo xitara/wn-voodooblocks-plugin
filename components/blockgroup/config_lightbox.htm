@@ -1,0 +1,14 @@
+
+<script>
+    if (typeof lightboxConfig === 'undefined') {
+        var lightboxConfig = [];
+    }
+
+    lightboxConfig['{{ uid }}'] = {
+        selector: '.lightbox-{{ uid }}',
+        loop: {{ (config.is_loop == 1) ? 'true' : 'false' }},
+        touchNavigation: true,
+        autoplayVideos: true,
+        {{ config.lightbox_options|raw }}
+    }
+</script>

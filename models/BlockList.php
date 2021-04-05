@@ -68,12 +68,12 @@ class BlockList extends Model
     public $hasManyThrough = [];
     public $belongsTo = [];
     public $belongsToMany = [
-        'groups' => [
-            'Xitara\DynamicContent\Models\BlockGroup',
-            'table' => 'xitara_dynamiccontent_block_block_groups',
-            'key' => 'block_id',
-            'otherKey' => 'group_id',
-        ],
+        // 'groups' => [
+        //     'Xitara\DynamicContent\Models\BlockGroup',
+        //     'table' => 'xitara_dynamiccontent_block_block_groups',
+        //     'key' => 'block_id',
+        //     'otherKey' => 'group_id',
+        // ],
     ];
     public $morphTo = [];
     public $morphOne = [];

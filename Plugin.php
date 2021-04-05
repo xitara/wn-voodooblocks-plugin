@@ -83,14 +83,13 @@ class Plugin extends PluginBase
     {
         return [
             'Xitara\DynamicContent\Components\BlockList' => 'blockList',
+            'Xitara\DynamicContent\Components\BlockGroup' => 'blockGroup',
         ];
     }
 
     public function registerPageSnippets()
     {
-        return [
-            'Xitara\DynamicContent\Components\BlockList' => 'blockList',
-        ];
+        return $this->registerComponents();
     }
 
     /**
@@ -204,7 +203,6 @@ class Plugin extends PluginBase
                 ],
                 'attributes' => [
                     'group' => 'xitara.dynamiccontent::lang.submenu.label',
-                    'level' => 2,
                 ],
                 'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
             ],

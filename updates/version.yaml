@@ -10,3 +10,9 @@
 1.0.4: Move dynamic output to own plugin
 1.0.5: Add event to patch block content with external plugin
 1.0.6: Catch errors on undefined twig vars
+1.0.7:
+    - Add global text to blocklist
+    - add_text_column_to_blocklist_table.php
+1.0.8:
+    - Add blockgroups
+    - add_columns_to_blockgroup_table.php

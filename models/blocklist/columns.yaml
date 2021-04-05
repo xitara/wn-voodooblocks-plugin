@@ -8,13 +8,13 @@ columns:
         type: text
         searchable: true
         sortable: true
-    group_names:
-        label: xitara.nexus::core.groups
-        type: text
-        relation: groups
-        select: name
-        searchable: true
-        sortable: true
+    # group_names:
+    #     label: xitara.nexus::core.groups
+    #     type: text
+    #     relation: groups
+    #     select: name
+    #     searchable: true
+    #     sortable: true
     is_active:
         label: xitara.nexus::core.is_active
         type: switch

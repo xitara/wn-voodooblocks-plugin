@@ -49,6 +49,13 @@ fields:
         cssClass: col-md-3
         default: 1
 
+    block_section:
+        label: xitara.dynamiccontent::lang.controller.section_blocks
+        comment: xitara.dynamiccontent::lang.controller.section_blocks_comment
+        commentHtml: true
+        type: section
+        span: full
+
     blocks:
         type: repeater
         span: full

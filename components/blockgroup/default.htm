@@ -1,13 +1,19 @@
-{% set blocklist = __SELF__.blocklist %}
-<section id="blocklist-{{ blocklist.name|slug }}" class="blocklist">
-    {% if blocklist.is_heading == 1 %}
-        <h1>{{ blocklist.name }}</h1>
+{% set blockgroup = __SELF__.blockgroup %}
+<section id="blockgroup-{{ groupdata.name|slug }}" class="blockgroup">
+    {% if groupdata.is_heading == 1 %}
+        <h1>{{ groupdata.name }}</h1>
+        {% if groupdata.subheading|trim != '' %}
+            <h2>{{ groupdata.subheading }}</h2>
+        {% endif %}
     {% endif %}
-    {% for block in blocklist.blocks %}
+    {% if groupdata.content|trim != '' %}
+        <aside>{{ groupdata.content|raw }}</aside>
+    {% endif %}
+    {% for block in blockgroup %}
         {% if block['is_active'] is defined and block.is_active == 1 %}
             <article class="flex-{{ block.width }} w-{{ block.width }}">
                 <aside>
-                    <h2>{{ block.heading }}</h2>
+                    <h3>{{ block.heading }}</h3>
                     <div class="h-{{ block.height }}{% if block.is_scrolling == 1 and block.height != 'auto' %} scrollbar{% endif %}">
                         {% if block['buttons_above'] is defined or block.excerpt|trim != '' %}
                             <div class="excerpt">
@@ -53,6 +59,7 @@
                 </aside>
             </article>
         {% endif %}
+        <hr>
     {% endfor %}
 </section>
 

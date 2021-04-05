@@ -270,6 +270,13 @@ module.exports = {
         textColor: (theme) => theme('colors'),
         textOpacity: (theme) => theme('opacity'),
         backgroundOpacity: (theme) => theme('opacity'),
+        backgroundSize: {
+            auto: 'auto',
+            cover: 'cover',
+            contain: 'contain',
+            '50%': '50%',
+            248: '62rem',
+        },
     },
     variants: {
         overflow: ['responsive'],
@@ -285,6 +292,7 @@ module.exports = {
         // 'textTransform',
         'backgroundColor',
         'backgroundOpacity',
+        'backgroundSize',
         'borderColor',
         'borderRadius',
         'borderStyle',
