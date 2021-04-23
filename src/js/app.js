@@ -11,11 +11,20 @@ $on(document, 'DOMContentLoaded', () => {
      * init all sliders
      */
     if (typeof slideConfig !== 'undefined') {
+        let slider = [];
+
         // eslint-disable-next-line no-undef
         Object.keys(slideConfig).forEach((key) => {
-            if (qs('#slide-' + key)) {
-                // eslint-disable-next-line no-undef
-                tns(slideConfig[key]);
+            if (qs('#slide-xitara-dynamiccontent-' + key)) {
+                if (typeof slider[key] === 'undefined') {
+                    // eslint-disable-next-line no-undef
+                    slider[key] = tns(slideConfig[key]);
+
+                    slider[key].events.on('transitionStart', function (info) {
+                        info.slideItems[info.indexCached].classList.remove('tns-slide-center');
+                        info.slideItems[info.index].classList.add('tns-slide-center');
+                    });
+                }
             }
         });
     }
