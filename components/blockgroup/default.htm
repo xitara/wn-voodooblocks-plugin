@@ -16,7 +16,7 @@
                     <h3>{{ block.heading }}</h3>
                     <div class="h-{{ block.height }}{% if block.is_scrolling == 1 and block.height != 'auto' %} scrollbar{% endif %}">
                         {% if block['buttons_above'] is defined or block.excerpt|trim != '' %}
-                            <div class="excerpt">
+                            <article class="excerpt">
                                 {% if block['buttons_above'] is defined %}
                                     <div class="buttons-above">
                                         {% for button in block.buttons_above %}
@@ -29,7 +29,7 @@
                                 {% if block.excerpt|trim != '' %}
                                     {{ block.excerpt|raw }}
                                 {% endif %}
-                            </div>
+                            </article>
                         {% endif %}
 
                         {% if block['images'] is defined %}
@@ -37,7 +37,7 @@
                         {% endif %}
 
                         {% if block['buttons'] is defined or block.content|trim != '' %}
-                            <div class="content">
+                            <article class="content">
                                 {% if block.content|trim != '' %}
                                     {{ block.content|raw }}
                                 {% endif %}
@@ -53,7 +53,7 @@
                                         </div>
                                     {% endfor %}
                                 {% endif %}
-                            </div>
+                            </article>
                         {% endif %}
                     </div>
                 </aside>
