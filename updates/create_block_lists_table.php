@@ -1,8 +1,8 @@
 <?php namespace Xitara\DynamicContent\Updates;
 
-use October\Rain\Database\Schema\Blueprint;
-use October\Rain\Database\Updates\Migration;
 use Schema;
+use Winter\Storm\Database\Schema\Blueprint;
+use Winter\Storm\Database\Updates\Migration;
 
 class CreateBlockListsTable extends Migration
 {
