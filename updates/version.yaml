@@ -16,3 +16,4 @@
 1.0.8:
     - Add blockgroups
     - add_columns_to_blockgroup_table.php
+1.0.9: Full migration to winter-namespace

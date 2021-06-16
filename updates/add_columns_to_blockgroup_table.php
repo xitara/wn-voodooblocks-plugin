@@ -1,7 +1,7 @@
 <?php namespace Xitara\DynamicContent\Updates;
 
-use October\Rain\Database\Updates\Migration;
 use Schema;
+use Winter\Storm\Database\Updates\Migration;
 
 class AddColumnsToBlockgroupTable extends Migration
 {
