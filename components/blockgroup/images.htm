@@ -47,7 +47,7 @@
             href="{{ image.image|media }}"
             data-title="{{ image.title|escape('html') }}"
             data-description="{{ image.description|escape('html') }}"
-            class="lightbox-{{ uid }}"
+            class="xitara-dynamiccontent-lightbox-{{ uid }}"
         >
     {% elseif image['link'] is defined and image.link != '' %}
         <a href="{{ image.link }}"{{ (image.is_blank == 1) ? ' target="_blank"' }}>
@@ -87,7 +87,6 @@
     <style>
         .tns-nav {
             position: relative;
-            /* stylelint-disable-next-line */
             {{ block.slider.nav_position }}: 1.5rem;
             left: 0;
             right: 0;

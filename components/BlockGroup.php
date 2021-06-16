@@ -27,6 +27,11 @@ class BlockGroup extends ComponentBase
                 'type' => 'dropdown',
                 'required' => true,
             ],
+            'cssClasses' => [
+                'title' => 'kuse.dynamiccontent::component.blockgroup.css_classes',
+                'description' => 'kuse.dynamiccontent::component.blockgroup.css_classes_description',
+                'type' => 'string',
+            ],
         ];
     }
 
@@ -64,6 +69,8 @@ class BlockGroup extends ComponentBase
         // var_dump($blocks);
         // var_dump($this->groupdata);
         // exit;
+
+        $this->page['cssClasses'] = $this->property('cssClasses', '');
     }
 
     public function getBlockGroupOptions()
