@@ -9,7 +9,7 @@
         "url": "https://git.xitara.net/mb/oc-plugin-dynamiccontent"
     },
     "scripts": {
-        "install": "chmod 0755 ./bash/* && yarn build && bash ./bash/composer.sh",
+        "install": "chmod 0755 ./bash/* && yarn build && bash ./bash/setup.sh && bash ./bash/composer.sh",
         "dwatch": "webpack --watch --mode development --progress",
         "watch": "webpack --watch --mode production --progress",
         "dbuild": "webpack --mode development --progress",
