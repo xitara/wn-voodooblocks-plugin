@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 // const LiveReloadPlugin = require('webpack-livereload-plugin');
-const TailwindCSS = require('tailwindcss');
+// const TailwindCSS = require('tailwindcss');
 const paths = require('./paths');
 
 module.exports = {
@@ -39,12 +39,12 @@ module.exports = {
                             postcssOptions: {
                                 sourceMap: true,
                                 plugins: [
-                                    require('tailwindcss'),
+                                    // require('tailwindcss'),
                                     require('autoprefixer'),
                                     require('postcss-flexbugs-fixes'),
                                 ],
                                 postCss: [
-                                    TailwindCSS('tailwind.config.js'),
+                                    // TailwindCSS('tailwind.config.js'),
                                 ],
                                 processCssUrls: false,
                             },
