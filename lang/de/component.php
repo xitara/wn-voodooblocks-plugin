@@ -3,7 +3,7 @@
 return [
     'blocklist' => [
         'title' => 'Blockliste',
-        'description' => 'Blockliste, die angezeigt werden soll.',
+        'description' => 'Auswahl der Blockliste, die angezeigt werden soll',
         'is_slider' => 'Slider',
         'is_lightbox' => 'Lightbox',
         'is_carousel' => 'Unendlicher Slider (Karusell/Infinity)',
