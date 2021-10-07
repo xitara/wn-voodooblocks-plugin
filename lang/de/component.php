@@ -2,8 +2,8 @@
 
 return [
     'blocklist' => [
-        'title' => 'Gekaufter Artikel',
-        'description' => 'Prüft, ob ein Artikel gekauft wurde und vergibt pro Kauf einstellbare Punkte.',
+        'title' => 'Blockliste',
+        'description' => 'Blockliste, die angezeigt werden soll.',
         'is_slider' => 'Slider',
         'is_lightbox' => 'Lightbox',
         'is_carousel' => 'Unendlicher Slider (Karusell/Infinity)',
