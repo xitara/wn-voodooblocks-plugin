@@ -40,7 +40,7 @@
                             {% partial __SELF__ ~ "::images" block=block %}
                         {% endif %}
 
-                        {% if block['buttons'] is defined or block.content|trim != '' %}
+                        {# {% if block['buttons'] is defined or block.content|trim != '' %} #}
                             <div class="content">
                                 {% if block.content|trim != '' %}
                                     {{ block.content|raw }}
@@ -58,7 +58,7 @@
                                     {% endfor %}
                                 {% endif %}
                             </div>
-                        {% endif %}
+                        {# {% endif %} #}
                     </div>
                 </aside>
             </article>

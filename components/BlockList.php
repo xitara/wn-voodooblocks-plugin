@@ -69,11 +69,22 @@ class BlockList extends ComponentBase
                         $template = null;
                     }
 
-                    $block['block']['dynamic_content'][] = '<li>' . $object->getText($template, $module) . '</li>';
+                    if (count($block['block']['dynamic_modules']) > 1) {
+                        $block['block']['dynamic_content'][] = '<li>' . $object->getText($template, $module) . '</li>';
+                    } else {
+                        $block['block']['dynamic_content'][] = $object->getText($template, $module);
+                    }
                 }
-                $block['block']['dynamic_content'] = '<ul class="dynamic-content">' . join($block['block']['dynamic_content'] ?? []) . '</ul>';
+
+                if (count($block['block']['dynamic_content'] ?? []) > 1) {
+                    $block['block']['dynamic_content'] = '<ul class="dynamic-content">' . join($block['block']['dynamic_content'] ?? []) . '</ul>';
+                } else {
+                    $block['block']['dynamic_content'] = join($block['block']['dynamic_content'] ?? []);
+                }
             }
             $blocklist_[] = $block['block'];
+
+            // var_dump($blocklist_);
 
             $block_ = Event::fire('xitara.dynamiccontent.afterProcessBlock', [$block]);
             if (isset($block_[0])) {
