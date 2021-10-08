@@ -15,7 +15,8 @@
         'blockgroup' => 'Block Gruppen',
     ],
     'tab' => [
-        'data' => 'Statischer Inhalt',
+        'options' => 'Grundeinstellungen',
+        'content' => 'Statischer Inhalt',
         'images' => 'Bilder',
         'slider' => 'Slider',
         'lightbox' => 'Lightbox',
@@ -40,7 +41,8 @@
         'description' => 'Folgende Liste zeigt die vorhandenen Komponenten/Snippets und die zugehörigen Platzhalter.',
     ],
     'comments' => [
-        'excerpt' => 'Optional. Falls nicht angegeben, wird ggf. direkt das Feld "Inhalt" ausgespielt.',
+        'excerpt' => 'Text wird <b>über</b> ggf. vorhandenen Bildern / Buttons ausgegeben',
+        'content' => 'Text wird <b>unter</b> ggf. vorhandenen Bildern / Buttons ausgegeben',
     ],
     'no_blocklist' => '--- keine Blockliste ---',
 ];

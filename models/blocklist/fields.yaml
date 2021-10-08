@@ -69,13 +69,18 @@ fields:
                         tabs:
                             fields:
                                 heading:
-                                    tab: xitara.dynamiccontent::lang.tab.data
+                                    tab: xitara.dynamiccontent::lang.tab.options
                                     label: xitara.nexus::core.heading
                                     type: text
-                                    span: storm
-                                    cssClass: col-md-6
+                                    span: auto
+                                    required: true
+                                subheading:
+                                    tab: xitara.dynamiccontent::lang.tab.options
+                                    label: xitara.nexus::core.subheading
+                                    type: text
+                                    span: auto
                                 width:
-                                    tab: xitara.dynamiccontent::lang.tab.data
+                                    tab: xitara.dynamiccontent::lang.tab.options
                                     label: xitara.nexus::core.width
                                     type: dropdown
                                     span: storm
@@ -89,7 +94,7 @@ fields:
                                         1/4: 25%
                                     default: 4/4
                                 height:
-                                    tab: xitara.dynamiccontent::lang.tab.data
+                                    tab: xitara.dynamiccontent::lang.tab.options
                                     label: xitara.nexus::core.height
                                     type: dropdown
                                     span: storm
@@ -101,35 +106,59 @@ fields:
                                         3/2: 150%
                                         2/1: 200%
                                     default: auto
-
-                                excerpt:
-                                    tab: xitara.dynamiccontent::lang.tab.data
-                                    label: xitara.nexus::core.excerpt
-                                    comment: xitara.dynamiccontent::lang.comments.excerpt
-                                    type: richeditor
-                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,insertLink,insertImage,insertVideo,html,fullscreen
-                                    span: left
-                                content:
-                                    tab: xitara.dynamiccontent::lang.tab.data
-                                    label: xitara.nexus::core.content
-                                    type: richeditor
-                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,formatOL,formatUL,outdent,indent,insertLink,insertImage,insertVideo,insertAudio,html,fullscreen
-                                    span: right
+                                is_active:
+                                    tab: xitara.dynamiccontent::lang.tab.options
+                                    label: xitara.nexus::core.is_active
+                                    type: switch
+                                    span: storm
+                                    cssClass: col-md-6
+                                    default: 1
+                                new_line:
+                                    tab: xitara.dynamiccontent::lang.tab.options
+                                    # label: test
+                                    type: section
+                                    span: full
+                                is_heading:
+                                    tab: xitara.dynamiccontent::lang.tab.options
+                                    label: xitara.dynamiccontent::component.blocklist.is_heading
+                                    comment: xitara.dynamiccontent::component.blocklist.is_heading_comment
+                                    type: switch
+                                    span: storm
+                                    cssClass: col-md-4
+                                    default: 1
+                                is_box:
+                                    tab: xitara.dynamiccontent::lang.tab.options
+                                    label: xitara.dynamiccontent::component.blocklist.is_box
+                                    comment: xitara.dynamiccontent::component.blocklist.is_box_comment
+                                    type: switch
+                                    span: storm
+                                    cssClass: col-md-4
+                                    default: 1
                                 is_scrolling:
-                                    tab: xitara.dynamiccontent::lang.tab.data
+                                    tab: xitara.dynamiccontent::lang.tab.options
                                     label: xitara.dynamiccontent::component.blocklist.is_scrolling
                                     comment: xitara.dynamiccontent::component.blocklist.is_scrolling_comment
                                     type: switch
                                     span: storm
-                                    cssClass: col-md-10
+                                    cssClass: col-md-4
                                     default: 0
-                                is_active:
-                                    tab: xitara.dynamiccontent::lang.tab.data
-                                    label: xitara.nexus::core.is_active
-                                    type: switch
-                                    span: storm
-                                    cssClass: col-md-2
-                                    default: 1
+
+                                excerpt:
+                                    tab: xitara.dynamiccontent::lang.tab.content
+                                    label: xitara.nexus::core.excerpt
+                                    comment: xitara.dynamiccontent::lang.comments.excerpt
+                                    commentHtml: true
+                                    type: richeditor
+                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,insertLink,insertImage,insertVideo,html,fullscreen
+                                    span: left
+                                content:
+                                    tab: xitara.dynamiccontent::lang.tab.content
+                                    label: xitara.nexus::core.content
+                                    comment: xitara.dynamiccontent::lang.comments.content
+                                    commentHtml: true
+                                    type: richeditor
+                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,formatOL,formatUL,outdent,indent,insertLink,insertImage,insertVideo,insertAudio,html,fullscreen
+                                    span: right
 
                                 buttons_above:
                                     tab: xitara.dynamiccontent::lang.tab.buttons

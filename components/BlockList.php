@@ -58,6 +58,15 @@ class BlockList extends ComponentBase {
 
                     $object = new $class;
 
+                    /**
+                     * add heading, excerpt and content if not defined by module
+                     */
+                    foreach (['heading', 'excerpt', 'content'] as $type) {
+                        if (!isset($module[$type])) {
+                            $module[$type] = $block['block'][$type];
+                        }
+                    }
+
                     $template = 'xitara/dynamiccontentmodules/views/';
                     $template .= $module['_group'] . '.htm';
 

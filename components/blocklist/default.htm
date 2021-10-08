@@ -1,4 +1,5 @@
 {% set blocklist = __SELF__.blocklist %}
+
 <section id="blocklist-{{ blocklist.name|slug }}" class="blocklist">
     {% if blocklist.is_heading == 1 %}
         <h1>{{ blocklist.name }}</h1>
@@ -6,9 +7,15 @@
     {% for block in blocklist.blocks %}
         {% if block['is_active'] is defined and block.is_active == 1 %}
             <article class="flex-{{ block.width }} w-{{ block.width }}">
-                <aside>
-                    <h2>{{ block.heading }}</h2>
-                    <div class="h-{{ block.height }}{% if block.is_scrolling == 1 and block.height != 'auto' %} scrollbar{% endif %}">
+                {% if block['is_box'] is not defined or block.is_box == 1 %}
+                    <aside>
+                {% endif %}
+                    {% if block['is_heading'] is not defined or block.is_heading == 1 %}
+                        <h2>{{ block.heading }}</h2>
+                    {% endif %}
+                    {% if block['is_box'] is not defined or block.is_box == 1 %}
+                        <div class="h-{{ block.height }}{% if block.is_scrolling == 1 and block.height != 'auto' %} scrollbar{% endif %}">
+                    {% endif %}
                         {% if block['buttons_above'] is defined or block.excerpt|trim != '' %}
                             <div class="excerpt">
                                 {% if block['buttons_above'] is defined %}
@@ -59,8 +66,10 @@
                                 {% endif %}
                             </div>
                         {# {% endif %} #}
-                    </div>
-                </aside>
+                    {% if blocklist['is_box'] is not defined or blocklist.is_box == 1 %}
+                            </div>
+                        </aside>
+                    {% endif %}
             </article>
         {% endif %}
     {% endfor %}
