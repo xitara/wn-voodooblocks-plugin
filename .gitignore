@@ -12,9 +12,11 @@ yarn.lock
 /favicon*
 /robots.txt
 /humans.txt
+/assets-manifest.json
 /manifest.json
 *sublime-*
 /bash/config.sh
+/.docs
 *.gz
 *.br
 

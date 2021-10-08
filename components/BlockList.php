@@ -4,20 +4,17 @@ use Cms\Classes\ComponentBase;
 use Event;
 use Xitara\DynamicContent\Models\BlockList as BlockListModel;
 
-class BlockList extends ComponentBase
-{
+class BlockList extends ComponentBase {
     public $blocklist;
 
-    public function componentDetails()
-    {
+    public function componentDetails() {
         return [
             'name' => 'BlockList Component',
             'description' => 'No description provided yet...',
         ];
     }
 
-    public function defineProperties()
-    {
+    public function defineProperties() {
         return [
             'blocklist' => [
                 'title' => 'xitara.dynamiccontent::component.blocklist.title',
@@ -28,8 +25,7 @@ class BlockList extends ComponentBase
         ];
     }
 
-    public function onRun()
-    {
+    public function onRun() {
         $this->addCss('/plugins/xitara/dynamiccontent/assets/css/app.css');
         $this->addJs('/plugins/xitara/dynamiccontent/assets/js/app.js');
 
@@ -52,7 +48,7 @@ class BlockList extends ComponentBase
 
             if (isset($block['block']['dynamic_modules'])) {
 
-                foreach ($block['block']['dynamic_modules'] as $module) {
+                foreach ($block['block']['dynamic_modules'] as $i => $module) {
                     $class = '\\Xitara\\DynamicContentModules\\Classes\\';
                     $class .= ucfirst(camel_case($module['_group']));
 
@@ -69,10 +65,13 @@ class BlockList extends ComponentBase
                         $template = null;
                     }
 
+                    $data = $object->getData($template, $module);
+                    $block['block']['dynamic_config'][$i] = $data['config'];
+
                     if (count($block['block']['dynamic_modules']) > 1) {
-                        $block['block']['dynamic_content'][] = '<li>' . $object->getText($template, $module) . '</li>';
+                        $block['block']['dynamic_content'][$i] = '<li>' . $data['content'] . '</li>';
                     } else {
-                        $block['block']['dynamic_content'][] = $object->getText($template, $module);
+                        $block['block']['dynamic_content'][$i] = $data['content'];
                     }
                 }
 
@@ -96,8 +95,7 @@ class BlockList extends ComponentBase
         $this->blocklist = $this->page['blocklist'] = $blocklist;
     }
 
-    public function getBlocklistOptions()
-    {
+    public function getBlocklistOptions() {
         return BlockListModel::orderBy('name', 'asc')->lists('name', 'id');
     }
 }
