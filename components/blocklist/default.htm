@@ -58,7 +58,12 @@
                                 {% if block['buttons'] is defined %}
                                     {% for button in block.buttons %}
                                         <div class="buttons">
-                                            <a href="{{ button.link }}" target="{{ button.target }}">
+                                            <a
+                                                href="{{ button.link }}"
+                                                {% if button.target == 1 or button.target == '_blank' %}
+                                                    target="_blank"
+                                                {% endif %}
+                                            >
                                                 {{ button.label }}
                                             </a>
                                         </div>

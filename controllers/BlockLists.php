@@ -50,11 +50,11 @@ class BlockLists extends Controller
 
             if ($form->isNested === false) {
                 $form->fields['blocks']['form']['fields']['block']['form']['tabs']['fields']['dynamic_modules'] = [
-                    'tab' => 'xitara.dynamiccontent::lang.tab.dynamic_content',
-                    'prompt' => 'xitara.dynamiccontent::lang.tab.dynamic_content_prompt',
-                    'type' => 'repeater',
-                    'span' => 'full',
-                    'style' => 'accordion',
+                    'tab'    => 'xitara.dynamiccontent::lang.tab.dynamic_content',
+                    'prompt' => 'xitara.dynamiccontent::lang.dynamic_content.prompt',
+                    'type'   => 'repeater',
+                    'span'   => 'full',
+                    'style'  => 'accordion',
                     'groups' => $configs,
                 ];
             }

@@ -4,54 +4,36 @@
 
 fields:
     name:
-        label: xitara.nexus::core.name
+        label: xitara.dynamiccontent::lang.heading.label
         type: text
         span: auto
-        # span: storm
-        # cssClass: col-md-4
+    subheading:
+        label: xitara.dynamiccontent::lang.subheading.label
+        type: text
+        span: auto
     slug:
-        label: xitara.nexus::core.slug
+        label: xitara.dynamiccontent::lang.slug.label
         type: text
         span: auto
-        # span: storm
-        # cssClass: col-md-4
         preset:
             field: name
             type: slug
-    # groups:
-    #     label: xitara.nexus::core.groups
-    #     type: taglist
-    #     mode: relation
-    #     span: storm
-    #     cssClass: col-md-4
-    created_at@update:
-        label: xitara.nexus::core.created_at
-        type: text
-        span: storm
-        cssClass: col-md-3
-        disabled: true
-    updated_at@update:
-        label: xitara.nexus::core.updated_at
-        type: text
-        span: storm
-        cssClass: col-md-3
-        disabled: true
     is_heading:
-        label: xitara.dynamiccontent::lang.controller.is_heading
+        label: xitara.dynamiccontent::lang.is_heading.label
         type: switch
         span: storm
         cssClass: col-md-3
         default: 1
     is_active:
-        label: xitara.nexus::core.is_active
+        label: xitara.dynamiccontent::lang.is_active.label
         type: switch
         span: storm
         cssClass: col-md-3
         default: 1
 
     block_section:
-        label: xitara.dynamiccontent::lang.controller.section_blocks
-        comment: xitara.dynamiccontent::lang.controller.section_blocks_comment
+        label: xitara.dynamiccontent::lang.section_blocks.label
+        comment: xitara.dynamiccontent::lang.section_blocks.comment
         commentHtml: true
         type: section
         span: full
@@ -59,7 +41,7 @@ fields:
     blocks:
         type: repeater
         span: full
-        prompt: xitara.dynamiccontent::lang.controller.new_block
+        prompt: xitara.dynamiccontent::lang.new_block.prompt
         form:
             fields:
                 block:
@@ -70,18 +52,18 @@ fields:
                             fields:
                                 heading:
                                     tab: xitara.dynamiccontent::lang.tab.options
-                                    label: xitara.nexus::core.heading
+                                    label: xitara.dynamiccontent::lang.heading.label
                                     type: text
                                     span: auto
                                     required: true
                                 subheading:
                                     tab: xitara.dynamiccontent::lang.tab.options
-                                    label: xitara.nexus::core.subheading
+                                    label: xitara.dynamiccontent::lang.subheading.label
                                     type: text
                                     span: auto
                                 width:
                                     tab: xitara.dynamiccontent::lang.tab.options
-                                    label: xitara.nexus::core.width
+                                    label: xitara.dynamiccontent::lang.width.label
                                     type: dropdown
                                     span: storm
                                     cssClass: col-md-3
@@ -95,12 +77,12 @@ fields:
                                     default: 4/4
                                 height:
                                     tab: xitara.dynamiccontent::lang.tab.options
-                                    label: xitara.nexus::core.height
+                                    label: xitara.dynamiccontent::lang.height.label
                                     type: dropdown
                                     span: storm
                                     cssClass: col-md-3
                                     options:
-                                        auto: xitara.nexus::core.auto
+                                        auto: xitara.dynamiccontent::lang.dropdown.auto
                                         1/2: 50%
                                         1/1: 100%
                                         3/2: 150%
@@ -108,156 +90,168 @@ fields:
                                     default: auto
                                 is_active:
                                     tab: xitara.dynamiccontent::lang.tab.options
-                                    label: xitara.nexus::core.is_active
+                                    label: xitara.dynamiccontent::lang.is_active.label
                                     type: switch
                                     span: storm
                                     cssClass: col-md-6
                                     default: 1
                                 new_line:
                                     tab: xitara.dynamiccontent::lang.tab.options
-                                    # label: test
                                     type: section
                                     span: full
+                                is_raw:
+                                    tab: xitara.dynamiccontent::lang.tab.options
+                                    label: xitara.dynamiccontent::lang.is_raw.label
+                                    comment: xitara.dynamiccontent::lang.is_raw.comment
+                                    type: switch
+                                    span: storm
+                                    cssClass: col-md-3
+                                    default: 0
                                 is_heading:
                                     tab: xitara.dynamiccontent::lang.tab.options
-                                    label: xitara.dynamiccontent::component.blocklist.is_heading
-                                    comment: xitara.dynamiccontent::component.blocklist.is_heading_comment
+                                    label: xitara.dynamiccontent::lang.is_heading.label
                                     type: switch
                                     span: storm
-                                    cssClass: col-md-4
+                                    cssClass: col-md-3
                                     default: 1
+                                    trigger:
+                                        action: hide
+                                        field: is_raw
+                                        condition: checked
                                 is_box:
                                     tab: xitara.dynamiccontent::lang.tab.options
-                                    label: xitara.dynamiccontent::component.blocklist.is_box
-                                    comment: xitara.dynamiccontent::component.blocklist.is_box_comment
+                                    label: xitara.dynamiccontent::lang.is_box.label
+                                    comment: xitara.dynamiccontent::lang.is_box.comment
                                     type: switch
                                     span: storm
-                                    cssClass: col-md-4
+                                    cssClass: col-md-3
                                     default: 1
-                                is_scrolling:
+                                    trigger:
+                                        action: hide
+                                        field: is_raw
+                                        condition: checked
+                                is_scrollbar:
                                     tab: xitara.dynamiccontent::lang.tab.options
-                                    label: xitara.dynamiccontent::component.blocklist.is_scrolling
-                                    comment: xitara.dynamiccontent::component.blocklist.is_scrolling_comment
+                                    label: xitara.dynamiccontent::lang.is_scrollbar.label
+                                    comment: xitara.dynamiccontent::lang.is_scrollbar.comment
                                     type: switch
                                     span: storm
-                                    cssClass: col-md-4
+                                    cssClass: col-md-3
                                     default: 0
+                                    trigger:
+                                        action: hide
+                                        field: is_raw
+                                        condition: checked
 
                                 excerpt:
                                     tab: xitara.dynamiccontent::lang.tab.content
-                                    label: xitara.nexus::core.excerpt
-                                    comment: xitara.dynamiccontent::lang.comments.excerpt
+                                    label: xitara.dynamiccontent::lang.excerpt.label
+                                    comment: xitara.dynamiccontent::lang.excerpt.comment
                                     commentHtml: true
                                     type: richeditor
-                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,insertLink,insertImage,insertVideo,html,fullscreen
+                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,insertTable,formatOL,formatUL,insertLink,insertImage,insertVideo,insertAudio,html,fullscreen
                                     span: left
                                 content:
                                     tab: xitara.dynamiccontent::lang.tab.content
-                                    label: xitara.nexus::core.content
-                                    comment: xitara.dynamiccontent::lang.comments.content
+                                    label: xitara.dynamiccontent::lang.content.label
+                                    comment: xitara.dynamiccontent::lang.content.comment
                                     commentHtml: true
                                     type: richeditor
-                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,formatOL,formatUL,outdent,indent,insertLink,insertImage,insertVideo,insertAudio,html,fullscreen
+                                    toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,insertTable,formatOL,formatUL,insertLink,insertImage,insertVideo,insertAudio,html,fullscreen
                                     span: right
 
                                 buttons_above:
                                     tab: xitara.dynamiccontent::lang.tab.buttons
-                                    label: xitara.dynamiccontent::component.buttons_above.label
-                                    prompt: xitara.dynamiccontent::component.buttons_above.prompt
+                                    label: xitara.dynamiccontent::lang.buttons_above.label
+                                    prompt: xitara.dynamiccontent::lang.buttons_above.prompt
                                     type: repeater
                                     span: left
                                     form:
                                         fields:
                                             label:
-                                                label: xitara.nexus::core.label
+                                                label: xitara.dynamiccontent::lang.button.label.label
                                                 type: text
                                                 span: left
                                             link:
-                                                label: xitara.nexus::core.link
+                                                label: xitara.dynamiccontent::lang.button.link.label
                                                 type: text
                                                 span: right
                                             icon_left:
-                                                label: kuse.storelist::lang.globalcontent.button_icon_left
+                                                label: xitara.dynamiccontent::lang.button.icon_left.label
                                                 type: mediafinder
                                                 mode: image
                                                 span: auto
                                             icon_right:
-                                                label: kuse.storelist::lang.globalcontent.button_icon_right
+                                                label: xitara.dynamiccontent::lang.button.icon_right.label
                                                 type: mediafinder
                                                 mode: image
                                                 span: auto
-                                            target:
-                                                label: xitara.nexus::core.link_target
-                                                type: dropdown
-                                                options:
-                                                    _self: kuse.core::core._self
-                                                    _blank: kuse.core::core._blank
-                                                default: _self
+                                            is_blank:
+                                                label: xitara.dynamiccontent::lang.is_blank.label
+                                                type: switch
+                                                default: 0
                                                 span: left
                                             classes:
-                                                label: kuse.storelist::lang.globalcontent.classes
+                                                label: xitara.dynamiccontent::lang.button.classes.label
                                                 type: text
                                                 span: right
                                 buttons:
                                     tab: xitara.dynamiccontent::lang.tab.buttons
-                                    label: xitara.dynamiccontent::component.buttons.label
-                                    prompt: xitara.dynamiccontent::component.buttons.prompt
+                                    label: xitara.dynamiccontent::lang.buttons.label
+                                    prompt: xitara.dynamiccontent::lang.buttons.prompt
                                     type: repeater
                                     span: right
                                     form:
                                         fields:
                                             label:
-                                                label: xitara.nexus::core.label
+                                                label: xitara.dynamiccontent::lang.button.label.label
                                                 type: text
                                                 span: auto
                                             link:
-                                                label: xitara.nexus::core.link
+                                                label: xitara.dynamiccontent::lang.button.link.label
                                                 type: text
                                                 span: auto
                                             icon_left:
-                                                label: kuse.storelist::lang.globalcontent.button_icon_left
+                                                label: xitara.dynamiccontent::lang.button.icon_left.label
                                                 type: mediafinder
                                                 mode: image
                                                 span: auto
                                             icon_right:
-                                                label: kuse.storelist::lang.globalcontent.button_icon_right
+                                                label: xitara.dynamiccontent::lang.button.icon_right.label
                                                 type: mediafinder
                                                 mode: image
                                                 span: auto
-                                            target:
-                                                label: xitara.nexus::core.link_target
-                                                type: dropdown
-                                                options:
-                                                    _self: kuse.core::core._self
-                                                    _blank: kuse.core::core._blank
-                                                default: _self
+                                            is_blank:
+                                                label: xitara.dynamiccontent::lang.is_blank.label
+                                                type: switch
+                                                default: 0
                                                 span: left
                                             classes:
-                                                label: kuse.storelist::lang.globalcontent.classes
+                                                label: xitara.dynamiccontent::lang.button.classes.label
                                                 type: text
                                                 span: right
 
                                 is_time_control:
                                     tab: xitara.dynamiccontent::lang.tab.time_control
-                                    comment: xitara.dynamiccontent::lang.tab.time_control_comment
-                                    label: xitara.nexus::core.is_active
+                                    label: xitara.dynamiccontent::lang.is_active.label
+                                    # comment: xitara.dynamiccontent::lang.tab.time_control_comment
                                     type: switch
                                     span: full
                                 start_at:
                                     tab: xitara.dynamiccontent::lang.tab.time_control
-                                    label: xitara.nexus::core.start_at
+                                    label: xitara.dynamiccontent::lang.start_at.label
                                     type: datepicker
                                     span: left
                                 end_at:
                                     tab: xitara.dynamiccontent::lang.tab.time_control
-                                    label: xitara.nexus::core.end_at
+                                    label: xitara.dynamiccontent::lang.end_at.label
                                     type: datepicker
                                     span: right
 
                                 images:
                                     tab: xitara.dynamiccontent::lang.tab.images
-                                    label: xitara.nexus::core.images
-                                    prompt: xitara.dynamiccontent::lang.prompt.images
+                                    label: xitara.dynamiccontent::lang.images.label
+                                    prompt: xitara.dynamiccontent::lang.images.prompt
                                     type: repeater
                                     span: storm
                                     cssClass: col-md-10
@@ -265,49 +259,49 @@ fields:
                                     form:
                                         fields:
                                             image:
-                                                label: xitara.nexus::core.image
+                                                label: xitara.dynamiccontent::lang.image.label.label
                                                 type: mediafinder
                                                 mode: image
                                                 imageWidth: 200
                                                 imageHeight: 200
                                                 span: left
                                             title:
-                                                label: xitara.nexus::core.title
+                                                label: xitara.dynamiccontent::lang.image.title.label
                                                 type: text
                                                 span: right
                                             description:
-                                                label: xitara.nexus::core.description
+                                                label: xitara.dynamiccontent::lang.image.description.label
                                                 type: richeditor
                                                 size: small
                                                 toolbarButtons: bold|italic|underline|strikeThrough|html|fullscreen
                                                 span: right
                                             link:
-                                                label: xitara.nexus::core.link
+                                                label: xitara.dynamiccontent::lang.image.link.label
                                                 type: text
                                                 span: left
                                             is_blank:
-                                                label: xitara.nexus::core.is_blank
+                                                label: xitara.dynamiccontent::lang.is_blank.label
                                                 type: switch
                                                 span: left
 
                                 is_image_text:
                                     tab: xitara.dynamiccontent::lang.tab.images
-                                    label: xitara.dynamiccontent::component.blocklist.is_image_text
-                                    comment: xitara.dynamiccontent::component.blocklist.is_image_text_comment
+                                    label: xitara.dynamiccontent::lang.is_image_text.label
+                                    comment: xitara.dynamiccontent::lang.is_image_text.comment
                                     type: switch
                                     span: storm
                                     cssClass: col-md-2 center-switch
                                     default: 0
                                 is_slider:
                                     tab: xitara.dynamiccontent::lang.tab.images
-                                    label: xitara.dynamiccontent::component.blocklist.is_slider
+                                    label: xitara.dynamiccontent::lang.is_slider.label
                                     type: switch
                                     span: storm
                                     cssClass: col-md-2 center-switch
                                     default: 0
                                 is_lightbox:
                                     tab: xitara.dynamiccontent::lang.tab.images
-                                    label: xitara.dynamiccontent::component.blocklist.is_lightbox
+                                    label: xitara.dynamiccontent::lang.is_lightbox.label
                                     type: switch
                                     span: storm
                                     cssClass: col-md-2 center-switch
@@ -315,33 +309,17 @@ fields:
 
                                 slider[mode]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.mode
+                                    label: xitara.dynamiccontent::lang.slider.mode.label
                                     type: dropdown
                                     options:
-                                        carousel: xitara.dynamiccontent::component.blocklist.carousel
-                                        gallery: xitara.dynamiccontent::component.blocklist.gallery
+                                        carousel: xitara.dynamiccontent::lang.dropdown.carousel
+                                        gallery: xitara.dynamiccontent::lang.dropdown.gallery
                                     default: carousel
                                     span: storm
                                     cssClass: col-md-3
-                                # slider[type]:
-                                #     tab: xitara.dynamiccontent::lang.tab.slider
-                                #     label: xitara.dynamiccontent::component.blocklist.type
-                                #     type: dropdown
-                                #     options:
-                                #         loop: xitara.dynamiccontent::component.blocklist.loop
-                                #         slide: xitara.dynamiccontent::component.blocklist.slide
-                                #         fade: xitara.dynamiccontent::component.blocklist.fade
-                                #     default: loop
-                                #     span: storm
-                                #     cssClass: col-md-3
-                                #     disabled: true
-                                #     trigger:
-                                #         action: enable
-                                #         field: slider[mode]
-                                #         condition: value[carousel]
                                 slider[start_at]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.start_at
+                                    label: xitara.dynamiccontent::lang.slider.start_at.label
                                     type: number
                                     default: 1
                                     min: 1
@@ -350,7 +328,7 @@ fields:
                                     cssClass: col-md-3
                                 slider[items]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.items
+                                    label: xitara.dynamiccontent::lang.slider.items.label
                                     type: number
                                     default: 1
                                     min: 1
@@ -359,7 +337,7 @@ fields:
                                     cssClass: col-md-3
                                 slider[image_height]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.image_height
+                                    label: xitara.dynamiccontent::lang.slider.image_height.label
                                     type: number
                                     default: 300
                                     min: 1
@@ -368,33 +346,33 @@ fields:
                                     cssClass: col-md-3
                                 slider[is_loop]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.is_loop
+                                    label: xitara.dynamiccontent::lang.slider.is_loop.label
                                     type: switch
                                     default: 0
                                     span: storm
                                     cssClass: col-md-3 center-switch
                                 slider[is_lazyload]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.is_lazyload
+                                    label: xitara.dynamiccontent::lang.slider.is_lazyload.label
                                     type: switch
                                     default: 0
                                     span: storm
                                     cssClass: col-md-3 center-switch
                                 slider[is_controls]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.is_controls
+                                    label: xitara.dynamiccontent::lang.slider.is_controls.label
                                     type: switch
                                     default: 0
                                     span: storm
                                     cssClass: col-md-3 center-switch
                                 slider[axis]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.axis
+                                    label: xitara.dynamiccontent::lang.slider.axis.label
                                     type: dropdown
                                     default: horizontal
                                     options:
-                                        horizontal: xitara.nexus::core.horizontal
-                                        vertical: xitara.nexus::core.vertical
+                                        horizontal: xitara.dynamiccontent::lang.dropdown.horizontal
+                                        vertical: xitara.dynamiccontent::lang.dropdown.vertical
                                     span: storm
                                     cssClass: col-md-3
 
@@ -404,24 +382,24 @@ fields:
 
                                 slider[is_nav]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.is_nav
+                                    label: xitara.dynamiccontent::lang.slider.is_nav.label
                                     type: switch
                                     default: 0
                                     span: storm
                                     cssClass: col-md-3 center-switch
                                 slider[nav_position]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.nav_position
+                                    label: xitara.dynamiccontent::lang.slider.nav_position.label
                                     type: dropdown
                                     default: bottom
                                     options:
-                                        bottom: xitara.nexus::core.bottom
-                                        top: xitara.nexus::core.top
+                                        bottom: xitara.dynamiccontent::lang.dropdown.bottom
+                                        top: xitara.dynamiccontent::lang.dropdown.top
                                     span: storm
                                     cssClass: col-md-3
                                 slider[is_nav_overlay]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.nav_overlay
+                                    label: xitara.dynamiccontent::lang.slider.is_nav_overlay.label
                                     type: switch
                                     default: 0
                                     span: storm
@@ -433,14 +411,14 @@ fields:
 
                                 slider[is_autoplay]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.is_autoplay
+                                    label: xitara.dynamiccontent::lang.slider.is_autoplay.label
                                     type: switch
                                     default: 0
                                     span: storm
                                     cssClass: col-md-3 center-switch
                                 slider[autoplay_speed]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.autoplay_speed
+                                    label: xitara.dynamiccontent::lang.slider.autoplay_speed.label
                                     type: number
                                     default: 400
                                     min: 1
@@ -449,7 +427,7 @@ fields:
                                     cssClass: col-md-3
                                 slider[is_autoplay_button]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.is_autoplay_button
+                                    label: xitara.dynamiccontent::lang.slider.is_autoplay_button.label
                                     type: switch
                                     default: 0
                                     span: storm
@@ -461,22 +439,22 @@ fields:
 
                                 slider[responsive]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.responsive
-                                    comment: xitara.dynamiccontent::component.blocklist.responsive_comment
+                                    label: xitara.dynamiccontent::lang.slider.responsive.label
+                                    comment: xitara.dynamiccontent::lang.slider.responsive.comment
                                     type: textarea
                                     span: storm
                                     cssClass: col-md-3
                                     commentHtml: true
                                 slider[css_classes]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.css_classes
+                                    label: xitara.dynamiccontent::lang.slider.classes.label
                                     type: text
                                     span: storm
                                     cssClass: col-md-6
                                 slider[options]:
                                     tab: xitara.dynamiccontent::lang.tab.slider
-                                    label: xitara.dynamiccontent::component.blocklist.slider_options
-                                    comment: xitara.dynamiccontent::component.blocklist.slider_options_comment
+                                    label: xitara.dynamiccontent::lang.slider.options.label
+                                    comment: xitara.dynamiccontent::lang.slider.options.comment
                                     type: textarea
                                     span: storm
                                     cssClass: col-md-3
@@ -484,23 +462,14 @@ fields:
 
                                 lightbox[is_loop]:
                                     tab: xitara.dynamiccontent::lang.tab.lightbox
-                                    label: xitara.dynamiccontent::component.blocklist.is_loop
+                                    label: xitara.dynamiccontent::lang.lightbox.is_loop.label
                                     type: switch
                                     default: 0
                                     span: auto
-                                lightbox[lightbox_options]:
+                                lightbox[options]:
                                     tab: xitara.dynamiccontent::lang.tab.lightbox
-                                    label: xitara.dynamiccontent::component.blocklist.lightbox_options
-                                    comment: xitara.dynamiccontent::component.blocklist.lightbox_options_comment
+                                    label: xitara.dynamiccontent::lang.lightbox.options.label
+                                    comment: xitara.dynamiccontent::lang.lightbox.options.comment
                                     type: textarea
                                     span: left
                                     commentHtml: true
-
-                                # dynamic_modules:
-                                #     tab: xitara.dynamiccontent::lang.tab.dynamic_content
-                                #     # label: xitara.dynamiccontent::repeater.blocklist.dynamic_content
-                                #     # commentAbove: xitara.dynamiccontent::repeater.blocklist.dynamic_content_comment
-                                #     prompt: xitara.dynamiccontent::repeater.blocklist.dynamic_content_prompt
-                                #     type: repeater
-                                #     span: full
-                                #     groups: repeater_fields.yaml

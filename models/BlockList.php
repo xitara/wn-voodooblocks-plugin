@@ -1,6 +1,5 @@
 <?php namespace Xitara\DynamicContent\Models;
 
-use Log;
 use Model;
 use Xitara\EroBridge\Classes\Api;
 
@@ -62,12 +61,12 @@ class BlockList extends Model
     /**
      * @var array Relations
      */
-    public $hasOne = [];
-    public $hasMany = [];
-    public $hasOneThrough = [];
+    public $hasOne         = [];
+    public $hasMany        = [];
+    public $hasOneThrough  = [];
     public $hasManyThrough = [];
-    public $belongsTo = [];
-    public $belongsToMany = [
+    public $belongsTo      = [];
+    public $belongsToMany  = [
         // 'groups' => [
         //     'Xitara\DynamicContent\Models\BlockGroup',
         //     'table' => 'xitara_dynamiccontent_block_block_groups',
@@ -75,10 +74,10 @@ class BlockList extends Model
         //     'otherKey' => 'group_id',
         // ],
     ];
-    public $morphTo = [];
-    public $morphOne = [];
-    public $morphMany = [];
-    public $attachOne = [];
+    public $morphTo    = [];
+    public $morphOne   = [];
+    public $morphMany  = [];
+    public $attachOne  = [];
     public $attachMany = [];
 
     // public function beforeSave()
@@ -95,30 +94,32 @@ class BlockList extends Model
     //     $this->blocks = $blocks_;
     // }
 
-    public function getDropdownOptions($fieldName, $value, $formData)
+    // public function getDropdownOptions($fieldName, $value, $formData)
+    // {
+    //     if (input('_repeater_group', null) != null) {
+    //         $group = input('_repeater_group');
+    //     }
+
+    //     if (isset($formData->_group)) {
+    //         $group = $formData->_group;
+    //     }
+
+    //     Log::debug($group);
+
+    //     $class = '\\Xitara\\DynamicContentModules\\Classes\\';
+    //     // $class .= ucfirst(camel_case($formData->_group));
+    //     $class .= ucfirst(camel_case($group));
+    //     $method = 'get' . ucfirst(camel_case($fieldName)) . 'Options';
+
+    //     // return ['all' => 'All'];
+    //     // return $class::$method($value, $formData->_group);
+    //     return $class::$method($value, $group);
+    // }
+
+    public static function getGroupedTextOptions($formWidget, $formField)
     {
-        if (input('_repeater_group', null) != null) {
-            $group = input('_repeater_group');
-        }
+        $group = $formField->fieldName;
 
-        if (isset($formData->_group)) {
-            $group = $formData->_group;
-        }
-
-        Log::debug($group);
-
-        $class = '\\Xitara\\DynamicContentModules\\Classes\\';
-        // $class .= ucfirst(camel_case($formData->_group));
-        $class .= ucfirst(camel_case($group));
-        $method = 'get' . ucfirst(camel_case($fieldName)) . 'Options';
-
-        // return ['all' => 'All'];
-        // return $class::$method($value, $formData->_group);
-        return $class::$method($value, $group);
-    }
-
-    public static function getGroupedTextOptions($value, $group)
-    {
         if ($group === null) {
             return Text::orderBy('name', 'asc')->lists('name', 'id');
         }

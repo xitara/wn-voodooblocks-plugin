@@ -1,23 +1,23 @@
 // Tailwindcss
 // see tailwind.config.js for configurations
 /* purgecss start ignore */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
+// @import 'tailwindcss/base';
+// @import 'tailwindcss/components';
 /* purgecss end ignore */
-@import 'tailwindcss/utilities';
+// @import 'tailwindcss/utilities';
 
 // Tiny-SLider
-@import 'tiny-slider/src/tiny-slider';
-@import 'partials/slider'; // pure scss
+// @import 'tiny-slider/src/tiny-slider';
+// @import 'partials/slider'; // pure scss
 // @import 'partials/tw_slider'; // tailwind
 
 // Lightbox SCSS (https://github.com/biati-digital/glightbox)
-@import 'glightbox/src/postcss/glightbox.css';
-@import 'partials/glightbox'; // Custom Lightbox SCSS
+// @import 'glightbox/src/postcss/glightbox.css';
+// @import 'partials/glightbox'; // Custom Lightbox SCSS
 
 // SimpleBar
-@import 'simplebar/dist/simplebar.css';
-@import 'partials/simplebar';
+// @import 'simplebar/dist/simplebar.css';
+// @import 'partials/simplebar';
 
 // Variables
 // @import 'base/variables';
@@ -42,6 +42,3 @@
 
 /* froala and fixes */
 @import 'partials/froala';
-
-/* colors for eroCMS */
-// @import 'partials/colors';

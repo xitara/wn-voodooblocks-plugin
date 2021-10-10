@@ -6,12 +6,12 @@ section.blocklist {
         @apply mb-3;
 
         & > aside {
-            @apply border-solid border-gray-500 border-1;
+            @apply border-solid border-gray-500 border;
             @apply h-full m-1 overflow-hidden;
 
             & > h2 {
                 @apply m-0 px-2 py-1;
-                @apply border-solid border-gray-500 border-0 border-b-1;
+                @apply border-solid border-gray-500 border-0 border-b;
             }
 
             & > div {
