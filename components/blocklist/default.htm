@@ -14,14 +14,19 @@
                         <h2>{{ block.heading }}</h2>
                     {% endif %}
                     {% if block['is_box'] is not defined or block.is_box == 1 %}
-                        <div class="h-{{ block.height }}{% if block.is_scrolling == 1 and block.height != 'auto' %} scrollbar{% endif %}">
+                        <div class="h-{{ block.height }}{% if block.is_scrollbar == 1 and block.height != 'auto' %} scrollbar{% endif %}">
                     {% endif %}
                         {% if block['buttons_above'] is defined or block.excerpt|trim != '' %}
                             <div class="excerpt">
                                 {% if block['buttons_above'] is defined %}
                                     <div class="buttons-above">
                                         {% for button in block.buttons_above %}
-                                            <a href="{{ button.link }}" target="{{ button.target }}">
+                                            <a
+                                                href="{{ button.link }}"
+                                                {% if button.is_blank == 1 %}
+                                                    target="{{ button.is_blank }}"
+                                                {% endif %}
+                                            >
                                                 <figure>
                                                     {% if button.icon_left != '' %}
                                                         <img src="{{ button.icon_left|media }}" alt="">
