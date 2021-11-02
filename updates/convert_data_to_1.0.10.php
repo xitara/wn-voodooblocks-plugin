@@ -3,7 +3,7 @@
 use Winter\Storm\Database\Updates\Migration;
 use Xitara\DynamicContent\Models\BlockList;
 
-class AddColumnsToBlockgroupTable extends Migration
+class ConvertDataTo1_0_10 extends Migration
 {
     public function up()
     {
