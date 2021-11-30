@@ -2,7 +2,9 @@
 
 use Cms\Classes\ComponentBase;
 use Event;
+use File;
 use Xitara\DynamicContent\Models\BlockList as BlockListModel;
+use \Winter\Storm\Support\Facades\Config;
 
 class BlockList extends ComponentBase
 {
@@ -32,16 +34,28 @@ class BlockList extends ComponentBase
     {
         $this->addCss('/plugins/xitara/dynamiccontent/assets/css/app.css');
         $this->addJs('/plugins/xitara/dynamiccontent/assets/js/app.js');
+    }
 
+    public function onRender()
+    {
         $blocklist = BlockListModel::find($this->property('blocklist'));
 
         if ($blocklist === null) {
             return;
         }
 
-        $blocklist_ = [];
+        $blocklist->blocks = $this->generateBlockList($blocklist->blocks);
+        $this->blocklist   = $this->page['blocklist']   = $blocklist;
+    }
 
-        foreach ($blocklist->blocks as $block) {
+    public function generateBlockList($blocks)
+    {
+        $blocklist = [];
+
+        // var_dump($blocks);
+        // exit;
+
+        foreach ($blocks as $block) {
             $block = $block['block'];
 
             /**
@@ -54,18 +68,18 @@ class BlockList extends ComponentBase
                     $class = '\\Xitara\\DynamicContentModules\\Classes\\';
                     $class .= ucfirst(camel_case($module['_group']));
 
+                    \Log::debug($class);
+
                     if (!class_exists($class)) {
                         continue;
                     }
-
-                    // $object = new $class;
 
                     /**
                      * add heading, excerpt and content if not defined by module
                      */
                     foreach (['heading', 'subheading', 'excerpt', 'content'] as $type) {
                         if (!isset($module[$type])) {
-                            $module[$type] = $block[$type];
+                            $module[$type] = trim($block[$type]);
                         }
                     }
 
@@ -73,9 +87,26 @@ class BlockList extends ComponentBase
 
                     $template = 'xitara/dynamiccontentmodules/views/';
                     $template .= $templateName . '.htm';
+                    \Log::debug($template);
 
-                    if (!file_exists(plugins_path($template))) {
+                    if (!File::exists(plugins_path($template))) {
                         $template = null;
+                    }
+
+                    /**
+                     * inject css and js if exists
+                     */
+                    $assets = '/xitara/dynamiccontentmodules/assets/';
+                    $asset  = $assets . 'css/' . $templateName . '.css';
+
+                    if (File::exists(plugins_path($asset))) {
+                        $this->addCss($asset);
+                    }
+
+                    $asset = $assets . 'js/' . $templateName . '.js';
+
+                    if (File::exists(plugins_path($asset))) {
+                        $this->addJs($asset);
                     }
 
                     /**
@@ -83,18 +114,17 @@ class BlockList extends ComponentBase
                      *
                      * @var array
                      */
-                    // $data = $class::getData($template, $module);
-                    $data = $class::getData($module);
+                    $parsed = $class::getData($module, $template);
 
                     /**
                      * write config array
                      */
-                    $block['dynamic_config'][$templateName] = $data['config'];
+                    $block['dynamic_config'][$templateName] = $template;
 
                     if (count($block['dynamic_modules']) > 1) {
-                        $block['dynamic_content'][] = '<li>' . $data['content'] . '</li>';
+                        $block['dynamic_content'][] = '<li>' . $parsed . '</li>';
                     } else {
-                        $block['dynamic_content'][] = $data['content'];
+                        $block['dynamic_content'][] = $parsed;
                     }
 
                     unset($block['dynamic_modules']);
@@ -102,7 +132,7 @@ class BlockList extends ComponentBase
 
                 $block['dynamic_config'] = array_dot($block['dynamic_config'] ?? []);
 
-                if (count($block['dynamic_content'] ?? []) > 1) {
+                if (count($block['dynamic_content'] ?? []) > 1 && $block['is_raw'] == 0) {
                     $block['dynamic_content'] = '<ul class="dynamic-content">';
                     $block['dynamic_content'] .= join($block['dynamic_content'] ?? []);
                     $block['dynamic_content'] .= '</ul>';
@@ -112,21 +142,12 @@ class BlockList extends ComponentBase
 
             }
 
-            // var_dump($block);
-
-            // var_dump($blocklist_);
-
             Event::fire('xitara.dynamiccontent.afterProcessBlock', [ & $block]);
 
-            $blocklist_[] = $block;
-
-            //     if (isset($block_[0])) {
-            //         $block = $block_[0];
-            //     }
+            $blocklist[] = $block;
         }
 
-        $blocklist->blocks = $blocklist_;
-        $this->blocklist   = $this->page['blocklist']   = $blocklist;
+        return $blocklist;
     }
 
     public function getBlocklistOptions()

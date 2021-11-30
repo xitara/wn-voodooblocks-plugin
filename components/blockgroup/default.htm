@@ -1,64 +1,18 @@
 {% set blockgroup = __SELF__.blockgroup %}
-<section id="blockgroup-{{ groupdata.name|slug }}" class="blockgroup">
-    {% if groupdata.is_heading == 1 %}
-        <h1>{{ groupdata.name }}</h1>
-        {% if groupdata.subheading|trim != '' %}
-            <h2>{{ groupdata.subheading }}</h2>
+<section id="blockgroup-{{ blockgroup.name|slug }}" class="blockgroup">
+    {% if blockgroup.is_heading == 1 %}
+        <h1>{{ blockgroup.name }}</h1>
+        {% if blockgroup.subheading|trim != '' %}
+            <h2>{{ blockgroup.subheading }}</h2>
         {% endif %}
     {% endif %}
-    {% if groupdata.content|trim != '' %}
-        <aside>{{ groupdata.content|raw }}</aside>
+    {% if blockgroup.content|trim != '' %}
+        <aside>{{ blockgroup.content|raw }}</aside>
     {% endif %}
-    {% for block in blockgroup %}
-        {% if block['is_active'] is defined and block.is_active == 1 %}
-            <article class="flex-{{ block.width }} w-{{ block.width }}">
-                <aside>
-                    <h3>{{ block.heading }}</h3>
-                    <div class="h-{{ block.height }}{% if block.is_scrolling == 1 and block.height != 'auto' %} scrollbar{% endif %}">
-                        {% if block['buttons_above'] is defined or block.excerpt|trim != '' %}
-                            <article class="excerpt">
-                                {% if block['buttons_above'] is defined %}
-                                    <div class="buttons-above">
-                                        {% for button in block.buttons_above %}
-                                            <a href="{{ button.link }}" target="{{ button.target }}">
-                                                {{ button.label }}
-                                            </a>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                                {% if block.excerpt|trim != '' %}
-                                    {{ block.excerpt|raw }}
-                                {% endif %}
-                            </article>
-                        {% endif %}
-
-                        {% if block['images'] is defined %}
-                            {% partial __SELF__ ~ "::images" block=block %}
-                        {% endif %}
-
-                        {% if block['buttons'] is defined or block.content|trim != '' %}
-                            <article class="content">
-                                {% if block.content|trim != '' %}
-                                    {{ block.content|raw }}
-                                {% endif %}
-                                {% if block['dynamic_content'] is defined %}
-                                    {{ block.dynamic_content|raw }}
-                                {% endif %}
-                                {% if block['buttons'] is defined %}
-                                    {% for button in block.buttons %}
-                                        <div class="buttons">
-                                            <a href="{{ button.link }}" target="{{ button.target }}">
-                                                {{ button.label }}
-                                            </a>
-                                        </div>
-                                    {% endfor %}
-                                {% endif %}
-                            </article>
-                        {% endif %}
-                    </div>
-                </aside>
-            </article>
-        {% endif %}
+    {% for blocklist in blockgroup.blockgroup %}
+        {% partial __SELF__ ~ '::blocklist.htm' blocklist=blocklist %}
+        {# {{ block.heading }} <br> #}
+        {# {{ var_dump(block) }} #}
     {% endfor %}
 </section>
 

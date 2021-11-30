@@ -1,6 +1,4 @@
-{% if blocklist is not defined %}
-    {% set blocklist = __SELF__.blocklist %}
-{% endif %}
+{# {{ var_dump(blocklist) }} #}
 
 {% if blocklist.is_raw is not defined or blocklist.is_raw == 0 %}
     <section id="blocklist-{{ blocklist.name|slug }}" class="blocklist">
@@ -57,7 +55,6 @@
                                 {% partial __SELF__ ~ "::images" block=block %}
                             {% endif %}
 
-                            {# {% if block['buttons'] is defined or block.content|trim != '' %} #}
                                 <div class="content">
                                     {% if block.content|trim != '' %}
                                         {{ block.content|raw }}
@@ -80,7 +77,6 @@
                                         {% endfor %}
                                     {% endif %}
                                 </div>
-                            {# {% endif %} #}
                         {% if blocklist['is_box'] is not defined or blocklist.is_box == 1 %}
                                 </div>
                             </aside>

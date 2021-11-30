@@ -22,14 +22,21 @@ fields:
         label: xitara.dynamiccontent::lang.is_heading.label
         type: switch
         span: storm
-        cssClass: col-md-3
+        cssClass: col-md-2
         default: 1
     is_active:
         label: xitara.dynamiccontent::lang.is_active.label
         type: switch
         span: storm
-        cssClass: col-md-3
+        cssClass: col-md-2
         default: 1
+    is_raw:
+        label: xitara.dynamiccontent::lang.is_blocklist_raw.label
+        comment: xitara.dynamiccontent::lang.is_blocklist_raw.comment
+        type: switch
+        span: storm
+        cssClass: col-md-2
+        default: 0
 
     block_section:
         label: xitara.dynamiccontent::lang.section_blocks.label
@@ -42,6 +49,7 @@ fields:
         type: repeater
         span: full
         prompt: xitara.dynamiccontent::lang.new_block.prompt
+        style: collapsed
         form:
             fields:
                 block:

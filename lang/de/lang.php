@@ -1,5 +1,5 @@
 <?php return [
-    'plugin'          => [
+    'plugin'           => [
         'name'        => 'Dynamic Content',
         'description' => 'Dynamischer Content einbindbar über Komponenten und Snippets',
         'author'      => 'Xitara Websolution',
@@ -7,14 +7,14 @@
         'iconSvg'     => '/plugins/xitara/dynamiccontent/assets/images/dynamiccontent-icon.svg',
         'homepage'    => 'https://xitara.net',
     ],
-    'submenu'         => [
+    'submenu'          => [
         'label'      => 'Dynamischer Content',
         'text'       => 'Texte',
         'group'      => 'Gruppen',
         'blocklist'  => 'Block Listen',
         'blockgroup' => 'Block Gruppen',
     ],
-    'tab'             => [
+    'tab'              => [
         'options'         => 'Grundeinstellungen',
         'content'         => 'Statischer Inhalt',
         'images'          => 'Bilder',
@@ -24,56 +24,56 @@
         'time_control'    => 'Zeiteinstellung',
         'buttons'         => 'Buttons',
     ],
-    'heading'         => [
+    'heading'          => [
         'label'   => 'Überschrift',
         'comment' => '',
     ],
-    'subheading'      => [
+    'subheading'       => [
         'label'   => 'Unterüberschrift',
         'comment' => '',
     ],
-    'slug'            => [
+    'slug'             => [
         'label'   => 'Slug',
         'comment' => '',
     ],
-    'active'          => [
+    'active'           => [
         'label'   => 'Aktiv',
         'comment' => '',
     ],
-    'section_blocks'  => [
+    'section_blocks'   => [
         'label'   => 'Blockliste',
         'comment' => 'Maximale Anzahl der Blöcke ist auf 24 begrenzt. Das resultiert aus der Standardeinstellung "max_input_vars = 1000" auf Webservern. Werden mehr Blöcke benötigt, können mehrere Blocklisten über "Block Gruppen" zusammengefasst werden<br>Alle Blöcke gleichzeitig auf- und zuklappen: Strg + Mausklick auf <i class="icon-chevron-up"></i><br><br>Die Reihenfolge der Anzeige: Vorspann -> Bilder/Slider -> Buttons -> Inhalt -> Buttons',
     ],
-    'new_block'       => [
+    'new_block'        => [
         'label'   => '',
         'comment' => '',
         'prompt'  => 'Neuer Block',
     ],
-    'width'           => [
+    'width'            => [
         'label'   => 'Breite',
         'comment' => '',
     ],
-    'height'          => [
+    'height'           => [
         'label'   => 'Höhe',
         'comment' => '',
     ],
-    'excerpt'         => [
+    'excerpt'          => [
         'label'   => 'Vorspann',
         'comment' => 'Wird an Anfang der Box angezeigt. Vorhandene Buttons/Slider/Bilder folgen.',
     ],
-    'content'         => [
+    'content'          => [
         'label'   => 'Inhalt',
         'comment' => 'Wird nach vorhandenen Buttons/Slider/Bilder angezeigt, als am Ende der Box',
     ],
-    'buttons_above'   => [
+    'buttons_above'    => [
         'label'  => 'Button(s) zwischen "Vorspann" und "Inhalt"',
         'prompt' => 'Neuen Button hinzufügen',
     ],
-    'buttons'         => [
+    'buttons'          => [
         'label'  => 'Button(s) unter dem restlichen Inhalt',
         'prompt' => 'Neuen Button hinzufügen',
     ],
-    'button'          => [
+    'button'           => [
         'classes'    => [
             'label'   => 'Zusätzliche CSS-Klassen',
             'comment' => '',
@@ -95,12 +95,12 @@
             'comment' => '',
         ],
     ],
-    'images'          => [
+    'images'           => [
         'label'   => '',
         'comment' => '',
         'prompt'  => 'Neues Bild',
     ],
-    'image'           => [
+    'image'            => [
         'label'       => [
             'label'   => 'Bild',
             'comment' => '',
@@ -118,7 +118,7 @@
             'comment' => '',
         ],
     ],
-    'slider'          => [
+    'slider'           => [
         'mode'               => [
             'label'   => 'Modus',
             'comment' => '',
@@ -188,7 +188,7 @@
             'comment' => '',
         ],
     ],
-    'lightbox'        => [
+    'lightbox'         => [
         'is_loop' => [
             'label'   => 'Loop',
             'comment' => '',
@@ -206,11 +206,11 @@
             'comment' => '',
         ],
     ],
-    ''                => [
+    ''                 => [
         'label'   => '',
         'comment' => '',
     ],
-    'dropdown'        => [
+    'dropdown'         => [
         'auto'       => 'automatische Höhe',
         'carousel'   => 'Karussell (Slide)',
         'gallery'    => 'Galerie (Fade)',
@@ -219,61 +219,61 @@
         'bottom'     => 'unten',
         'top'        => 'oben',
     ],
-    'is_raw'          => [
+    'is_raw'           => [
         'label'   => 'Raw-Anzeige',
         'comment' => 'Es wird nur der Blockinhalt ausgegeben, ohne Überschrift, Umrandung o.a.',
     ],
-    'is_active'       => [
+    'is_active'        => [
         'label'   => 'Aktiv',
         'comment' => '',
     ],
-    'is_heading'      => [
+    'is_heading'       => [
         'label'   => 'Überschrift/Unterüberschrift anzeigen',
         'comment' => '',
     ],
-    'is_box'          => [
+    'is_box'           => [
         'label'   => 'Box anzeigen',
         'comment' => 'Umschliesst den Block mit einem Wrapper der einen Rahmen um den Inhalt erzeugt',
     ],
-    'is_scrollbar'    => [
+    'is_scrollbar'     => [
         'label'   => 'Scrollbalken falls nötig',
         'comment' => 'Blendet einen Scrollbalken ein, wenn der Inhalt länger ist als der Platz im Block. Hat keinen Einfluss wenn die Höhe auf "Automatisch" steht.',
     ],
-    'is_image_text'   => [
+    'is_image_text'    => [
         'label'   => 'Titel/Beschreibung des Bildes anzeigen',
         'comment' => '',
     ],
-    'is_slider'       => [
+    'is_slider'        => [
         'label'   => 'Bilder als Slider anzeigen',
         'comment' => '',
     ],
-    'is_lightbox'     => [
+    'is_lightbox'      => [
         'label'   => 'Bild bei Klick in Lightbox anzeigen',
         'comment' => '',
     ],
-    'is_blank'        => [
+    'is_blank'         => [
         'label'   => 'Link in neuem Tab/Fenster öffnen',
         'comment' => '',
     ],
-    'dynamic_content' => [
+    'dynamic_content'  => [
         'label'   => '',
         'comment' => '',
         'prompt'  => 'Neues Modul',
     ],
-    ''                => [
+    ''                 => [
         'label'   => '',
         'comment' => '',
     ],
-    'start_at'        => [
+    'start_at'         => [
         'label'   => 'Start',
         'comment' => '',
     ],
-    'end_at'          => [
+    'end_at'           => [
         'label'   => 'Ende',
         'comment' => '',
     ],
-    ''                => [
-        'label'   => '',
-        'comment' => '',
+    'is_blocklist_raw' => [
+        'label'   => 'Raw-Anzeige',
+        'comment' => 'Es wird nur Blockliste ausgegeben, ohne Überschriftund sonstige umgebende Elemente',
     ],
 ];
