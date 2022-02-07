@@ -1,4 +1,5 @@
-<?php namespace Xitara\DynamicContent\Models;
+<?php
+namespace Xitara\DynamicContent\Models;
 
 use Model;
 use Xitara\EroBridge\Classes\Api;
@@ -94,31 +95,22 @@ class BlockList extends Model
     //     $this->blocks = $blocks_;
     // }
 
-    // public function getDropdownOptions($fieldName, $value, $formData)
-    // {
-    //     if (input('_repeater_group', null) != null) {
-    //         $group = input('_repeater_group');
-    //     }
-
-    //     if (isset($formData->_group)) {
-    //         $group = $formData->_group;
-    //     }
-
-    //     Log::debug($group);
-
-    //     $class = '\\Xitara\\DynamicContentModules\\Classes\\';
-    //     // $class .= ucfirst(camel_case($formData->_group));
-    //     $class .= ucfirst(camel_case($group));
-    //     $method = 'get' . ucfirst(camel_case($fieldName)) . 'Options';
-
-    //     // return ['all' => 'All'];
-    //     // return $class::$method($value, $formData->_group);
-    //     return $class::$method($value, $group);
-    // }
-
-    public static function getGroupedTextOptions($formWidget, $formField)
+    public function getDropdownOptions($fieldName, $value, $formData)
     {
-        $group = $formField->fieldName;
+        if (input('_repeater_group', null) != null) {
+            $group = input('_repeater_group');
+        }
+
+        if (isset($formData->_group)) {
+            $group = $formData->_group;
+        }
+
+        return self::getGroupedTextOptions($group);
+    }
+
+    public static function getGroupedTextOptions($group)
+    {
+        // $group = $formField->fieldName;
 
         if ($group === null) {
             return Text::orderBy('name', 'asc')->lists('name', 'id');

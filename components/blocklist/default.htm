@@ -1,90 +1,58 @@
-{% if blocklist is not defined %}
-    {% set blocklist = __SELF__.blocklist %}
-{% endif %}
-
 {% if blocklist.is_raw is not defined or blocklist.is_raw == 0 %}
     <section id="blocklist-{{ blocklist.name|slug }}" class="blocklist">
         {% if blocklist.is_heading == 1 %}
             <h1>{{ blocklist.name }}</h1>
         {% endif %}
 {% endif %}
-    {% for block in blocklist.blocks %}
+    {% for block in blocklist.blocks if block.is_active == 1 %}
         {% if block['is_active'] is defined and block.is_active == 1 %}
             {% if block.is_raw == 0 %}
-                <article class="flex-{{ block.width }} w-{{ block.width }}">
-                    {% if block['is_box'] is not defined or block.is_box == 1 %}
-                        <aside>
+                <article class="blockwidth-{{ block.width }} blockheight-{{ block.height }}{{ (block.is_box == 1) ? ' bordered' : null }}">
+                    {% if block['is_heading'] is not defined or block.is_heading == 1 %}
+                        <h2>{{ block.heading }}</h2>
                     {% endif %}
-                        {% if block['is_heading'] is not defined or block.is_heading == 1 %}
-                            <h2>{{ block.heading }}</h2>
-                        {% endif %}
-                        {% if block['is_box'] is not defined or block.is_box == 1 %}
-                            <div class="h-{{ block.height }}{% if block.is_scrollbar == 1 and block.height != 'auto' %} scrollbar{% endif %}">
-                        {% endif %}
-                            {% if block['buttons_above'] is defined or block.excerpt|trim != '' %}
-                                <div class="excerpt">
-                                    {% if block['buttons_above'] is defined %}
-                                        <div class="buttons-above">
-                                            {% for button in block.buttons_above %}
-                                                <a
-                                                    href="{{ button.link }}"
-                                                    {% if button.is_blank == 1 %}
-                                                        target="{{ button.is_blank }}"
-                                                    {% endif %}
-                                                >
-                                                    <figure>
-                                                        {% if button.icon_left != '' %}
-                                                            <img src="{{ button.icon_left|media }}" alt="">
-                                                        {% endif %}
-                                                        <figcaption>
-                                                            {{ button.label }}
-                                                        </figcaption>
-                                                        {% if button.icon_right != '' %}
-                                                            <img src="{{ button.icon_right|media }}" alt="">
-                                                        {% endif %}
-                                                    </figure>
-                                                </a>
-                                            {% endfor %}
-                                        </div>
-                                    {% endif %}
-                                    {% if block.excerpt|trim != '' %}
-                                        {{ block.excerpt|raw }}
-                                    {% endif %}
-                                </div>
-                            {% endif %}
 
-                            {% if block['images'] is defined %}
-                                {% partial __SELF__ ~ "::images" block=block %}
-                            {% endif %}
+                    {# {% if block['is_box'] is not defined or block.is_box == 1 %} #}
+                        {# <aside class="blockheight-{{ block.height }}"> #}
+                    {# {% endif %} #}
 
-                            {# {% if block['buttons'] is defined or block.content|trim != '' %} #}
-                                <div class="content">
-                                    {% if block.content|trim != '' %}
-                                        {{ block.content|raw }}
-                                    {% endif %}
-                                    {% if block['dynamic_content'] is defined %}
-                                        {{ block.dynamic_content|raw }}
-                                    {% endif %}
-                                    {% if block['buttons'] is defined %}
-                                        {% for button in block.buttons %}
-                                            <div class="buttons">
-                                                <a
-                                                    href="{{ button.link }}"
-                                                    {% if button.target == 1 or button.target == '_blank' %}
-                                                        target="_blank"
-                                                    {% endif %}
-                                                >
-                                                    {{ button.label }}
-                                                </a>
-                                            </div>
-                                        {% endfor %}
-                                    {% endif %}
-                                </div>
-                            {# {% endif %} #}
-                        {% if blocklist['is_box'] is not defined or blocklist.is_box == 1 %}
-                                </div>
-                            </aside>
+        {#                 {% if block['is_box'] is not defined or block.is_box == 1 %}
+                            <div{% if block.is_scrollbar == 1 and block.height != 'auto' %} class="scrollbar"{% endif %}>
+                        {% endif %} #}
+
+                        {% if block['buttons_above'] is defined %}
+                            {% partial __SELF__ ~ "::buttons" buttons=block.buttons_above %}
                         {% endif %}
+
+                        {% if block.excerpt|trim != '' %}
+                            <div class="excerpt">
+                                {{ block.excerpt|raw }}
+                            </div>
+                        {% endif %}
+
+                        {% if block['images'] is defined %}
+                            {% partial __SELF__ ~ "::images" block=block %}
+                        {% endif %}
+
+                        {% if block.content|trim != '' or block['dynamic_content'] is defined %}
+                            <div class="content">
+                                {% if block.content|trim != '' %}
+                                    {{ block.content|raw }}
+                                {% endif %}
+                                {% if block['dynamic_content'] is defined %}
+                                    {{ block.dynamic_content|raw }}
+                                {% endif %}
+                            </div>
+                        {% endif %}
+
+                        {% if block['buttons'] is defined %}
+                            {% partial __SELF__ ~ "::buttons" buttons=block.buttons %}
+                        {% endif %}
+
+                    {# {% if blocklist['is_box'] is not defined or blocklist.is_box == 1 %} #}
+                            {# </div> #}
+                        {# </aside> #}
+                    {# {% endif %} #}
                 </article>
             {% else %}
                 {{ block.dynamic_content|raw }}
@@ -94,7 +62,3 @@
 {% if blocklist.is_raw is not defined or blocklist.is_raw == 0 %}
     </section>
 {% endif %}
-
-{# <i class="flex-1/4 flex-1/3 flex-1/2 flex-2/3 flex-3/4 flex-4/4"></i> #}
-{# <i class="w-1/4 w-1/3 w-1/2 w-2/3 w-3/4 w-4/4"></i> #}
-{# <i class="h-1/2 h-1/1 h-3/2 h-1/2 h-auto"></i> #}

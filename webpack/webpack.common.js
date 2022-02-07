@@ -7,6 +7,7 @@ module.exports = {
     context: paths.src,
     entry: {
         app: `./js/app.js`,
+        default: `./js/default.js`,
     },
     output: {
         filename: `assets/js/[name].js`,

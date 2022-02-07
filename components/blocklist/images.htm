@@ -1,8 +1,6 @@
-{% set uid = uid() %}
-
 {% if block.images|length > 1 %}
     <div class="slider-container">
-        <ul{% if block.is_slider == 1 %} id="slide-{{ uid }}"{% endif %}>
+        <ul{% if block.is_slider == 1 %} id="slide-{{ blocklist.name|slug }}"{% endif %}>
             {% for image in block.images %}
                 <li class="slider-item">
                     {% set no_resize = false %}
@@ -10,7 +8,7 @@
                         {% set no_resize = true %}
                     {% endif %}
 
-                    {{ _self.image_output(image, block, uid) }}
+                    {{ _self.imageOutput(image, block, uid) }}
                 </li>
             {% endfor %}
         </ul>
@@ -30,58 +28,16 @@
         {% endif %}
     </div>
 {% elseif block.images.0.image != false %}
-    {{ _self.image_output(block.images[0], block, uid) }}
+    {{ _self.imageOutput(block.images[0], block, blocklist.name|slug) }}
 {% endif %}
 
 {% if block.is_slider == 1 and block.slider is defined %}
-    {% partial __SELF__ ~ "::config_slider" uid=uid config=block.slider %}
+    {% partial __SELF__ ~ "::config_slider" uid=blocklist.name|slug config=block.slider %}
 {% endif %}
 
 {% if block.is_lightbox == 1 and block.lightbox is defined %}
-    {% partial __SELF__ ~ "::config_lightbox" uid=uid config=block.lightbox %}
+    {% partial __SELF__ ~ "::config_lightbox" uid=blocklist.name|slug config=block.lightbox %}
 {% endif %}
-
-{% macro image_output(image, block, uid, no_resize) %}
-    {% if block.is_lightbox == 1 %}
-        <a
-            href="{{ image.image|media }}"
-            data-title="{{ image.title|escape('html') }}"
-            data-description="{{ image.description|escape('html') }}"
-            class="lightbox-{{ uid }}"
-        >
-    {% elseif image['link'] is defined and image.link != '' %}
-        <a href="{{ image.link }}"{{ (image.is_blank == 1) ? ' target="_blank"' }}>
-    {% endif %}
-    <figure>
-        {% set image_height = block.slider.image_height  %}
-        {% if image['url'] is defined and image.url != '' %}
-            <img src="{{ image.url }}" style="{% if block.is_slider == 1 %}max-height: {{ image_height }}px;{% endif %} max-width: 100%"
-        {% else %}
-            {% if no_resize is defined and no_resize == true %}
-                <img src="{{ image.image|media }}" style="max-height: {{ image_height }}px; max-width: 100%"
-            {% elseif block.is_slider == 1 %}
-                <img src="{{ image.image|media|resize(false, image_height, { mode: 'crop', quality: '80', extension: 'png' }) }}" style="max-width: 100%"
-            {% else %}
-                <img src="{{ image.image|media }}" style="max-width: 100%"
-            {% endif %}
-        {% endif %}
-        alt="{{ image.description|strip_html }}">
-
-        {% if (image.title|trim != '' or image.description|trim != '') and block.is_image_text == 1 %}
-            <figcaption>
-                {% if image.title != '' %}
-                    <h2>{{ image.title }}</h2>
-                {% endif %}
-                {% if image.description != '' %}
-                    <article>{{ image.description|raw }}</article>
-                {% endif %}
-            </figcaption>
-        {% endif %}
-    </figure>
-    {% if block.is_lightbox == 1 or image['link'] is defined and image.link != '' %}
-        </a>
-    {% endif %}
-{% endmacro %}
 
 {% if block.slider.is_nav_overlay == 1 %}
     <style>
@@ -95,3 +51,45 @@
         }
     </style>
 {% endif %}
+
+{% macro imageOutput(image, block, uid, no_resize) %}
+    {% if block.is_lightbox == 1 %}
+        <a
+            href="{{ image.image|media }}"
+            data-title="{{ image.title|escape('html') }}"
+            data-description="{{ image.description|escape('html') }}"
+            class="lightbox-{{ uid }}"
+        >
+    {% elseif image['link'] is defined and image.link != '' %}
+        <a href="{{ image.link }}"{{ (image.is_blank == 1) ? ' target="_blank"' }}>
+    {% endif %}
+    <figure>
+        {% set image_height = block.slider.image_height  %}
+        {% if image['url'] is defined and image.url != '' %}
+            <img src="{{ image.url }}"{% if block.is_slider == 1 %} style="--height: {{ image_height }}px;"{% endif %}
+        {% else %}
+            {% if no_resize is defined and no_resize == true %}
+                <img src="{{ image.image|media }}" style="--height: {{ image_height }}px;"
+            {% else %}
+                <img src="{{ image.image|media|resize(false, image_height) }}"
+            {% endif %}
+        {% endif %}
+            alt="{{ image.description|strip_html }}"
+            title="{{ image.description|strip_html }}"
+        >
+
+        {% if (image.title|trim != '' or image.description|trim != '') and block.is_image_text == 1 %}
+            <figcaption>
+                {% if image.title != '' %}
+                    <h2>{{ image.title }}</h2>
+                {% endif %}
+                {% if image.description != '' %}
+                    <div>{{ image.description|raw }}</div>
+                {% endif %}
+            </figcaption>
+        {% endif %}
+    </figure>
+    {% if block.is_lightbox == 1 or image['link'] is defined and image.link != '' %}
+        </a>
+    {% endif %}
+{% endmacro %}

@@ -272,6 +272,10 @@
         'label'   => 'Ende',
         'comment' => '',
     ],
+    'is_defaultcss'    => [
+        'label'   => 'Default-CSS nutzen',
+        'comment' => 'Wenn aktiv, wird das Default-CSS aus dem Plugin verwendet um Blöcke zu stylen',
+    ],
     'is_blocklist_raw' => [
         'label'   => 'Raw-Anzeige',
         'comment' => 'Es wird nur Blockliste ausgegeben, ohne Überschriftund sonstige umgebende Elemente',

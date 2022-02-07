@@ -1,0 +1,24 @@
+<ul class="button-list">
+    {% for button in buttons %}
+        <li>
+            <a
+                href="{{ button.link }}"
+                {% if button.is_blank == 1 %}
+                    target="{{ button.is_blank }}"
+                {% endif %}
+            >
+                <figure>
+                    {% if button.icon_left != '' %}
+                        <img src="{{ button.icon_left|media }}" alt="">
+                    {% endif %}
+                    <figcaption>
+                        {{ button.label }}
+                    </figcaption>
+                    {% if button.icon_right != '' %}
+                        <img src="{{ button.icon_right|media }}" alt="">
+                    {% endif %}
+                </figure>
+            </a>
+        </li>
+    {% endfor %}
+</ul>

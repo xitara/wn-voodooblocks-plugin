@@ -1,0 +1,14 @@
+.blocklist {
+    > article {
+        > h2 {
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            margin: 0;
+            text-align: center;
+        }
+    }
+}
+
+.bordered {
+    border: $border;
+}

@@ -1,0 +1,92 @@
+.blocklist {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1rem;
+
+    > h1 {
+        grid-column: span 12 / span 12;
+    }
+
+    > h2 {
+        grid-column: span 12 / span 12;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    ul.button-list {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    > article {
+        .content {
+            height: 100%;
+        }
+
+        figure {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.bordered {
+    padding: 1rem;
+}
+
+.blockwidth-1\/4 {
+    grid-column: span 3 / span 3;
+}
+
+.blockwidth-1\/3 {
+    grid-column: span 4 / span 4;
+}
+
+.blockwidth-1\/2 {
+    grid-column: span 6 / span 6;
+}
+
+.blockwidth-2\/3 {
+    grid-column: span 8 / span 8;
+}
+
+.blockwidth-3\/4 {
+    grid-column: span 9 / span 9;
+}
+
+.blockwidth-4\/4 {
+    grid-column: span 12 / span 12;
+}
+
+// .blockheight-1\/4 {
+//     height: 10rem;
+//     max-height: 10rem;
+// }
+
+// .blockheight-1\/3 {
+//     height: 10rem;
+//     max-height: 10rem;
+// }
+
+// .blockheight-1\/2 {
+//     height: 10rem;
+//     max-height: 10rem;
+// }
+
+// .blockheight-2\/3 {
+//     height: 10rem;
+//     max-height: 10rem;
+// }
+
+// .blockheight-3\/4 {
+//     height: 10rem;
+//     max-height: 10rem;
+// }
+
+// .blockheight-4\/4 {
+//     height: 10rem;
+//     max-height: 10rem;
+// }
