@@ -42,16 +42,23 @@ class Texts extends Controller
 
     private function getAllPlaceholder()
     {
-        $manuals = [];
+        $manuals   = [];
         $moduleDir = plugins_path('/xitara/dynamiccontentmodules/classes');
         $namespace = '\\Xitara\\DynamicContentModules\\Classes\\';
+
+        /**
+         * jump back if no modules plugin exists
+         */
+        if (!file_exists($moduleDir)) {
+            return;
+        }
 
         try {
             $dir = new \DirectoryIterator($moduleDir);
             foreach ($dir as $file) {
                 if (!$file->isDot()) {
                     $className = $file->getBasename('.php');
-                    $object = $namespace . $className;
+                    $object    = $namespace . $className;
 
                     if (!empty($object::$placeholder)) {
                         $manuals[$className] = [];

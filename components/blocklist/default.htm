@@ -1,3 +1,4 @@
+{# {{ var_dump(blocklist) }} #}
 {% if blocklist.is_raw is not defined or blocklist.is_raw == 0 %}
     <section id="blocklist-{{ blocklist.name|slug }}" class="blocklist">
         {% if blocklist.is_heading == 1 %}

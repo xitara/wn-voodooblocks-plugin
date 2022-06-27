@@ -1,0 +1,65 @@
+{% if blocklist is not defined %}
+    {% set blocklist = __SELF__.blocklist %}
+{% endif %}
+
+{% if blocklist.is_active == 1 %}
+
+    {% if blocklist.is_heading == 1 %}
+        <h1>{{ blocklist.name }}</h1>
+        {% if blocklist.subheading|trim != '' %}
+            <h2>{{ blocklist.subheading }}</h2>
+        {% endif %}
+    {% endif %}
+
+    {% for block in blocklist.blocks if block.is_active == 1 %}
+
+        {% if block.excerpt|trim != '' %}
+            {{ block.excerpt|raw }}
+        {% endif %}
+
+        {% if block['images'] is defined %}
+            {% partial __SELF__ ~ "::images" block=block %}
+        {% endif %}
+
+        {% for button in block.buttons_above %}
+            <a href="{{ button.link }}" target="{{ button.target }}">
+                <figure>
+                    {% if button.icon_left != '' %}
+                        <img src="{{ button.icon_left|media }}" alt="">
+                    {% endif %}
+                    <figcaption>
+                        {{ button.label }}
+                    </figcaption>
+                    {% if button.icon_right != '' %}
+                        <img src="{{ button.icon_right|media }}" alt="">
+                    {% endif %}
+                </figure>
+            </a>
+        {% endfor %}
+
+        {% if block.content|trim != '' %}
+            {{ block.content|raw }}
+        {% endif %}
+
+        {% if block['dynamic_content'] is defined %}
+            {{ block.dynamic_content|raw }}
+        {% endif %}
+
+        {% if block['buttons'] is defined %}
+            {% for button in block.buttons %}
+                <div class="buttons">
+                    <a
+                        href="{{ button.link }}"
+                        {% if button.target == 1 or button.target == '_blank' %}
+                            target="_blank"
+                        {% endif %}
+                    >
+                        {{ button.label }}
+                    </a>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+    {% endfor %}
+
+{% endif %}
