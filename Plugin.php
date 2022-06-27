@@ -1,4 +1,5 @@
-<?php namespace Xitara\DynamicContent;
+<?php
+namespace Xitara\DynamicContent;
 
 use App;
 use Backend;
@@ -227,11 +228,10 @@ class Plugin extends PluginBase
 
     public static function getBlocklistOptions()
     {
-        $gallery = Blocklist::orderBy('name', 'asc')->lists('name', 'slug');
-        $gallery = array_merge([
-            'none' => e(trans('xitara.dynamiccontent::lang.no_blocklist')),
-        ], $gallery);
+        $data = Blocklist::orderBy('name', 'asc')->lists('name', 'slug');
+        $data = ['none' => e(trans('xitara.dynamiccontent::lang.no_blocklist'))]
+            + $data;
 
-        return $gallery;
+        return $data;
     }
 }

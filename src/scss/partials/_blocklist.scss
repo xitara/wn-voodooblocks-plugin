@@ -1,3 +1,14 @@
+/** erocms fixes */
+.hidden {
+    display: none;
+}
+
+[data-art="mediagallery"] > article {
+    padding: 0;
+}
+//** *********************************************************** */
+
+
 .blocklist {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -15,6 +26,17 @@
         max-width: 100%;
     }
 
+    .slider-container ul {
+        list-style: none;
+
+        li {
+            h2 {
+                font-size: 1rem;
+                padding-top: 0.5rem;
+            }
+        }
+    }
+
     ul.button-list {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -22,6 +44,39 @@
     }
 
     > article {
+        background-color: #0b0b0b;
+        border: 1px solid #292929;
+        color: #c3c1b3;
+        font-size: 1rem;
+        // padding: 10px;
+        box-sizing: border-box;
+
+        ul.dynamic-content {
+            > li > p {
+                margin: 0;
+            }
+        }
+
+        ul:not(.dynamic-content) {
+            margin: 0;
+            padding: 0;
+        }
+
+        > h2 {
+            background-color: #191919;
+            border: 1px solid #191919;
+            color: #b0a782;
+            font-size: 1rem;
+            box-sizing: border-box;
+            // margin: 5px 10px;
+            margin: 0;
+            padding: 5px;
+        }
+
+        > div {
+            padding: 0.5rem;
+        }
+
         .content {
             height: 100%;
         }

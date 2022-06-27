@@ -6,7 +6,7 @@
 {% endif %}
     {% for block in blocklist.blocks if block.is_active == 1 %}
         {% if block['is_active'] is defined and block.is_active == 1 %}
-            {% if block.is_raw == 0 %}
+            {% if block.is_raw_block is not defined or block.is_raw_block == 0 %}
                 <article class="blockwidth-{{ block.width }} blockheight-{{ block.height }}{{ (block.is_box == 1) ? ' bordered' : null }}">
                     {% if block['is_heading'] is not defined or block.is_heading == 1 %}
                         <h2>{{ block.heading }}</h2>
@@ -25,24 +25,32 @@
                         {% endif %}
 
                         {% if block.excerpt|trim != '' %}
-                            <div class="excerpt">
+                            <section class="excerpt">
                                 {{ block.excerpt|raw }}
-                            </div>
+                            </section>
                         {% endif %}
 
                         {% if block['images'] is defined %}
                             {% partial __SELF__ ~ "::images" block=block %}
                         {% endif %}
 
-                        {% if block.content|trim != '' or block['dynamic_content'] is defined %}
-                            <div class="content">
-                                {% if block.content|trim != '' %}
+                        {% if block['content'] is defined and
+                            block.content|trim != '' or
+                            block['dynamic_content'] is defined and
+                            block.dynamic_content|trim != ''
+                        %}
+                            <section class="content">
+                            {% if block['content'] is defined and block.content|trim != '' %}
+                                <aside class="static-content">
                                     {{ block.content|raw }}
-                                {% endif %}
-                                {% if block['dynamic_content'] is defined %}
+                                </aside>
+                            {% endif %}
+                            {% if block['dynamic_content'] is defined and block.dynamic_content|trim != '' %}
+                                <aside class="dynamic-content">
                                     {{ block.dynamic_content|raw }}
-                                {% endif %}
-                            </div>
+                                </aside>
+                            {% endif %}
+                            </section>
                         {% endif %}
 
                         {% if block['buttons'] is defined %}

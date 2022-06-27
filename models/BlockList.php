@@ -1,4 +1,5 @@
 <?php
+
 namespace Xitara\DynamicContent\Models;
 
 use Model;
@@ -105,13 +106,21 @@ class BlockList extends Model
             $group = $formData->_group;
         }
 
+        if (isset($group)) {
+            $class = '\\Xitara\\DynamicContentModules\\Classes\\';
+            $class .= camel_case($group);
+            $method = 'get' . ucfirst($fieldName) . 'Options';
+
+            if (method_exists($class, $method)) {
+                return call_user_func([$class, $method]);
+            }
+        }
+
         return self::getGroupedTextOptions($group);
     }
 
     public static function getGroupedTextOptions($group)
     {
-        // $group = $formField->fieldName;
-
         if ($group === null) {
             return Text::orderBy('name', 'asc')->lists('name', 'id');
         }
@@ -122,7 +131,9 @@ class BlockList extends Model
             return [];
         }
 
-        $group = Group::where('slug', str_slug($group))->first();
+        $group = Group::where('slug', str_slug($group))
+            ->orWhere('name', $group)
+            ->first();
 
         if ($group === null) {
             return Text::orderBy('name', 'asc')->lists('name', 'id');

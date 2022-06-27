@@ -49,8 +49,6 @@ class BlockLists extends Controller
         if (PluginManager::instance()->exists('Xitara\DynamicContentModules') === true) {
             $configs = \Xitara\DynamicContentModules\Plugin::loadModules();
 
-            \Log::debug($configs);
-
             if ($form->isNested === false) {
                 $form->fields['blocks']['form']['fields']['block']['form']['tabs']['fields']['dynamic_modules'] = [
                     'tab'    => 'xitara.dynamiccontent::lang.tab.dynamic_content',

@@ -24,6 +24,12 @@
         'time_control'    => 'Zeiteinstellung',
         'buttons'         => 'Buttons',
     ],
+    'manual' => [
+        'heading' => 'Platzhalter Übersicht',
+        'description' => 'Übesicht über alle verfügbaren Platzhalter, sortiert nach
+            Modulen. Die Platzhalter werden immer dann ersetzt, wenn das
+            entspürechende Modul ausgewählt wurde',
+    ],
     'heading'          => [
         'label'   => 'Überschrift',
         'comment' => '',
@@ -108,6 +114,10 @@
         'link'        => [
             'label'   => 'Link',
             'comment' => '',
+        ],
+        'url'        => [
+            'label'   => 'URL',
+            'comment' => 'Wird ignoriert, wenn ein Bild aus der Mediengalerie ausgewählt wurde',
         ],
         'title'       => [
             'label'   => 'Titel',
@@ -279,5 +289,9 @@
     'is_blocklist_raw' => [
         'label'   => 'Raw-Anzeige',
         'comment' => 'Es wird nur Blockliste ausgegeben, ohne Überschriftund sonstige umgebende Elemente',
+    ],
+    'controller' => [
+        'group' => 'Gruppe',
+        'text' => 'Text',
     ],
 ];

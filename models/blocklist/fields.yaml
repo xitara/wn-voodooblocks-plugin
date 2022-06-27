@@ -18,18 +18,22 @@ fields:
         preset:
             field: name
             type: slug
-    is_heading:
-        label: xitara.dynamiccontent::lang.is_heading.label
-        type: switch
-        span: storm
-        cssClass: col-md-3
-        default: 1
     is_active:
         label: xitara.dynamiccontent::lang.is_active.label
         type: switch
         span: storm
         cssClass: col-md-3
         default: 1
+    is_heading:
+        label: xitara.dynamiccontent::lang.is_heading.label
+        type: switch
+        span: storm
+        cssClass: col-md-3
+        default: 1
+        trigger:
+            action: hide
+            field: is_raw
+            condition: checked
     is_defaultcss:
         label: xitara.dynamiccontent::lang.is_defaultcss.label
         comment: xitara.dynamiccontent::lang.is_defaultcss.comment
@@ -37,6 +41,10 @@ fields:
         span: storm
         cssClass: col-md-3
         default: 0
+        trigger:
+            action: hide
+            field: is_raw
+            condition: checked
     is_raw:
         label: xitara.dynamiccontent::lang.is_blocklist_raw.label
         comment: xitara.dynamiccontent::lang.is_blocklist_raw.comment
@@ -56,7 +64,7 @@ fields:
         type: repeater
         span: full
         prompt: xitara.dynamiccontent::lang.new_block.prompt
-        style: collapsed
+        # style: collapsed
         form:
             fields:
                 block:
@@ -114,7 +122,7 @@ fields:
                                     tab: xitara.dynamiccontent::lang.tab.options
                                     type: section
                                     span: full
-                                is_raw:
+                                is_raw_block:
                                     tab: xitara.dynamiccontent::lang.tab.options
                                     label: xitara.dynamiccontent::lang.is_raw.label
                                     comment: xitara.dynamiccontent::lang.is_raw.comment
@@ -131,7 +139,7 @@ fields:
                                     default: 1
                                     trigger:
                                         action: hide
-                                        field: is_raw
+                                        field: is_raw_block
                                         condition: checked
                                 is_box:
                                     tab: xitara.dynamiccontent::lang.tab.options
@@ -143,7 +151,7 @@ fields:
                                     default: 1
                                     trigger:
                                         action: hide
-                                        field: is_raw
+                                        field: is_raw_block
                                         condition: checked
                                 is_scrollbar:
                                     tab: xitara.dynamiccontent::lang.tab.options
@@ -155,7 +163,7 @@ fields:
                                     default: 0
                                     trigger:
                                         action: hide
-                                        field: is_raw
+                                        field: is_raw_block
                                         condition: checked
 
                                 excerpt:
@@ -290,6 +298,11 @@ fields:
                                                 size: small
                                                 toolbarButtons: bold|italic|underline|strikeThrough|html|fullscreen
                                                 span: right
+                                            url:
+                                                label: xitara.dynamiccontent::lang.image.url.label
+                                                comment: xitara.dynamiccontent::lang.image.url.comment
+                                                type: text
+                                                span: left
                                             link:
                                                 label: xitara.dynamiccontent::lang.image.link.label
                                                 type: text

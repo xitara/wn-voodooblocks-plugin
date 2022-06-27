@@ -1,4 +1,5 @@
 <?php
+
 namespace Xitara\DynamicContent\Components;
 
 use Cms\Classes\ComponentBase;
@@ -6,7 +7,7 @@ use Event;
 use File;
 use Xitara\DynamicContent\Models\BlockList as BlockListModel;
 use Xitara\DynamicContent\Models\Text;
-use \Winter\Storm\Support\Facades\Config;
+use Winter\Storm\Support\Facades\Config;
 
 class BlockList extends ComponentBase
 {
@@ -70,11 +71,13 @@ class BlockList extends ComponentBase
             Event::fire('xitara.dynamiccontent.beforeProcessBlock', [ & $block]);
 
             if (isset($block['dynamic_modules'])) {
+                $block['is_blocked'] = false;
+
                 foreach ($block['dynamic_modules'] as $module) {
                     $class = '\\Xitara\\DynamicContentModules\\Classes\\';
                     $class .= ucfirst(camel_case($module['_group']));
 
-                    \Log::debug($class);
+                    // \Log::debug($class);
 
                     if (!class_exists($class)) {
                         continue;
@@ -89,11 +92,13 @@ class BlockList extends ComponentBase
                         }
                     }
 
-                    $templateName = strtolower(camel_case($module['_group']));
+                    // $templateName = strtolower(camel_case($module['_group']));
+                    $templateName = snake_case($module['_group']);
 
                     $template = 'xitara/dynamiccontentmodules/views/';
                     $template .= $templateName . '.htm';
-                    \Log::debug($template);
+                    // \Log::debug($template);
+                    // var_dump($template);
 
                     if (!File::exists(plugins_path($template))) {
                         $template = null;
@@ -131,8 +136,8 @@ class BlockList extends ComponentBase
 
                     foreach ($module as $key => $data) {
                         // var_dump($key);
-                        if (strpos($key, '_text_') !== false) {
-                            $key   = str_replace('_text_', '', $key);
+                        if (strpos($key, '__text_') !== false) {
+                            $key   = str_replace('__text_', '', $key);
                             $_text = Text::find($data);
 
                             // var_dump($key);
@@ -147,6 +152,12 @@ class BlockList extends ComponentBase
 
                     $parsed = $class::getData($template, $textlist, $varlist);
                     // var_dump($parsed);
+                    // var_dump($template);
+
+                    if ($parsed === null) {
+                        $block['is_blocked'] = true;
+                        // continue;
+                    }
 
                     /**
                      * write config array
@@ -161,11 +172,13 @@ class BlockList extends ComponentBase
                     } else {
                         $block['dynamic_content'][] = $parsed;
                     }
-
+                    // }
                 }
+
                 unset($block['dynamic_modules']);
                 // var_dump($block['dynamic_content']);
-
+                // var_dump($block);
+                // exit;
                 $block['dynamic_config'] = array_dot($block['dynamic_config'] ?? []);
 
                 if (count($parsed['dynamic_content'] ?? []) > 1 && $block['is_raw'] == 0) {
@@ -180,7 +193,9 @@ class BlockList extends ComponentBase
 
             Event::fire('xitara.dynamiccontent.afterProcessBlock', [ & $block]);
 
-            $blocklist[] = $block;
+            if (!isset($block['is_blocked']) || $block['is_blocked'] !== true) {
+                $blocklist[] = $block;
+            }
         }
 
         return $blocklist;
