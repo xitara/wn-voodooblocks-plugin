@@ -8,7 +8,6 @@
 }
 //** *********************************************************** */
 
-
 .blocklist {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -25,6 +24,16 @@
 
     img {
         max-width: 100%;
+    }
+
+    .dynamic-content {
+        ul {
+            margin-left: 1rem !important;
+        }
+
+        li {
+            // padding-bottom: 0.5rem;;
+        }
     }
 
     .slider-container ul {
@@ -53,7 +62,7 @@
         box-sizing: border-box;
 
         ul.dynamic-content {
-            > li > p {
+            li > p {
                 margin: 0;
             }
         }

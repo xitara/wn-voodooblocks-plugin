@@ -1,6 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const TailwindCSS = require('tailwindcss');
+// const TailwindCSS = require('tailwindcss');
 const paths = require('./paths');
 
 module.exports = {
@@ -8,6 +8,7 @@ module.exports = {
     entry: {
         app: `./js/app.js`,
         default: `./js/default.js`,
+        backend: `./js/backend.js`,
     },
     output: {
         filename: `assets/js/[name].js`,
@@ -37,13 +38,13 @@ module.exports = {
                             postcssOptions: {
                                 sourceMap: true,
                                 plugins: [
-                                    require('tailwindcss'),
+                                    // require('tailwindcss'),
                                     require('autoprefixer'),
                                     require('postcss-flexbugs-fixes'),
                                 ],
-                                postCss: [
-                                    TailwindCSS('tailwind.config.js'),
-                                ],
+                                // postCss: [
+                                    // TailwindCSS('tailwind.config.js'),
+                                // ],
                                 processCssUrls: false,
                             },
                         },
