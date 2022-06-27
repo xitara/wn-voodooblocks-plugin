@@ -57,6 +57,11 @@ class Plugin extends PluginBase
                 }
             });
         }
+
+        Event::listen('backend.page.beforeDisplay', function ($controller, $action, $params) {
+            $controller->addCss('/plugins/xitara/dynamiccontent/assets/css/backend.css');
+            $controller->addJs('/plugins/xitara/dynamiccontent/assets/js/backend.js');
+        });
     }
 
     /**
