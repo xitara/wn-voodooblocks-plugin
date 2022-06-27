@@ -181,7 +181,7 @@ class BlockList extends ComponentBase
                 // exit;
                 $block['dynamic_config'] = array_dot($block['dynamic_config'] ?? []);
 
-                if (count($parsed['dynamic_content'] ?? []) > 1 && $block['is_raw'] == 0) {
+                if (count($block['dynamic_content'] ?? []) > 1 && $block['is_raw_block'] == 0) {
                     $dynamicContent = '<ul class="dynamic-content">';
                     $dynamicContent .= join($block['dynamic_content'] ?? []);
                     $dynamicContent .= '</ul>';
