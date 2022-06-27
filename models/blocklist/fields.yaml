@@ -64,7 +64,7 @@ fields:
         type: repeater
         span: full
         prompt: xitara.dynamiccontent::lang.new_block.prompt
-        # style: collapsed
+        style: collapsed
         form:
             fields:
                 block:
