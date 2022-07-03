@@ -1,14 +1,17 @@
-{# {{ var_dump(blocklist) }} #}
 {% if blocklist.is_raw is not defined or blocklist.is_raw == 0 %}
     <section id="blocklist-{{ blocklist.name|slug }}" class="blocklist">
         {% if blocklist.is_heading == 1 %}
             <h1>{{ blocklist.name }}</h1>
         {% endif %}
 {% endif %}
-    {% for block in blocklist.blocks if block.is_active == 1 %}
-        {% if block['is_active'] is defined and block.is_active == 1 %}
+{% for block in blocklist.blocks %}
+    {% if block['is_active'] is defined and block.is_active == 1 %}
+
+        {% if block.start_at|date <= 'now'|date and block.end_at|date >= 'now'|date %}
+
             {% if block.is_raw_block is not defined or block.is_raw_block == 0 %}
                 <article class="blockwidth-{{ block.width }} blockheight-{{ block.height }}{{ (block.is_box == 1) ? ' bordered' : null }}">
+
                     {% if block['is_heading'] is not defined or block.is_heading == 1 %}
                         <h2>{{ block.heading }}</h2>
                     {% endif %}
@@ -67,7 +70,8 @@
                 {{ block.dynamic_content|raw }}
             {% endif %}
         {% endif %}
-    {% endfor %}
+    {% endif %}
+{% endfor %}
 {% if blocklist.is_raw is not defined or blocklist.is_raw == 0 %}
     </section>
 {% endif %}
