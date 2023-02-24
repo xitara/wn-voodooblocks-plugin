@@ -1,12 +1,12 @@
 {
-    "name": "webpack-boilerplate",
+    "name": "wn-voodooblocks-plugin",
     "version": "0.8.2",
-    "description": "Webpack based boilerplate including ES6, Babel, Sass and much more",
+    "description": "Adds a blocklist to fill whole pages with content blocks",
     "author": "Manuel Burghammer",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/xitara/webpack-boilerplate.git"
+        "url": "https://github.com/xitara/wn-voodooblocks-plugin.git"
     },
     "scripts": {
         "install": "chmod 0755 ./bash/* && yarn build && bash ./bash/setup.sh && bash ./bash/composer.sh",
