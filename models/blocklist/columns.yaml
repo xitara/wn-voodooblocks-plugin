@@ -3,35 +3,49 @@
 # ===================================
 
 columns:
-    name:
-        label: xitara.nexus::core.name
+    heading:
+        label: xitara.voodooblocks::core.heading
         type: text
         searchable: true
         sortable: true
-    # group_names:
-    #     label: xitara.nexus::core.groups
-    #     type: text
-    #     relation: groups
-    #     select: name
-    #     searchable: true
-    #     sortable: true
+    blocks:
+        label: xitara.voodooblocks::lang.models.block.label_plural
+        relation: blocks
+        align: center
+        width: 5%
+        useRelationCount: true
     is_active:
-        label: xitara.nexus::core.is_active
+        label: xitara.voodooblocks::lang.is_active.label
         type: switch
         align: center
+        width: 10%
+        searchable: true
+        sortable: true
+    is_default_css:
+        label: xitara.voodooblocks::lang.is_default_css.label
+        type: switch
+        align: center
+        width: 10%
+        searchable: true
+        sortable: true
+    is_raw:
+        label: xitara.voodooblocks::lang.is_raw.label
+        type: switch
+        align: center
+        width: 10%
         searchable: true
         sortable: true
     created_at:
-        label: xitara.nexus::core.created_at
+        label: xitara.voodooblocks::core.created_at
         type: datetime
         align: center
-        width: 12%
+        width: 10%
         searchable: true
         sortable: true
     updated_at:
-        label: xitara.nexus::core.updated_at
+        label: xitara.voodooblocks::core.updated_at
         type: datetime
         align: center
-        width: 12%
+        width: 10%
         searchable: true
         sortable: true

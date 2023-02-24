@@ -6,25 +6,25 @@
 name: Block List
 
 # Model Form Field configuration
-form: $/xitara/dynamiccontent/models/blocklist/fields.yaml
+form: $/xitara/voodooblocks/models/blocklist/fields.yaml
 
 # Model Class name
-modelClass: Xitara\DynamicContent\Models\BlockList
+modelClass: Xitara\VoodooBlocks\Models\Blocklist
 
 # Default redirect location
-defaultRedirect: xitara/dynamiccontent/blocklists
+defaultRedirect: xitara/voodooblocks/blocklists
 
 # Create page
 create:
     title: Create Block List
-    redirect: xitara/dynamiccontent/blocklists/update/:id
-    redirectClose: xitara/dynamiccontent/blocklists
+    redirect: xitara/voodooblocks/blocklists/update/:id
+    redirectClose: xitara/voodooblocks/blocklists
 
 # Update page
 update:
     title: Edit Block List
-    redirect: xitara/dynamiccontent/blocklists
-    redirectClose: xitara/dynamiccontent/blocklists
+    redirect: xitara/voodooblocks/blocklists
+    redirectClose: xitara/voodooblocks/blocklists
 
 # Preview page
 preview:

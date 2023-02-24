@@ -1,5 +1,6 @@
 <?php
-namespace Xitara\DynamicContent;
+
+namespace Xitara\VoodooBlocks;
 
 use App;
 use Backend;
@@ -7,7 +8,7 @@ use BackendMenu;
 use Event;
 use System\Classes\PluginBase;
 use System\Classes\PluginManager;
-use Xitara\DynamicContent\Models\BlockList;
+use Xitara\VoodooBlocks\Models\Blocklist;
 
 /**
  * DynamicContent Plugin Information File
@@ -22,12 +23,12 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'xitara.dynamiccontent::lang.plugin.name',
-            'description' => 'xitara.dynamiccontent::lang.plugin.description',
-            'author'      => 'xitara.dynamiccontent::lang.plugin.author',
-            'icon'        => 'xitara.dynamiccontent::lang.plugin.icon',
-            'iconSvg'     => 'xitara.dynamiccontent::lang.plugin.iconSvg',
-            'homepage'    => 'xitara.dynamiccontent::lang.plugin.homepage',
+            'name'        => 'xitara.voodooblocks::lang.plugin.name',
+            'description' => 'xitara.voodooblocks::lang.plugin.description',
+            'author'      => 'xitara.voodooblocks::lang.plugin.author',
+            'icon'        => 'xitara.voodooblocks::lang.plugin.icon',
+            'iconSvg'     => 'xitara.voodooblocks::lang.plugin.iconSvg',
+            'homepage'    => 'xitara.voodooblocks::lang.plugin.homepage',
         ];
     }
 
@@ -49,18 +50,19 @@ class Plugin extends PluginBase
          * get sidemenu if core-plugin is loaded
          */
         if (PluginManager::instance()->exists('Xitara.Nexus') === true) {
-            Event::listen('backend.page.beforeDisplay', function ($controller, $action, $params) {
+            Event::listen('backend.page.beforeDisplay', function ($controller) {
                 $namespace = (new \ReflectionObject($controller))->getNamespaceName();
 
-                if ($namespace == 'Xitara\DynamicContent\Controllers') {
-                    \Xitara\Nexus\Plugin::getSideMenu('Xitara.DynamicContent', 'dynamiccontent');
+                if ($namespace == 'Xitara\VoodooBlocks\Controllers') {
+                    \Xitara\Nexus\Plugin::getSideMenu('Xitara.VoodooBlocks', 'voodooblocks');
                 }
             });
         }
 
-        Event::listen('backend.page.beforeDisplay', function ($controller, $action, $params) {
-            $controller->addCss('/plugins/xitara/dynamiccontent/assets/css/backend.css');
-            $controller->addJs('/plugins/xitara/dynamiccontent/assets/js/backend.js');
+        Event::listen('backend.page.beforeDisplay', function ($controller) {
+            $path = plugins_path('/xitara/voodooblocks/assets');
+            $controller->addCss($path . '/css/backend.css');
+            $controller->addJs($path . '/js/backend.js');
         });
     }
 
@@ -73,8 +75,8 @@ class Plugin extends PluginBase
     {
         if (PluginManager::instance()->exists('Xitara.Nexus') === true) {
             BackendMenu::registerContextSidenavPartial(
-                'Xitara.DynamicContent',
-                'dynamiccontent',
+                'Xitara.VoodooBlocks',
+                'voodooblocks',
                 '$/xitara/nexus/partials/_sidebar.htm'
             );
         }
@@ -88,8 +90,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Xitara\DynamicContent\Components\BlockList'  => 'blockList',
-            'Xitara\DynamicContent\Components\BlockGroup' => 'blockGroup',
+            'Xitara\VoodooBlocks\Components\Blocklist'  => 'blocklist',
         ];
     }
 
@@ -106,38 +107,48 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'xitara.dynamiccontent.create'            => [
-                'tab'   => 'DynamicContent',
+            'xitara.voodooblocks.create'            => [
+                'tab'   => 'Voodoo Blocks',
                 'label' => 'Create Blockslists',
             ],
-            'xitara.dynamiccontent.edit'              => [
-                'tab'   => 'DynamicContent',
+            'xitara.voodooblocks.edit'              => [
+                'tab'   => 'Voodoo Blocks',
                 'label' => 'Edit Blockslists',
             ],
-            'xitara.dynamiccontent.create_groups'     => [
-                'tab'   => 'DynamicContent',
+            'xitara.voodooblocks.create_groups'     => [
+                'tab'   => 'Voodoo Blocks',
                 'label' => 'Create Groups',
             ],
-            'xitara.dynamiccontent.edit_groups'       => [
-                'tab'   => 'DynamicContent',
+            'xitara.voodooblocks.edit_groups'       => [
+                'tab'   => 'Voodoo Blocks',
                 'label' => 'Edit Groups',
             ],
-            'xitara.dynamiccontent.create_texts'      => [
-                'tab'   => 'DynamicContent',
+            'xitara.voodooblocks.create_texts'      => [
+                'tab'   => 'Voodoo Blocks',
                 'label' => 'Create Texts',
             ],
-            'xitara.dynamiccontent.edit_texts'        => [
-                'tab'   => 'DynamicContent',
+            'xitara.voodooblocks.edit_texts'        => [
+                'tab'   => 'Voodoo Blocks',
                 'label' => 'Edit Texts',
             ],
-            'xitara.dynamiccontent.create_textgroups' => [
-                'tab'   => 'DynamicContent',
+            'xitara.voodooblocks.create_textgroups' => [
+                'tab'   => 'Voodoo Blocks',
                 'label' => 'Create Textgroups',
             ],
-            'xitara.dynamiccontent.edit_textgroups'   => [
-                'tab'   => 'DynamicContent',
+            'xitara.voodooblocks.edit_textgroups'   => [
+                'tab'   => 'Voodoo Blocks',
                 'label' => 'Edit Textgroups',
             ],
+        ];
+    }
+
+    public function registerMarkupTags()
+    {
+        return [
+            'filters' => [
+                'renderModules' => [$this, 'renderModules'],
+                'dropdownData' => [$this, 'dropdownData'],
+            ]
         ];
     }
 
@@ -148,19 +159,19 @@ class Plugin extends PluginBase
      */
     public function registerNavigation()
     {
-        $label = 'xitara.dynamiccontent::lang.plugin.name';
+        $label = 'xitara.voodooblocks::lang.plugin.name';
 
         if (PluginManager::instance()->exists('Xitara.Nexus') === true) {
             $label .= '::hidden';
         }
 
         return [
-            'dynamiccontent' => [
+            'voodooblocks' => [
                 'label'       => $label,
-                'url'         => Backend::url('xitara/dynamiccontent/texts'),
+                'url'         => Backend::url('xitara/voodooblocks/texts'),
                 'icon'        => 'icon-leaf',
-                'iconSvg'     => '/plugins/xitara/dynamiccontent/assets/images/dynamiccontent-icon.svg',
-                'permissions' => ['xitara.dynamiccontent.*'],
+                'iconSvg'     => '/plugins/xitara/voodooblocks/assets/images/voodooblocks-icon.svg',
+                'permissions' => ['xitara.voodooblocks.*'],
                 'order'       => 500,
             ],
         ];
@@ -172,71 +183,101 @@ class Plugin extends PluginBase
 
         $i = 0;
         return [
-            'dynamiccontent.blocklists'  => [
-                'label'       => 'xitara.dynamiccontent::lang.submenu.blocklist',
-                'url'         => Backend::url('xitara/dynamiccontent/blocklists'),
+            'voodooblocks.blocklists'  => [
+                'label'       => 'xitara.voodooblocks::lang.submenu.blocklist',
+                'url'         => Backend::url('xitara/voodooblocks/blocklists'),
                 'icon'        => 'icon-archive',
                 'permissions' => [
-                    'xitara.dynamiccontent.create',
-                    'xitara.dynamiccontent.edit',
+                    'xitara.voodooblocks.create',
+                    'xitara.voodooblocks.edit',
                 ],
                 'attributes'  => [
-                    'group'       => 'xitara.dynamiccontent::lang.submenu.label',
+                    'group'       => 'xitara.voodooblocks::lang.submenu.label',
                     'placeholder' => true,
                 ],
-                'order'       => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
+                'order'       => \Xitara\Nexus\Plugin::getMenuOrder('xitara.voodooblocks') + $i++,
             ],
-            'dynamiccontent.blockgroups' => [
-                'label'       => 'xitara.dynamiccontent::lang.submenu.blockgroup',
-                'url'         => Backend::url('Xitara/dynamiccontent/blockgroups'),
-                'icon'        => 'icon-archive',
-                'permissions' => [
-                    'xitara.dynamiccontent.create_groups',
-                    'xitara.dynamiccontent.edit_groups',
-                ],
-                'attributes'  => [
-                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
-                ],
-                'order'       => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-            ],
-            'dynamiccontent.texts'       => [
-                'label'       => 'xitara.dynamiccontent::lang.submenu.text',
-                'url'         => Backend::url('xitara/dynamiccontent/texts'),
-                'icon'        => 'icon-archive',
-                'permissions' => [
-                    'xitara.dynamiccontent.create_texts',
-                    'xitara.dynamiccontent.edit_texts',
-                ],
-                'attributes'  => [
-                    'group' => 'xitara.dynamiccontent::lang.submenu.label',
-                ],
-                'order'       => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-            ],
-            'dynamiccontent.textgroups'  => [
-                'label'       => 'xitara.dynamiccontent::lang.submenu.group',
-                'url'         => Backend::url('xitara/dynamiccontent/groups'),
-                'icon'        => 'icon-archive',
-                'permissions' => [
-                    'xitara.dynamiccontent.create_textgroups',
-                    'xitara.dynamiccontent.edit_textgroups',
-                ],
-                'attributes'  => [
-                    'group'       => 'xitara.dynamiccontent::lang.submenu.label',
-                    'placeholder' => true,
-                ],
-                'order'       => \Xitara\Nexus\Plugin::getMenuOrder('xitara.dynamiccontent') + $i++,
-            ],
+            // 'voodooblocks.blockgroups' => [
+            //     'label'       => 'xitara.voodooblocks::lang.submenu.blockgroup',
+            //     'url'         => Backend::url('xitara/voodooblocks/blockgroups'),
+            //     'icon'        => 'icon-archive',
+            //     'permissions' => [
+            //         'xitara.voodooblocks.create_groups',
+            //         'xitara.voodooblocks.edit_groups',
+            //     ],
+            //     'attributes'  => [
+            //         'group' => 'xitara.voodooblocks::lang.submenu.label',
+            //     ],
+            //     'order'       => \Xitara\Nexus\Plugin::getMenuOrder('xitara.voodooblocks') + $i++,
+            // ],
+            // 'voodooblocks.texts'       => [
+            //     'label'       => 'xitara.voodooblocks::lang.submenu.text',
+            //     'url'         => Backend::url('xitara/voodooblocks/texts'),
+            //     'icon'        => 'icon-archive',
+            //     'permissions' => [
+            //         'xitara.voodooblocks.create_texts',
+            //         'xitara.voodooblocks.edit_texts',
+            //     ],
+            //     'attributes'  => [
+            //         'group' => 'xitara.voodooblocks::lang.submenu.label',
+            //     ],
+            //     'order' => \Xitara\Nexus\Plugin::getMenuOrder('xitara.voodooblocks') + $i++,
+            // ],
+            // 'voodooblocks.textgroups'  => [
+            //     'label'       => 'xitara.voodooblocks::lang.submenu.group',
+            //     'url'         => Backend::url('xitara/voodooblocks/groups'),
+            //     'icon'        => 'icon-archive',
+            //     'permissions' => [
+            //         'xitara.voodooblocks.create_textgroups',
+            //         'xitara.voodooblocks.edit_textgroups',
+            //     ],
+            //     'attributes'  => [
+            //         'group'       => 'xitara.voodooblocks::lang.submenu.label',
+            //         'placeholder' => true,
+            //     ],
+            //     'order'       => \Xitara\Nexus\Plugin::getMenuOrder('xitara.voodooblocks') + $i++,
+            // ],
         ];
-
-        return $inject;
     }
 
     public static function getBlocklistOptions()
     {
         $data = Blocklist::orderBy('name', 'asc')->lists('name', 'slug');
-        $data = ['none' => e(trans('xitara.dynamiccontent::lang.no_blocklist'))]
+        $data = ['none' => e(trans('xitara.voodooblocks::lang.no_blocklist'))]
             + $data;
 
         return $data;
+    }
+
+    public function renderModules($modules)
+    {
+        $result = [];
+        foreach ($modules as $module) {
+            // var_dump($module);
+            $namespace = '\\' . str_replace('-', '\\', $module['_group']);
+            unset($module['_group']);
+
+            if (method_exists($namespace, 'renderText')) {
+                $result[] = $namespace::renderText($module);
+            }
+        }
+
+        return join($result);
+    }
+
+    public function dropdownData($value)
+    {
+        // $result = [];
+        // foreach ($modules as $module) {
+        //     // var_dump($module);
+        //     $namespace = '\\' . str_replace('-', '\\', $module['_group']);
+        //     unset($module['_group']);
+
+        //     if (method_exists($namespace, 'renderText')) {
+        //         $result[] = $namespace::renderText($module);
+        //     }
+        // }
+
+        return $value;
     }
 }

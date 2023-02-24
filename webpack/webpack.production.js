@@ -7,7 +7,8 @@ const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
-// const PurgeCssPlugin = require('purgecss-webpack-plugin');
+const PurgeCssPlugin = require('purgecss-webpack-plugin');
+const paths = require('./paths');
 const glob = require('glob');
 
 const production = {
@@ -31,10 +32,6 @@ const production = {
             chunkFilename: "assets/css/[id].css"
         }),
         new CssoWebpackPlugin(),
-        // new PurgeCssPlugin({
-        //     paths: glob.sync(`**/*.htm*`),
-        //     defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
-        // }),
         new CompressionPlugin({
             exclude: /\.yaml/,
         }),
@@ -44,6 +41,9 @@ const production = {
             threshold: 10240,
             minRatio: 0.8
         }),
+        // new PurgeCssPlugin({
+            // paths: glob.sync(`${paths.src}{/**/*.htm,/**/*}`, { nodir: true }),
+        // }),
     ],
     // devtool: 'source-map',
 };

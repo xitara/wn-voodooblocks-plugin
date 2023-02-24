@@ -4,7 +4,7 @@ Adds a blocklist to fill whole pages with content blocks
 
 ## Components
 
-- Xitara\DynamicContent\Components\BlockList
+- Xitara\VoodooBlocks\Components\Blocklist
 
 ## Widgets
 
@@ -16,15 +16,21 @@ Adds a blocklist to fill whole pages with content blocks
 
 ## Available events
 
-- xitara.dynamiccontent.beforeProcessBlock
+- xitara.voodooblocks.beforeProcessBlock
 ```
-Event::listen('xitara.dynamiccontent.beforeProcessBlock', function ($block) {
+Event::listen('xitara.voodooblocks.beforeProcessBlock', function ($block) {
     return $block;
 });
 ```
-- xitara.dynamiccontent.afterProcessBlock
+- xitara.voodooblocks.afterProcessBlock
 ```
-Event::listen('xitara.dynamiccontent.afterProcessBlock', function ($block) {
+Event::listen('xitara.voodooblocks.afterProcessBlock', function ($block) {
     return $block;
 });
 ```
+
+## Todo:
+
+- remove obsolete database tables
+- remove obsolete models and controllers
+- remove obsolete components

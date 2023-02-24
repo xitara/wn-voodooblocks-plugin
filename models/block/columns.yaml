@@ -1,0 +1,42 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    heading:
+        label: xitara.voodooblocks::lang.heading.label
+        sortable: false
+    is_active:
+        label: xitara.voodooblocks::lang.active.label
+        type: switch
+        sortable: false
+        width: 5%
+    is_slider:
+        label: xitara.voodooblocks::lang.slider.label
+        type: switch
+        sortable: false
+        width: 5%
+    is_lightbox:
+        label: xitara.voodooblocks::lang.lightbox.label
+        type: switch
+        sortable: false
+        width: 5%
+    created_at:
+        label: 'xitara.voodooblocks::lang.models.general.created_at'
+        type: datetime
+        align: center
+        sortable: false
+        width: 10%
+    updated_at:
+        label: 'xitara.voodooblocks::lang.models.general.updated_at'
+        type: datetime
+        align: center
+        sortable: false
+        width: 10%
+    order:
+        label: xitara.voodooforms::lang.models.all.sort_order.label
+        type: partial
+        path: $/xitara/voodooforms/controllers/fields/_order.php
+        width: 5%
+        sortable: false
+        clickable: false

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: 'xitara.voodooblocks::lang.models.block.label'
+
+# Model Form Field configuration
+form: $/xitara/voodooblocks/models/block/fields.yaml
+
+# Model Class name
+modelClass: Xitara\VoodooBlocks\Models\Block
+
+# Default redirect location
+defaultRedirect: xitara/voodooblocks/blocks
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: xitara/voodooblocks/blocks/update/:id
+    redirectClose: xitara/voodooblocks/blocks
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: xitara/voodooblocks/blocks
+    redirectClose: xitara/voodooblocks/blocks
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

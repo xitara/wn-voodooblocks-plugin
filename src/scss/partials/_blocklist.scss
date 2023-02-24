@@ -1,18 +1,7 @@
-/** erocms fixes */
-.hidden {
-    display: none;
-}
-
-[data-art="mediagallery"] > article {
-    padding: 0;
-}
-//** *********************************************************** */
-
 .blocklist {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 1rem;
-    width: 100%;
 
     > h1 {
         grid-column: span 12 / span 12;
@@ -22,136 +11,122 @@
         grid-column: span 12 / span 12;
     }
 
+    > h3 {
+        grid-column: span 12 / span 12;
+    }
+
     img {
         max-width: 100%;
     }
 
-    .dynamic-content {
-        ul {
-            margin-left: 1rem !important;
-        }
-
-        li {
-            // padding-bottom: 0.5rem;;
-        }
-    }
-
-    .slider-container ul {
-        list-style: none;
-
-        li {
-            h2 {
-                font-size: 1rem;
-                padding-top: 0.5rem;
-            }
-        }
-    }
-
-    ul.button-list {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 1rem;
-    }
+    // ul.button-list {
+    //     display: grid;
+    //     grid-template-columns: repeat(4, minmax(0, 1fr));
+    //     gap: 1rem;
+    // }
 
     > article {
-        background-color: #0b0b0b;
-        border: 1px solid #292929;
-        color: #c3c1b3;
+        // background-color: #0b0b0b;
+        // border: 1px solid #292929;
+        // color: #c3c1b3;
         font-size: 1rem;
         // padding: 10px;
         box-sizing: border-box;
 
-        ul.dynamic-content {
-            li > p {
-                margin: 0;
-            }
-        }
+        // ul.dynamic-content {
+        //     li > p {
+        //         margin: 0;
+        //     }
+        // }
 
-        ul:not(.dynamic-content) {
-            margin: 0;
-            padding: 0;
-        }
+        // ul:not(.dynamic-content) {
+        //     margin: 0;
+        //     padding: 0;
+        // }
 
-        > h2 {
-            background-color: #191919;
-            border: 1px solid #191919;
-            color: #b0a782;
-            font-size: 1rem;
+        > h2,
+        > h3 {
+            // background-color: #191919;
+            // border: 1px solid #191919;
+            // color: #b0a782;
+            // font-size: 1rem;
             box-sizing: border-box;
             // margin: 5px 10px;
             margin: 0;
-            padding: 5px;
+            padding: 0.25rem 0;
         }
 
         > div {
-            padding: 0.5rem;
+            // padding: 0.5rem;
+            padding: 0;
         }
 
         .content {
-            height: 100%;
+            // height: 100%;
         }
 
         figure {
-            width: 100%;
-            height: 100%;
+            // width: 100%;
+            // height: 100%;
         }
     }
+
+    .box {
+        padding: 0.5rem;
+        border: 1px solid #292929;
+    }
+
+    .blockwidth-1\/4 {
+        grid-column: span 3 / span 3;
+    }
+
+    .blockwidth-1\/3 {
+        grid-column: span 4 / span 4;
+    }
+
+    .blockwidth-1\/2 {
+        grid-column: span 6 / span 6;
+    }
+
+    .blockwidth-2\/3 {
+        grid-column: span 8 / span 8;
+    }
+
+    .blockwidth-3\/4 {
+        grid-column: span 9 / span 9;
+    }
+
+    .blockwidth-4\/4 {
+        grid-column: span 12 / span 12;
+    }
+
+    .blockheight-1 {
+        height: 10rem;
+        max-height: 10rem;
+    }
+
+    .blockheight-2 {
+        height: 20rem;
+        max-height: 20rem;
+    }
+
+    .blockheight-3 {
+        height: 30rem;
+        max-height: 30rem;
+    }
+
+    .blockheight-4 {
+        height: 40rem;
+        max-height: 40rem;
+    }
+
+    .blockheight-5 {
+        height: 50rem;
+        max-height: 50rem;
+    }
+
+    .blockheight-6 {
+        height: 60rem;
+        max-height: 60rem;
+    }
 }
-
-.bordered {
-    padding: 1rem;
-}
-
-.blockwidth-1\/4 {
-    grid-column: span 3 / span 3;
-}
-
-.blockwidth-1\/3 {
-    grid-column: span 4 / span 4;
-}
-
-.blockwidth-1\/2 {
-    grid-column: span 6 / span 6;
-}
-
-.blockwidth-2\/3 {
-    grid-column: span 8 / span 8;
-}
-
-.blockwidth-3\/4 {
-    grid-column: span 9 / span 9;
-}
-
-.blockwidth-4\/4 {
-    grid-column: span 12 / span 12;
-}
-
-// .blockheight-1\/4 {
-//     height: 10rem;
-//     max-height: 10rem;
-// }
-
-// .blockheight-1\/3 {
-//     height: 10rem;
-//     max-height: 10rem;
-// }
-
-// .blockheight-1\/2 {
-//     height: 10rem;
-//     max-height: 10rem;
-// }
-
-// .blockheight-2\/3 {
-//     height: 10rem;
-//     max-height: 10rem;
-// }
-
-// .blockheight-3\/4 {
-//     height: 10rem;
-//     max-height: 10rem;
-// }
-
-// .blockheight-4\/4 {
-//     height: 10rem;
-//     max-height: 10rem;
-// }

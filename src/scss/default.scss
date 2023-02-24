@@ -1,8 +1,8 @@
 // Variables
-@import 'base/variables';
+@use 'base/variables';
 
 /* Blocklist */
-@import 'partials/default';
+@use 'partials/default';
 
 /* froala and fixes */
-@import 'partials/froala';
+@use 'partials/froala';

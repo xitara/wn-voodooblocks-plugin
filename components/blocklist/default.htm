@@ -1,77 +1,69 @@
-{% if blocklist.is_raw is not defined or blocklist.is_raw == 0 %}
-    <section id="blocklist-{{ blocklist.name|slug }}" class="blocklist">
+{% if blocklist.is_raw == 0 %}
+    <section id="blocklist-{{ __SELF__.alias }}" class="blocklist">
         {% if blocklist.is_heading == 1 %}
-            <h1>{{ blocklist.name }}</h1>
+            <h2>{{ blocklist.heading }}</h2>
+            {% if blocklist.subheading|trim != '' %}
+                <h3>{{ blocklist.subheading }}</h3>
+            {% endif %}
         {% endif %}
 {% endif %}
 {% for block in blocklist.blocks %}
-    {% if block['is_active'] is defined and block.is_active == 1 %}
-
-        {% if block.start_at|date <= 'now'|date and block.end_at|date >= 'now'|date %}
-
-            {% if block.is_raw_block is not defined or block.is_raw_block == 0 %}
-                <article class="blockwidth-{{ block.width }} blockheight-{{ block.height }}{{ (block.is_box == 1) ? ' bordered' : null }}">
-
-                    {% if block['is_heading'] is not defined or block.is_heading == 1 %}
-                        <h2>{{ block.heading }}</h2>
+    {% if block.is_active == 1 %}
+        {% if
+            block.is_time_control == 0 or
+            block.start_at|date <= 'now'|date and
+            block.end_at|date >= 'now'|date
+        %}
+            <article class="
+                blockwidth-{{ block.width }}
+                blockheight-{{ block.height }}
+                {{ (block.is_box == 1) ? ' box' }}
+                {{ (block.is_scrollbar == 1) ? ' scrollbar' }}
+            ">
+                {% if block.is_heading == 1 %}
+                    <h2>{{ block.heading }}</h2>
+                    {% if block.subheading|trim != '' %}
+                        <h3>{{ block.subheading }}</h3>
                     {% endif %}
+                {% endif %}
 
-                    {# {% if block['is_box'] is not defined or block.is_box == 1 %} #}
-                        {# <aside class="blockheight-{{ block.height }}"> #}
-                    {# {% endif %} #}
+                {% if block.excerpt|trim != '' %}
+                    <aside class="excerpt">
+                        {{ block.excerpt|raw }}
+                    </aside>
+                {% endif %}
 
-        {#                 {% if block['is_box'] is not defined or block.is_box == 1 %}
-                            <div{% if block.is_scrollbar == 1 and block.height != 'auto' %} class="scrollbar"{% endif %}>
-                        {% endif %} #}
+                {% if block.images|length > 0 %}
+                    {% partial __SELF__ ~ "::images" block=block %}
+                {% endif %}
 
-                        {% if block['buttons_above'] is defined %}
-                            {% partial __SELF__ ~ "::buttons" buttons=block.buttons_above %}
+                {% if block.buttons_above|length > 0 %}
+                    {% partial __SELF__ ~ "::buttons" buttons=block.buttons_above %}
+                {% endif %}
+
+                {% if block.content|trim != '' or block.modules|length > 0 %}
+                    <aside class="content">
+                        {% if block.content|trim != '' %}
+                            <div class="static-content">
+                                {{ block.content|raw }}
+                            </div>
                         {% endif %}
-
-                        {% if block.excerpt|trim != '' %}
-                            <section class="excerpt">
-                                {{ block.excerpt|raw }}
-                            </section>
+                        {% if block.modules|length > 0 %}
+                            <div class="module-container">
+                                {{ block.modules|renderModules }}
+                            </div>
                         {% endif %}
+                    </aside>
+                {% endif %}
 
-                        {% if block['images'] is defined %}
-                            {% partial __SELF__ ~ "::images" block=block %}
-                        {% endif %}
-
-                        {% if block['content'] is defined and
-                            block.content|trim != '' or
-                            block['dynamic_content'] is defined and
-                            block.dynamic_content|trim != ''
-                        %}
-                            <section class="content">
-                            {% if block['content'] is defined and block.content|trim != '' %}
-                                <aside class="static-content">
-                                    {{ block.content|raw }}
-                                </aside>
-                            {% endif %}
-                            {% if block['dynamic_content'] is defined and block.dynamic_content|trim != '' %}
-                                <aside class="dynamic-content-container">
-                                    {{ block.dynamic_content|raw }}
-                                </aside>
-                            {% endif %}
-                            </section>
-                        {% endif %}
-
-                        {% if block['buttons'] is defined %}
-                            {% partial __SELF__ ~ "::buttons" buttons=block.buttons %}
-                        {% endif %}
-
-                    {# {% if blocklist['is_box'] is not defined or blocklist.is_box == 1 %} #}
-                            {# </div> #}
-                        {# </aside> #}
-                    {# {% endif %} #}
-                </article>
-            {% else %}
-                {{ block.dynamic_content|raw }}
-            {% endif %}
+                {% if block.buttons|length > 0 %}
+                    {% partial __SELF__ ~ "::buttons" buttons=block.buttons %}
+                {% endif %}
+            </article>
         {% endif %}
     {% endif %}
+
 {% endfor %}
-{% if blocklist.is_raw is not defined or blocklist.is_raw == 0 %}
+{% if blocklist.is_raw == 0 %}
     </section>
 {% endif %}

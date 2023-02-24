@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/xitara/dynamiccontent/models/blocklist/columns.yaml
+list: $/xitara/voodooblocks/models/blocklist/columns.yaml
 
 # Model Class name
-modelClass: Xitara\DynamicContent\Models\BlockList
+modelClass: Xitara\VoodooBlocks\Models\Blocklist
 
 # List Title
 title: Manage Block Lists
 
 # Link URL for each record
-recordUrl: xitara/dynamiccontent/blocklists/update/:id
+recordUrl: xitara/voodooblocks/blocklists/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

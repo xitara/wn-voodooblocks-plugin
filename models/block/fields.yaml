@@ -1,0 +1,452 @@
+tabs:
+    fields:
+        heading:
+            tab: xitara.voodooblocks::lang.tab.options
+            label: xitara.voodooblocks::lang.heading.label
+            type: text
+            span: full
+            required: true
+        subheading:
+            tab: xitara.voodooblocks::lang.tab.options
+            label: xitara.voodooblocks::lang.subheading.label
+            type: text
+            span: full
+        width:
+            tab: xitara.voodooblocks::lang.tab.options
+            label: xitara.voodooblocks::lang.width.label
+            type: dropdown
+            span: auto
+            options:
+                4/4: 100%
+                3/4: 75%
+                2/3: 2/3
+                1/2: 50%
+                1/3: 1/3
+                1/4: 25%
+            default: 4/4
+        height:
+            tab: xitara.voodooblocks::lang.tab.options
+            label: xitara.voodooblocks::lang.height.label
+            type: dropdown
+            span: auto
+            options:
+                auto: xitara.voodooblocks::lang.dropdown.auto
+                1: 10rem
+                2: 20rem
+                3: 30rem
+                4: 40rem
+            default: auto
+        is_active:
+            tab: xitara.voodooblocks::lang.tab.options
+            label: xitara.voodooblocks::lang.is_active.label
+            type: switch
+            span: auto
+            default: 1
+
+        new_line:
+            tab: xitara.voodooblocks::lang.tab.options
+            type: section
+            span: full
+
+        is_raw:
+            tab: xitara.voodooblocks::lang.tab.options
+            label: xitara.voodooblocks::lang.is_raw.label
+            comment: xitara.voodooblocks::lang.is_raw.comment
+            type: switch
+            span: auto
+            default: 0
+        is_heading:
+            tab: xitara.voodooblocks::lang.tab.options
+            label: xitara.voodooblocks::lang.is_heading.label
+            type: switch
+            span: auto
+            default: 1
+            trigger:
+                action: hide
+                field: is_raw_block
+                condition: checked
+        is_box:
+            tab: xitara.voodooblocks::lang.tab.options
+            label: xitara.voodooblocks::lang.is_box.label
+            comment: xitara.voodooblocks::lang.is_box.comment
+            type: switch
+            span: auto
+            default: 1
+            trigger:
+                action: hide
+                field: is_raw_block
+                condition: checked
+        is_scrollbar:
+            tab: xitara.voodooblocks::lang.tab.options
+            label: xitara.voodooblocks::lang.is_scrollbar.label
+            comment: xitara.voodooblocks::lang.is_scrollbar.comment
+            type: switch
+            span: auto
+            default: 0
+            trigger:
+                action: hide
+                field: is_raw_block
+                condition: checked
+
+        excerpt:
+            tab: xitara.voodooblocks::lang.tab.content
+            label: xitara.voodooblocks::lang.excerpt.label
+            comment: xitara.voodooblocks::lang.excerpt.comment
+            commentHtml: true
+            type: richeditor
+            size: small
+            toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,insertTable,formatOL,formatUL,insertLink,insertImage,insertVideo,insertAudio,html,fullscreen
+            span: full
+        content:
+            tab: xitara.voodooblocks::lang.tab.content
+            label: xitara.voodooblocks::lang.content.label
+            comment: xitara.voodooblocks::lang.content.comment
+            commentHtml: true
+            type: richeditor
+            size: giant
+            toolbarButtons: paragraphFormat,bold,italic,underline,strikeThrough,insertHR,insertTable,formatOL,formatUL,insertLink,insertImage,insertVideo,insertAudio,html,fullscreen
+            span: full
+
+        buttons_above:
+            tab: xitara.voodooblocks::lang.tab.buttons
+            label: xitara.voodooblocks::lang.buttons_above.label
+            prompt: xitara.voodooblocks::lang.buttons_above.prompt
+            type: repeater
+            span: left
+            maxItems: 100
+            form:
+                fields:
+                    label:
+                        label: xitara.voodooblocks::lang.button.label.label
+                        type: text
+                        span: full
+                    icon_left:
+                        label: xitara.voodooblocks::lang.button.icon_left.label
+                        type: mediafinder
+                        mode: image
+                        span: auto
+                    icon_right:
+                        label: xitara.voodooblocks::lang.button.icon_right.label
+                        type: mediafinder
+                        mode: image
+                        span: auto
+                    link:
+                        label: xitara.voodooblocks::lang.button.link.label
+                        type: text
+                        span: full
+                    is_blank:
+                        label: xitara.voodooblocks::lang.is_blank.label
+                        type: switch
+                        default: 0
+                        span: full
+                    classes:
+                        label: xitara.voodooblocks::lang.button.classes.label
+                        type: text
+                        span: full
+        buttons:
+            tab: xitara.voodooblocks::lang.tab.buttons
+            label: xitara.voodooblocks::lang.buttons.label
+            prompt: xitara.voodooblocks::lang.buttons.prompt
+            type: repeater
+            span: right
+            maxItems: 100
+            form:
+                fields:
+                    label:
+                        label: xitara.voodooblocks::lang.button.label.label
+                        type: text
+                        span: full
+                    icon_left:
+                        label: xitara.voodooblocks::lang.button.icon_left.label
+                        type: mediafinder
+                        mode: image
+                        span: auto
+                    icon_right:
+                        label: xitara.voodooblocks::lang.button.icon_right.label
+                        type: mediafinder
+                        mode: image
+                        span: auto
+                    link:
+                        label: xitara.voodooblocks::lang.button.link.label
+                        type: text
+                        span: full
+                    is_blank:
+                        label: xitara.voodooblocks::lang.is_blank.label
+                        type: switch
+                        default: 0
+                        span: full
+                    css_classes:
+                        label: xitara.voodooblocks::lang.button.classes.label
+                        type: text
+                        span: full
+
+        is_time_control:
+            tab: xitara.voodooblocks::lang.tab.time_control
+            label: xitara.voodooblocks::lang.is_active.label
+            # comment: xitara.voodooblocks::lang.tab.time_control_comment
+            type: switch
+            span: full
+        start_at:
+            tab: xitara.voodooblocks::lang.tab.time_control
+            label: xitara.voodooblocks::lang.start_at.label
+            type: datepicker
+            span: full
+            trigger:
+                action: show
+                field: is_time_control
+                condition: checked
+        end_at:
+            tab: xitara.voodooblocks::lang.tab.time_control
+            label: xitara.voodooblocks::lang.end_at.label
+            type: datepicker
+            span: full
+            trigger:
+                action: show
+                field: is_time_control
+                condition: checked
+
+        slider[image_width]:
+            tab: xitara.voodooblocks::lang.tab.images
+            label: xitara.voodooblocks::lang.slider.image_width.label
+            comment: xitara.voodooblocks::lang.slider.image_width.comment
+            type: number
+            default: 0
+            min: 0
+            step: 1
+            span: auto
+        slider[image_height]:
+            tab: xitara.voodooblocks::lang.tab.images
+            label: xitara.voodooblocks::lang.slider.image_height.label
+            comment: xitara.voodooblocks::lang.slider.image_height.comment
+            type: number
+            default: 0
+            min: 0
+            step: 1
+            span: auto
+        slider[is_image_full]:
+            tab: xitara.voodooblocks::lang.tab.images
+            label: xitara.voodooblocks::lang.slider.is_image_full.label
+            comment: xitara.voodooblocks::lang.slider.is_image_full.comment
+            type: switch
+            default: 1
+            span: auto
+            cssClass: center-switch
+        is_image_text:
+            tab: xitara.voodooblocks::lang.tab.images
+            label: xitara.voodooblocks::lang.is_image_text.label
+            comment: xitara.voodooblocks::lang.is_image_text.comment
+            type: switch
+            span: auto
+            cssClass: center-switch
+            default: 0
+        is_slider:
+            tab: xitara.voodooblocks::lang.tab.images
+            label: xitara.voodooblocks::lang.is_slider.label
+            type: switch
+            span: auto
+            default: 0
+        is_lightbox:
+            tab: xitara.voodooblocks::lang.tab.images
+            label: xitara.voodooblocks::lang.is_lightbox.label
+            type: switch
+            span: auto
+            default: 0
+        images:
+            tab: xitara.voodooblocks::lang.tab.images
+            label: xitara.voodooblocks::lang.images.label
+            prompt: xitara.voodooblocks::lang.images.prompt
+            type: repeater
+            span: full
+            stretch: true
+            maxItems: 100
+            form:
+                fields:
+                    image:
+                        label: xitara.voodooblocks::lang.image.label.label
+                        type: mediafinder
+                        mode: image
+                        imageWidth: 200
+                        imageHeight: 200
+                        span: left
+                    title:
+                        label: xitara.voodooblocks::lang.image.title.label
+                        type: text
+                        span: right
+                    description:
+                        label: xitara.voodooblocks::lang.image.description.label
+                        type: richeditor
+                        size: small
+                        toolbarButtons: bold|italic|underline|strikeThrough|html|fullscreen
+                        span: right
+                    url:
+                        label: xitara.voodooblocks::lang.image.url.label
+                        comment: xitara.voodooblocks::lang.image.url.comment
+                        type: text
+                        span: left
+                    link:
+                        label: xitara.voodooblocks::lang.image.link.label
+                        type: text
+                        span: right
+                    is_blank:
+                        label: xitara.voodooblocks::lang.is_blank.label
+                        type: switch
+                        span: right
+
+        slider[mode]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.mode.label
+            type: dropdown
+            options:
+                carousel: xitara.voodooblocks::lang.dropdown.carousel
+                gallery: xitara.voodooblocks::lang.dropdown.gallery
+            default: carousel
+            span: auto
+        slider[slider_height]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.slider_height.label
+            comment: xitara.voodooblocks::lang.slider.slider_height.comment
+            type: number
+            default: 300
+            min: 1
+            step: 1
+            span: auto
+        slider[axis]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.axis.label
+            type: dropdown
+            default: horizontal
+            options:
+                horizontal: xitara.voodooblocks::lang.dropdown.horizontal
+                vertical: xitara.voodooblocks::lang.dropdown.vertical
+            span: auto
+        slider[start_at]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.start_at.label
+            type: number
+            default: 1
+            min: 1
+            step: 1
+            span: auto
+        slider[items]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.items.label
+            type: number
+            default: 1
+            min: 1
+            step: 1
+            span: auto
+
+        section_0:
+            tab: xitara.voodooblocks::lang.tab.slider
+            type: section
+
+        slider[is_controls]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.is_controls.label
+            type: switch
+            default: 0
+            span: storm
+            cssClass: col-md-4
+        slider[is_loop]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.is_loop.label
+            type: switch
+            default: 0
+            span: storm
+            cssClass: col-md-4
+        slider[is_lazyload]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.is_lazyload.label
+            type: switch
+            default: 0
+            span: storm
+            cssClass: col-md-4
+
+        section_1:
+            tab: xitara.voodooblocks::lang.tab.slider
+            type: section
+
+        slider[is_nav]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.is_nav.label
+            type: switch
+            default: 0
+            span: auto
+        slider[nav_position]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.nav_position.label
+            type: dropdown
+            default: bottom
+            options:
+                bottom: xitara.voodooblocks::lang.dropdown.bottom
+                top: xitara.voodooblocks::lang.dropdown.top
+            span: auto
+        slider[is_nav_overlay]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.is_nav_overlay.label
+            type: switch
+            default: 0
+            span: auto
+
+        section_2:
+            tab: xitara.voodooblocks::lang.tab.slider
+            type: section
+
+        slider[is_autoplay]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.is_autoplay.label
+            type: switch
+            default: 0
+            span: auto
+        slider[autoplay_speed]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.autoplay_speed.label
+            type: number
+            default: 400
+            min: 1
+            step: 1
+            span: auto
+        slider[is_autoplay_button]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.is_autoplay_button.label
+            type: switch
+            default: 0
+            span: auto
+
+        section_3:
+            tab: xitara.voodooblocks::lang.tab.slider
+            type: section
+
+        slider[css_classes]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.classes.label
+            type: text
+            span: full
+        slider[responsive]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.responsive.label
+            comment: xitara.voodooblocks::lang.slider.responsive.comment
+            type: textarea
+            span: full
+            commentHtml: true
+        slider[options]:
+            tab: xitara.voodooblocks::lang.tab.slider
+            label: xitara.voodooblocks::lang.slider.options.label
+            comment: xitara.voodooblocks::lang.slider.options.comment
+            type: textarea
+            span: full
+            commentHtml: true
+
+        lightbox[is_loop]:
+            tab: xitara.voodooblocks::lang.tab.lightbox
+            label: xitara.voodooblocks::lang.lightbox.is_loop.label
+            type: switch
+            default: 0
+            span: auto
+        lightbox[options]:
+            tab: xitara.voodooblocks::lang.tab.lightbox
+            label: xitara.voodooblocks::lang.lightbox.options.label
+            comment: xitara.voodooblocks::lang.lightbox.options.comment
+            type: textarea
+            span: left
+            commentHtml: true

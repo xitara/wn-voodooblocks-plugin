@@ -1,13 +1,22 @@
 {% if block.images|length > 0 %}
-    {% set uid = uid() %}
-    <div class="slider-container">
-        <ul{% if block.is_slider == 1 %} id="slide-{{ blocklist.name|slug }}"{% endif %}>
+    {% set uid = blocklist.heading|slug %}
+    <div
+        class="slider-container{{ (block.slider.is_nav_overlay == 1) ? ' pos-over-pic' }}"
+        {% if block.slider.nav_position == 'bottom' %}
+            {# style="--nav-position-top: initial; --nav-position-bottom: 0.5rem" #}
+            style="--nav-position-bottom: 0.5rem"
+        {% else %}
+            style="--nav-position-bottom: initial"
+            {# style="--nav-position-top: 1.5rem; --nav-position-bottom: initial" #}
+        {% endif %}
+    >
+        <ul{% if block.is_slider == 1 %} id="voodooblocks-slide-{{ uid }}"{% endif %}>
             {% for image in block.images %}
-                <li class="slider-item">
-                    {% set no_resize = false %}
-                    {% if (image.image|mediadata).mime_type == 'image/svg' %}
+                <li{% if block.is_slider == 1 %} class="slider-item"{% endif %}>
+                    {# {% set no_resize = false %}
+                    {% if (image.image|media|mediadata).mime_type == 'image/svg' %}
                         {% set no_resize = true %}
-                    {% endif %}
+                    {% endif %} #}
 
                     {{ _self.imageOutput(image, block, uid) }}
                 </li>
@@ -29,29 +38,28 @@
         {% endif %}
     </div>
 {% elseif block.images.0.image != false %}
-    {{ _self.imageOutput(block.images[0], block, blocklist.name|slug) }}
+    {{ _self.imageOutput(block.images[0], block, blocklist.heading|slug) }}
 {% endif %}
 
 {% if block.is_slider == 1 and block.slider is defined %}
-    {% partial __SELF__ ~ "::config_slider" uid=blocklist.name|slug config=block.slider %}
+    {% partial __SELF__ ~ "::config_slider" uid=uid config=block.slider %}
 {% endif %}
 
 {% if block.is_lightbox == 1 and block.lightbox is defined %}
-    {% partial __SELF__ ~ "::config_lightbox" uid=blocklist.name|slug config=block.lightbox %}
+    {% partial __SELF__ ~ "::config_lightbox" uid=uid config=block.lightbox %}
 {% endif %}
 
-{% if block.slider.is_nav_overlay == 1 %}
+{# {% if block.slider.is_nav_overlay == 1 %}
     <style>
         .tns-nav {
             position: relative;
-            /* stylelint-disable-next-line */
             {{ block.slider.nav_position }}: 1.5rem;
             left: 0;
             right: 0;
             z-index: 10;
         }
     </style>
-{% endif %}
+{% endif %} #}
 
 {% macro imageOutput(image, block, uid, no_resize) %}
     {% if block.is_lightbox == 1 %}
@@ -59,25 +67,53 @@
             href="{{ image.image|media }}"
             data-title="{{ image.title|escape('html') }}"
             data-description="{{ image.description|escape('html') }}"
-            class="lightbox-{{ uid }}"
+            class="voodooblocks-lightbox-{{ uid }}"
         >
     {% elseif image['link'] is defined and image.link != '' %}
         <a href="{{ image.link }}"{{ (image.is_blank == 1) ? ' target="_blank"' }}>
     {% endif %}
-    <figure>
-        {% set image_height = block.slider.image_height  %}
+
+{#     {% if block.slider.image_height == 0 %}
+        {% set image_height = block.slider.slider_height %}
+    {% endif %} #}
+
+    <figure{{ (block.is_slider == 1) ? ' style="height:' ~ block.slider.slider_height ~ 'px"' }}>
+        {% set styles %}
+            {{- (block.is_slider == 1) ? 'height: ' ~ block.slider.slider_height ~ 'px;' -}}
+            {{- (block.slider.is_image_full == 1) ? 'width: 100%;' -}}
+        {% endset %}
+
         {% if image['url'] is defined and image.url != '' %}
-            <img src="{{ image.url }}"{% if block.is_slider == 1 %} style="--height: {{ image_height }}px;"{% endif %}
+            <img src="{{ image.url }}" style="{{ styles }}">
         {% else %}
-            {% if no_resize is defined and no_resize == true %}
-                <img src="{{ image.image|media }}" style="--height: {{ image_height }}px;"
+{#             {% if if (image.image|media|mediadata).mime_type == 'image/svg' %}
+                <img src="{{ image.image|media }}" style="--height: {{ image_height }}px;{{ (block.slider.is_image_full == 1) ? ' width: 100%;' }}"
             {% else %}
-                <img src="{{ image.image|media|resize(false, image_height) }}"
+                <img src="{{ image.image|media|resize(false, image_height) }}" style="{{ (block.slider.is_image_full == 1) ? ' width: 100%;' }}"
+            {% endif %} #}
+
+
+            {% if block.slider.image_width > 0 or block.slider.image_height > 0 %}
+                {% set image_width = (block.slider.image_width > 0) ? block.slider.image_width : block.slider.image_height %}
+                {% set image_height = (block.slider.image_height > 0) ? block.slider.image_height : block.slider.image_width %}
+                <img
+                    src="{{ image.image|media|resize(image_width, image_height) }}"
+                    style="{{ styles }}"
+                    alt="{{ image.title }}"
+                    title="{{ image.title }}"
+                >
+            {% else %}
+                {{ image.image|media|inject({
+                    default: {
+                        title: image.title,
+                        description: image.description
+                    },
+                    attributes: {
+                        style: styles|trim,
+                    }
+                }) }}
             {% endif %}
         {% endif %}
-            alt="{{ image.description|strip_html }}"
-            title="{{ image.description|strip_html }}"
-        >
 
         {% if (image.title|trim != '' or image.description|trim != '') and block.is_image_text == 1 %}
             <figcaption>

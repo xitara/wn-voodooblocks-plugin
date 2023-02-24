@@ -1,24 +1,34 @@
 <ul class="button-list">
     {% for button in buttons %}
         <li>
-            <a
-                href="{{ button.link }}"
-                {% if button.is_blank == 1 %}
-                    target="{{ button.is_blank }}"
-                {% endif %}
-            >
-                <figure>
+            {% if button.link|trim != '' %}
+                <a
+                    href="{{ button.link }}"
+                    {{ (button.is_blank == 1) ? 'target="_blank"' }}
+                >
+                    <figure>
+            {% else %}
+                <button>
+            {% endif %}
                     {% if button.icon_left != '' %}
                         <img src="{{ button.icon_left|media }}" alt="">
                     {% endif %}
-                    <figcaption>
+                    {% if button.link|trim != '' %}
+                        <figcaption>
+                    {% endif %}
                         {{ button.label }}
-                    </figcaption>
+                    {% if button.link|trim != '' %}
+                        </figcaption>
+                    {% endif %}
                     {% if button.icon_right != '' %}
                         <img src="{{ button.icon_right|media }}" alt="">
                     {% endif %}
-                </figure>
-            </a>
+            {% if button.link|trim != '' %}
+                    </figure>
+                </a>
+            {% else %}
+                </button>
+            {% endif %}
         </li>
     {% endfor %}
 </ul>

@@ -4,11 +4,11 @@
         var lightboxConfig = [];
     }
 
-    lightboxConfig['xitara-dynamiccontent-{{ uid }}'] = {
-        selector: '.xitara-dynamiccontent-lightbox-{{ uid }}',
+    lightboxConfig['voodooblocks-lightbox-{{ uid }}'] = {
+        selector: '.voodooblocks-lightbox-{{ uid }}',
         loop: {{ (config.is_loop == 1) ? 'true' : 'false' }},
         touchNavigation: true,
         autoplayVideos: true,
-        {{ config.lightbox_options|raw }}
+        {{ config.options|raw }}
     }
 </script>

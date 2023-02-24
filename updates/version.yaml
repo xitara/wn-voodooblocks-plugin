@@ -1,29 +1,4 @@
-1.0.1:
-    - First version of DynamicContent
-    - create_texts_table.php
-    - create_groups_table.php
-1.0.2:
-    - Add blocklists and groups
-    - create_block_lists_table.php
-    - create_block_groups_table.php
-1.0.3: Add dynamic content to blocklist
-1.0.4: Move dynamic output to own plugin
-1.0.5: Add event to patch block content with external plugin
-1.0.6: Catch errors on undefined twig vars
-1.0.7:
-    - Add global text to blocklist
-    - 1.0.07_add_text_column_to_blocklist_table.php
-1.0.8:
-    - Add blockgroups
-    - 1.0.08_add_columns_to_blockgroup_table.php
-1.0.9: Full migration to winter-namespace
-1.0.10:
-    - Revise backend form
-    - Convert database to new structure (no downgrade available)
-    - 1.0.10_convert_data_to.php
-1.0.11:
-    - Add raw output to blocklist
-    - 1.0.11_add_is_raw_column_to_blocklist_table.php
-1.0.12:
-    - Add default css switch
-    - 1.0.12_add_is_defaultcss_column_to_blocklist_table.php
+2.0.1:
+    - Rebrand DynamicContent to VoodooBlocks
+    - create_blocklists_table.php
+    - create_blocks_table.php

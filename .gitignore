@@ -12,13 +12,13 @@ yarn.lock
 /favicon*
 /robots.txt
 /humans.txt
-/assets-manifest.json
 /manifest.json
 *sublime-*
 /bash/config.sh
-/.docs
 *.gz
 *.br
+*manifest*
+.husky
 
 ### Composer ###
 composer.lock

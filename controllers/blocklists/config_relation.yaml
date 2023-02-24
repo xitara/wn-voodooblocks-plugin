@@ -1,0 +1,8 @@
+blocks:
+    label: __Blocks
+    manage:
+        form: $/xitara/voodooblocks/models/block/fields.yaml
+        list: $/xitara/voodooblocks/models/block/columns.yaml
+    view:
+        list: $/xitara/voodooblocks/models/block/columns.yaml
+        toolbarButtons: create|delete

@@ -1,20 +1,19 @@
-// Tiny-SLider
-@import 'tiny-slider/src/tiny-slider';
-@import 'partials/slider'; // pure scss
+/* Bootstrap */
+// @use 'abstracts/bootstrap';
 
-// Lightbox SCSS (https://github.com/biati-digital/glightbox)
-@import 'glightbox/src/postcss/glightbox.css';
-@import 'partials/glightbox'; // Custom Lightbox SCSS
+/* Tailwind CSS */
+// @use 'abstracts/tailwindcss';
 
-// SimpleBar
-@import 'simplebar/dist/simplebar.css';
-@import 'partials/simplebar';
+/* Blocklist */
+@use 'partials/blocklist';
+@use 'partials/buttons';
 
-// Variables
-@import 'base/variables';
+/* slider, lightbox etc. */
+/* purgecss start ignore */
+@use 'partials/slider';
+@use 'partials/glightbox';
+@use 'partials/simplebar';
 
-// Blocklist
-@import 'partials/blocklist';
-
-// froala and fixes
-@import 'partials/froala';
+/* froala and fixes */
+@use 'partials/froala';
+/* purgecss stop ignore */

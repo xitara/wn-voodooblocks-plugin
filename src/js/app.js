@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar';
 import GLightbox from 'glightbox';
 import { tns } from 'tiny-slider/src/tiny-slider';
 // import { qs, qsa, $on, $delegate } from './utils';
-import { qs, qsa, $on } from './utils';
+import { qs, qsa, $on } from './modules/utils';
 
 $on(document, 'DOMContentLoaded', () => {
     /**
@@ -15,7 +15,7 @@ $on(document, 'DOMContentLoaded', () => {
 
         // eslint-disable-next-line no-undef
         Object.keys(slideConfig).forEach((key) => {
-            if (qs('#slide-xitara-dynamiccontent-' + key)) {
+            if (qs('#' + key)) {
                 if (typeof slider[key] === 'undefined') {
                     // eslint-disable-next-line no-undef
                     slider[key] = tns(slideConfig[key]);
@@ -44,7 +44,7 @@ $on(document, 'DOMContentLoaded', () => {
 
         // eslint-disable-next-line no-undef
         Object.keys(lightboxConfig).forEach((key) => {
-            if (qs('.lightbox-' + key)) {
+            if (qs('.' + key)) {
                 // eslint-disable-next-line no-undef, no-unused-vars
                 lightbox[key] = GLightbox(lightboxConfig[key]);
             }

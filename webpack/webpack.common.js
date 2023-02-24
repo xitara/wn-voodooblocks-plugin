@@ -1,24 +1,49 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const TailwindCSS = require('tailwindcss');
+const TailwindCSS = require('tailwindcss');
 const paths = require('./paths');
+// const glob = require('glob');
 
 module.exports = {
     context: paths.src,
     entry: {
         app: `./js/app.js`,
-        default: `./js/default.js`,
-        backend: `./js/backend.js`,
+        // app_ts: `./ts/app.ts`,
+        // breakpoints: `./scss/breakpoints.scss`,
     },
     output: {
         filename: `assets/js/[name].js`,
         path: paths.build,
+    },
+    resolve: {
+        symlinks: false,
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    },
+    cache: {
+        type: 'memory',
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                styles: {
+                    name: 'styles',
+                    test: /\.css$/,
+                    chunks: 'all',
+                    enforce: true
+                }
+            }
+        }
     },
     module: {
         rules: [{
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
+            },
+            {
+                test: /\.ts?$/,
+                exclude: /node_modules/,
+                use: 'ts-loader',
             },
             {
                 test: /\.(sa|sc|c)ss$/,
@@ -38,13 +63,13 @@ module.exports = {
                             postcssOptions: {
                                 sourceMap: true,
                                 plugins: [
-                                    // require('tailwindcss'),
+                                    require('tailwindcss'),
                                     require('autoprefixer'),
                                     require('postcss-flexbugs-fixes'),
                                 ],
-                                // postCss: [
-                                    // TailwindCSS('tailwind.config.js'),
-                                // ],
+                                postCss: [
+                                    TailwindCSS('tailwind.config.js'),
+                                ],
                                 processCssUrls: false,
                             },
                         },
@@ -93,9 +118,17 @@ module.exports = {
             chunkFilename: 'assets/css/[name].[id].css',
         }),
         new CopyWebpackPlugin({
-            patterns: [
-                { from: paths.static },
-            ]
+            patterns: [{
+                from: paths.static,
+                noErrorOnMissing: true,
+                globOptions: {
+                    dot: true,
+                    gitignore: true,
+                    ignore: [
+                        '**/README.md'
+                    ]
+                }
+            }]
         }),
     ],
 };

@@ -1,2 +1,6 @@
-.simplebar-scrollbar {
+@forward '../../../node_modules/simplebar/src/simplebar.css';
+
+.blocklist {
+    .scrollbar {
+    }
 }

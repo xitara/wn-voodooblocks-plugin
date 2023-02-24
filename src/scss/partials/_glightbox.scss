@@ -1,32 +1,26 @@
-#glightbox-body {
-    .goverlay {
-        background: rgba(0, 0, 0, 0.75);
-    }
+@forward '../../../node_modules/glightbox/dist/css/glightbox.css';
 
-    .gnext,
-    .gprev {
-        top: 45%;
-    }
-
-    .gcontainer {
-        // position: relative;
-        height: 96%;
-    }
-
-    .gslide-media {
-        // display: block;
-    }
-
-    .gslide-description {
-        background: rgba(0, 0, 0, 0.75);
-        flex: none;
-
-        .gslide-title {
-            color: #fff;
+.blocklist {
+    .glightbox-container {
+        .goverlay {
+            background: rgba(0, 0, 0, 0.75);
         }
 
-        .gslide-desc {
-            color: #fff;
+        .gnext,
+        .gprev {
+            top: 45%;
+        }
+
+        .gslide-description {
+            background: rgba(0, 0, 0, 0.75);
+
+            .gslide-title {
+                color: #fff;
+            }
+
+            .gslide-desc {
+                color: #fff;
+            }
         }
     }
 }
