@@ -1,8 +1,8 @@
 {
-    "name": "xitara/wn-dynamiccontent-plugin",
+    "name": "xitara/wn-voodooblocks-plugin",
     "type": "winter-plugin",
-    "description": "Dynamic Content Winter CMS plugin",
-    "keywords": ["winter", "cms", "dynamiccontent", "plugin"],
+    "description": "Block-Layout Plugin for Winter CMS",
+    "keywords": ["winter", "cms", "voodooblocks", "plugin"],
     "license": "MIT",
     "authors": [
         {
